@@ -6,5 +6,5 @@ I want to build an application, with which i can manage the items in my basement
 
 Physical parts are: 
   - TaoTronics USB Laser-Barcodescanner
-  - some not yet defined pc with screen
+  - any not yet defined pc with screen
   - database (in the future)
