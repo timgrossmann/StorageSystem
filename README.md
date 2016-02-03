@@ -8,3 +8,5 @@ Physical parts are:
   - TaoTronics USB Laser-Barcodescanner
   - any not yet defined pc with screen
   - database (in the future)
+
+![alt tag](http://ecx.images-amazon.com/images/I/71T55P9USGL._SL1500_.jpg)
