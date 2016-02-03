@@ -10,23 +10,23 @@ public final class Item {
 	public final String[] images;
 	public final String[] videos;
 	public final String[] categories;
-	private int amount = 1;
+	private int amount;
 
-	public Item(String gtin, String outpan_url, String name, Attributes attributes, String[] images, String[] videos,
-			String[] categories) {
-		this.gtin = gtin;
-		this.outpan_url = outpan_url;
-		this.name = name;
-		this.attributes = attributes;
-		this.images = images;
-		this.videos = videos;
-		this.categories = categories;
+	public Item(Item item) {
+		this.gtin = item.gtin;
+		this.outpan_url = item.outpan_url;
+		this.name = item.name;
+		this.attributes = item.attributes;
+		this.images = item.images;
+		this.videos = item.videos;
+		this.categories = item.categories;
+		this.amount = 1;
 	}
 
 	public int getAmount() {
 		return amount;
 	}
-	
+
 	public void increaseAmount() {
 		amount++;
 	}

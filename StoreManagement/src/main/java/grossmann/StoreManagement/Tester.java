@@ -45,7 +45,7 @@ public class Tester {
 
 			System.out.println();
 
-			Item item = gson.fromJson(temp.toString(), Item.class);
+			Item item = new Item(gson.fromJson(temp.toString(), Item.class));
 
 			items.put(item.gtin, item);
 
