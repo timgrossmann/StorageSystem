@@ -1,6 +1,9 @@
 package gui;
 
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
+import javafx.concurrent.Worker;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -49,35 +52,36 @@ public class Main extends Application {
 
 	public static void main(String[] args) {
 
-		Runnable gtinReset = new Runnable() {
-
+		Task<Void> task = new Task<Void>() {
 			@Override
-			public void run() {
+			protected Void call() throws Exception {
+
 				Thread thread = Thread.currentThread();
 				while (resetThread == thread) {
 					try {
-						Thread.sleep(3000);
+						Thread.sleep(1000);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
 
 					if (!gtin.equals("")) {
-						
-						if(controller.addButton.isSelected()) {
+
+						if (controller.addButton.isSelected()) {
 							controller.addItem(gtin);
-						} else if(controller.removeButton.isSelected()) {
+						} else if (controller.removeButton.isSelected()) {
 							controller.removeItem(gtin);
 						} else {
 							System.out.println("other");
 						}
-						
+
 						gtin = "";
 					}
 				}
+				return null;
 			}
 		};
 
-		resetThread = new Thread(gtinReset);
+		resetThread = new Thread(task);
 		resetThread.start();
 
 		launch(args);
