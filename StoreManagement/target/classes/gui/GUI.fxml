@@ -41,7 +41,21 @@
                   <Separator prefWidth="200.0" />
                   <AnchorPane prefHeight="749.0" prefWidth="345.0">
                      <children>
-                        <Button fx:id="testButton" mnemonicParsing="false" text="Button" />
+                        <VBox prefHeight="701.0" prefWidth="335.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Button fx:id="testButton" mnemonicParsing="false" text="Button" />
+                              <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                 <children>
+                                    <ToggleButton fx:id="addButton" mnemonicParsing="false" text="Add">
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="addRemoveToggle" />
+                                       </toggleGroup>
+                                    </ToggleButton>
+                                    <ToggleButton fx:id="removeButton" mnemonicParsing="false" text="Remove" toggleGroup="$addRemoveToggle" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
                      </children>
                   </AnchorPane>
                </children>
