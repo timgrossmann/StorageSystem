@@ -1,9 +1,7 @@
 package gui;
 
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.concurrent.Task;
-import javafx.concurrent.Worker;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -15,7 +13,7 @@ public class Main extends Application {
 	public static Scene primaryScene;
 	public static Controller controller;
 	private static String gtin = "";
-	private static Thread resetThread;
+	private static boolean isThreadOn = false;
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -36,56 +34,53 @@ public class Main extends Application {
 
 		primaryScene.setOnKeyPressed(event -> {
 
-			gtin += event.getText();
-
-		});
-
-		primaryStage.setOnCloseRequest(event -> {
-			killThread();
-		});
-
-	}
-
-	private static void killThread() {
-		resetThread = null;
-	}
-
-	public static void main(String[] args) {
-
-		Task<Void> task = new Task<Void>() {
-			@Override
-			protected Void call() throws Exception {
-
-				Thread thread = Thread.currentThread();
-				while (resetThread == thread) {
-					try {
-						Thread.sleep(1000);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-
-					if (!gtin.equals("")) {
-
+			if (!checkThreadOn()) {
+				setIsThreadOn(true);
+				new Thread(new Task<Void>() {
+					@Override
+					protected Void call() throws Exception {
+						try {
+							Thread.sleep(250);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
 						if (controller.addButton.isSelected()) {
+							// System.out.println("Add " + gtin);
 							controller.addItem(gtin);
 						} else if (controller.removeButton.isSelected()) {
+							// System.out.println("remove " + gtin);
 							controller.removeItem(gtin);
 						} else {
-							System.out.println("other");
+							// System.out.println("other");
 						}
 
 						gtin = "";
+						setIsThreadOn(false);
+
+						return null;
 					}
-				}
-				return null;
+				}).start();
 			}
-		};
 
-		resetThread = new Thread(task);
-		resetThread.start();
+			gtin += event.getText();
 
+		});
+	}
+
+	private synchronized static boolean checkThreadOn() {
+		if (isThreadOn) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	private synchronized static void setIsThreadOn(boolean state) {
+		isThreadOn = state;
+	}
+
+	public static void main(String[] args) {
 		launch(args);
-
 	}
 
 }

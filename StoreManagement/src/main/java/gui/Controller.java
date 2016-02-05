@@ -1,8 +1,8 @@
 package gui;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
@@ -12,6 +12,7 @@ import grossmann.StoreManagement.Item;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -32,8 +33,9 @@ public class Controller implements Initializable {
 	@FXML
 	ToggleButton removeButton;
 
-	ObservableList<ItemBox> items = FXCollections.observableArrayList();
-
+	ObservableMap<String, ItemBox> itemsMap = FXCollections.observableMap(new HashMap<String, ItemBox>());
+	ObservableList<ItemBox> items = FXCollections.observableArrayList(itemsMap.values());
+	
 	public void initialize(URL location, ResourceBundle resources) {
 
 		Main.controller = this;
@@ -42,7 +44,9 @@ public class Controller implements Initializable {
 		addButton.setSelected(true);
 
 		testButton.setOnAction(event -> {
-			items.add(new ItemBox());
+			itemsMap.put(event.hashCode() + "" ,new ItemBox("test","test",1));
+			items = FXCollections.observableArrayList(itemsMap.values());
+			listView.setItems(items);
 		});
 
 	}
@@ -76,7 +80,7 @@ public class Controller implements Initializable {
 			public void run() {
 				System.out.println("Add: " + gtin);
 				try {
-					items.add(getNewItem(gtin));
+					itemsMap.put(gtin, getNewItem(gtin));
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
