@@ -35,7 +35,7 @@ public class Controller implements Initializable {
 
 	ObservableMap<String, ItemBox> itemsMap = FXCollections.observableMap(new HashMap<String, ItemBox>());
 	ObservableList<ItemBox> items = FXCollections.observableArrayList(itemsMap.values());
-	
+
 	public void initialize(URL location, ResourceBundle resources) {
 
 		Main.controller = this;
@@ -44,14 +44,13 @@ public class Controller implements Initializable {
 		addButton.setSelected(true);
 
 		testButton.setOnAction(event -> {
-			itemsMap.put(event.hashCode() + "" ,new ItemBox("test","test",1));
-			items = FXCollections.observableArrayList(itemsMap.values());
-			listView.setItems(items);
+			itemsMap.put(event.hashCode() + "", new ItemBox(null));
+			updateList();
 		});
 
 	}
 
-	private ItemBox getNewItem(String gtin) throws IOException {
+	private Item getNewItem(String gtin) throws IOException {
 
 		Gson gson = new Gson();
 
@@ -67,9 +66,7 @@ public class Controller implements Initializable {
 
 		scanner.close();
 
-		Item item = new Item(gson.fromJson(temp.toString(), Item.class));
-
-		return new ItemBox(item.gtin, item.name, item.getAmount());
+		return new Item(gson.fromJson(temp.toString(), Item.class)); 
 	}
 
 	public boolean addItem(String gtin) {
@@ -80,7 +77,12 @@ public class Controller implements Initializable {
 			public void run() {
 				System.out.println("Add: " + gtin);
 				try {
-					itemsMap.put(gtin, getNewItem(gtin));
+					if (!itemsMap.containsKey(gtin)) {
+						itemsMap.put(gtin, new ItemBox(getNewItem(gtin)));
+						updateList();
+					} else {
+						itemsMap.get(gtin).setAmount(itemsMap.get(gtin).getAmount() + 1);
+					}
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -91,6 +93,11 @@ public class Controller implements Initializable {
 		return false;
 	}
 
+	public void updateList() {
+		items = FXCollections.observableArrayList(itemsMap.values());
+		listView.setItems(items);
+	}
+
 	public boolean removeItem(String gtin) {
 
 		Platform.runLater(new Runnable() {
@@ -98,6 +105,8 @@ public class Controller implements Initializable {
 			@Override
 			public void run() {
 				System.out.println("Remove: " + gtin);
+				items = FXCollections.observableArrayList(itemsMap.values());
+				listView.setItems(items);
 
 			}
 		});

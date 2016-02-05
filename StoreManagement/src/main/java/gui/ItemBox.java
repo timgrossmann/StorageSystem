@@ -1,39 +1,53 @@
 package gui;
 
+import grossmann.StoreManagement.Item;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
-public class ItemBox extends HBox{
-	
+public class ItemBox extends HBox {
+
+	private Item item;
 	private Label gtin = new Label();
 	private Label name = new Label();
 	private Label amount = new Label();
 	private Image image;
 	private ImageView imageView;
 
-	public ItemBox() {
+	public ItemBox(Item item) {
+		this.item = item;
+		setupParts();
 		this.getChildren().add(gtin);
 		this.getChildren().add(name);
 		this.getChildren().add(amount);
 	}
-	
-	public ItemBox(String gtin, String name, int amount) {
-		this();
+
+	private void setupParts() {
+		this.gtin.setText(item.gtin);
+		this.name.setText(item.name);
+		this.amount.setText(String.valueOf(item.getAmount()));
+
+		if (item.images == null) {
+			this.image = new Image(item.images[0]);
+			this.imageView = new ImageView(image);
+		}
+	}
+
+	public String getGtin() {
+		return gtin.getText();
+	}
+
+	public void setGtin(String gtin) {
 		this.gtin.setText(gtin);
-		this.name.setText(name);
+	}
+
+	public int getAmount() {
+		return Integer.parseInt(amount.getText());
+	}
+
+	public void setAmount(int amount) {
 		this.amount.setText(String.valueOf(amount));
 	}
-	
-	public ItemBox(String gtin, String name, int amount, String image) {
-		this(gtin, name, amount);
-		this.image = new Image(image);
-		this.imageView = new ImageView(this.image);
-		this.getChildren().add(this.imageView);
-	}
-	
-	
-	
-	
+
 }

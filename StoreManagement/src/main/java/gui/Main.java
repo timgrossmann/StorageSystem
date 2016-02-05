@@ -40,7 +40,7 @@ public class Main extends Application {
 					@Override
 					protected Void call() throws Exception {
 						try {
-							Thread.sleep(250);
+							Thread.sleep(10000);
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 						}
