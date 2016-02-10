@@ -67,7 +67,6 @@ public class Controller implements Initializable {
 				
 				itemsMap.forEach((a, b) -> {
 					if (b.getName().toLowerCase().contains(newVal.toLowerCase())) {
-						System.out.println(b.getName());
 						searchItems.add(b);
 					}
 				});

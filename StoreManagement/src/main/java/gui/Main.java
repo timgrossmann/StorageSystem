@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -33,36 +34,41 @@ public class Main extends Application {
 		primaryStage.show();
 
 		primaryScene.setOnKeyPressed(event -> {
-			
-			if (!checkThreadOn()) {
-				setIsThreadOn(true);
-				new Thread(new Task<Void>() {
-					@Override
-					protected Void call() throws Exception {
-						try {
-							Thread.sleep(10000);
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
-						if (controller.addButton.isSelected()) {
-							// System.out.println("Add " + gtin);
-							controller.addItem(gtin);
-						} else if (controller.removeButton.isSelected()) {
-							// System.out.println("remove " + gtin);
-							controller.removeItem(gtin);
-						} else {
-							// System.out.println("other");
-						}
 
-						gtin = "";
-						setIsThreadOn(false);
+			if (event.getCode().isDigitKey()) {
 
-						return null;
-					}
-				}).start();
+				if (!checkThreadOn()) {
+					setIsThreadOn(true);
+					new Thread(new Task<Void>() {
+						@Override
+						protected Void call() throws Exception {
+							try {
+								Thread.sleep(10000);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+							if (controller.addButton.isSelected()) {
+								// System.out.println("Add " + gtin);
+								controller.addItem(gtin);
+							} else if (controller.removeButton.isSelected()) {
+								// System.out.println("remove " + gtin);
+								controller.removeItem(gtin);
+							} else {
+								// System.out.println("other");
+							}
+
+							gtin = "";
+							setIsThreadOn(false);
+
+							return null;
+						}
+					}).start();
+				}
+
+				gtin += event.getText();
+			} else {
+				event.consume();
 			}
-
-			gtin += event.getText();
 
 		});
 	}
