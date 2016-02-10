@@ -33,7 +33,7 @@ public class Main extends Application {
 		primaryStage.show();
 
 		primaryScene.setOnKeyPressed(event -> {
-
+			
 			if (!checkThreadOn()) {
 				setIsThreadOn(true);
 				new Thread(new Task<Void>() {

@@ -17,6 +17,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 
@@ -32,16 +33,48 @@ public class Controller implements Initializable {
 	ToggleButton addButton;
 	@FXML
 	ToggleButton removeButton;
+	@FXML
+	TextField searchBox;
 
 	ObservableMap<String, ItemBox> itemsMap = FXCollections.observableMap(new HashMap<String, ItemBox>());
 	ObservableList<ItemBox> items = FXCollections.observableArrayList(itemsMap.values());
+	ObservableList<ItemBox> searchItems = FXCollections.observableArrayList();
 
 	public void initialize(URL location, ResourceBundle resources) {
 
 		Main.controller = this;
-
+		
+		itemsMap.put("12345", new ItemBox());
+		itemsMap.put("14513", new ItemBox());
+		itemsMap.put("51212", new ItemBox());
+		itemsMap.put("12382", new ItemBox());
+		itemsMap.put("84322", new ItemBox());
+		itemsMap.put("12456", new ItemBox());
+		itemsMap.put("98999", new ItemBox());
+		
+		updateList();
+		
 		listView.setItems(items);
 		addButton.setSelected(true);
+
+		searchBox.textProperty().addListener((observable, oldVal, newVal) -> {
+			
+			searchItems.clear();
+
+			if (newVal.equals("")) {
+				listView.setItems(items);
+			} else {
+				
+				itemsMap.forEach((a, b) -> {
+					if (b.getName().toLowerCase().contains(newVal.toLowerCase())) {
+						System.out.println(b.getName());
+						searchItems.add(b);
+					}
+				});
+
+				listView.setItems(searchItems);
+			}
+		});
 
 		testButton.setOnAction(event -> {
 			itemsMap.put(event.hashCode() + "", new ItemBox(null));
@@ -66,7 +99,7 @@ public class Controller implements Initializable {
 
 		scanner.close();
 
-		return new Item(gson.fromJson(temp.toString(), Item.class)); 
+		return new Item(gson.fromJson(temp.toString(), Item.class));
 	}
 
 	public boolean addItem(String gtin) {

@@ -15,6 +15,24 @@ public class ItemBox extends HBox {
 	private Image image;
 	private ImageView imageView;
 
+	private static int counter = 0;
+
+	public ItemBox() {
+		
+		gtin.setText("12345");
+		amount.setText("10");
+		
+		if (counter < 2) {
+			name.setText("Number: " + counter++);
+		} else {
+			name.setText("Umber: " + counter++);
+		}
+		
+		this.getChildren().add(gtin);
+		this.getChildren().add(name);
+		this.getChildren().add(amount);
+	}
+
 	public ItemBox(Item item) {
 		this.item = item;
 		setupParts();
@@ -40,6 +58,10 @@ public class ItemBox extends HBox {
 
 	public void setGtin(String gtin) {
 		this.gtin.setText(gtin);
+	}
+
+	public String getName() {
+		return name.getText();
 	}
 
 	public int getAmount() {
