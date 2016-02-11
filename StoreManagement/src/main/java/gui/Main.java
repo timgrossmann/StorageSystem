@@ -1,6 +1,9 @@
 package gui;
 
+import com.sun.javafx.binding.StringFormatter;
+
 import javafx.application.Application;
+import javafx.beans.binding.StringExpression;
 import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -42,19 +45,21 @@ public class Main extends Application {
 					new Thread(new Task<Void>() {
 						@Override
 						protected Void call() throws Exception {
+							System.out.println("Called");
 							try {
-								Thread.sleep(10000);
+								Thread.sleep(100);
 							} catch (InterruptedException e) {
 								e.printStackTrace();
 							}
+							
+							String output = (("0000000000000" + gtin).substring(gtin.length()));
+							
 							if (controller.addButton.isSelected()) {
-								// System.out.println("Add " + gtin);
-								controller.addItem(gtin);
+								controller.addItem(output);
 							} else if (controller.removeButton.isSelected()) {
-								// System.out.println("remove " + gtin);
-								controller.removeItem(gtin);
+								controller.removeItem(output);
 							} else {
-								// System.out.println("other");
+								 System.out.println("Option not possible");
 							}
 
 							gtin = "";
@@ -66,8 +71,6 @@ public class Main extends Application {
 				}
 
 				gtin += event.getText();
-			} else {
-				event.consume();
 			}
 
 		});

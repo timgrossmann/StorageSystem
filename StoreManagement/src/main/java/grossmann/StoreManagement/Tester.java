@@ -51,10 +51,10 @@ public class Tester {
 
 			System.out.println(item.gtin);
 			System.out.println(item.name);
-			System.out.println(item.categories[0]);
-			System.out.println(item.images[0]);
-			System.out.println(item.attributes.packageContents);
-			System.out.println(item.attributes.volume);
+//			System.out.println(item.categories[0]);
+//			System.out.println(item.images[0]);
+//			System.out.println(item.attributes.packageContents);
+//			System.out.println(item.attributes.volume);
 
 			System.out.println(items.get(item.gtin).getAmount());
 

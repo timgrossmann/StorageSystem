@@ -1,13 +1,20 @@
 package gui;
 
+import java.io.DataOutputStream;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.HashMap;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
+import javax.net.ssl.HttpsURLConnection;
+
 import com.google.gson.Gson;
 
+import exceptions.NoNameForProductException;
 import grossmann.StoreManagement.Item;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -18,6 +25,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 
@@ -43,7 +51,7 @@ public class Controller implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 
 		Main.controller = this;
-		
+
 		itemsMap.put("12345", new ItemBox());
 		itemsMap.put("14513", new ItemBox());
 		itemsMap.put("51212", new ItemBox());
@@ -51,20 +59,20 @@ public class Controller implements Initializable {
 		itemsMap.put("84322", new ItemBox());
 		itemsMap.put("12456", new ItemBox());
 		itemsMap.put("98999", new ItemBox());
-		
+
 		updateList();
-		
+
 		listView.setItems(items);
 		addButton.setSelected(true);
 
 		searchBox.textProperty().addListener((observable, oldVal, newVal) -> {
-			
+
 			searchItems.clear();
 
 			if (newVal.equals("")) {
 				listView.setItems(items);
 			} else {
-				
+
 				itemsMap.forEach((a, b) -> {
 					if (b.getName().toLowerCase().contains(newVal.toLowerCase())) {
 						searchItems.add(b);
@@ -98,7 +106,14 @@ public class Controller implements Initializable {
 
 		scanner.close();
 
-		return new Item(gson.fromJson(temp.toString(), Item.class));
+		Item item = new Item(gson.fromJson(temp.toString(), Item.class));
+
+		if (item.name != null) {
+			return item;
+		} else {
+			throw new NoNameForProductException();
+		}
+
 	}
 
 	public boolean addItem(String gtin) {
@@ -115,14 +130,59 @@ public class Controller implements Initializable {
 					} else {
 						itemsMap.get(gtin).setAmount(itemsMap.get(gtin).getAmount() + 1);
 					}
+				} catch (NoNameForProductException e) {
+					System.out.println("Item not Found");
+
+					TextInputDialog dialog = new TextInputDialog();
+					dialog.setTitle("Item not Found");
+					dialog.setHeaderText("The Item is not yet listed");
+					dialog.setContentText("Please enter the name of the Product:");
+
+					Optional<String> result = dialog.showAndWait();
+					result.ifPresent(name -> listNewItem(gtin, name));
+
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					System.out.println("Not a Barcode!");
 				}
 			}
 		});
 
 		return false;
+	}
+
+	private void listNewItem(String gtin, String name) {
+
+		try {
+			URL url = new URL("https://api.outpan.com/v2/products/" + gtin + "/name"
+					+ "?apikey=e13a9fb0bda8684d72bc3dba1b16ae1e");
+
+			HttpsURLConnection httpCon = (HttpsURLConnection) url.openConnection();
+			httpCon.setDoOutput(true);
+			httpCon.setRequestMethod("POST");
+
+			String content = "name=" + name;
+			DataOutputStream out = new DataOutputStream(httpCon.getOutputStream());
+
+			out.writeBytes(content);
+			out.flush();
+
+			System.out.println(httpCon.getResponseCode());
+			System.out.println(httpCon.getResponseMessage());
+
+			out.close();
+
+			if(httpCon.getResponseCode() == 200) {
+				addItem(gtin);
+			}
+			
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
 	public void updateList() {

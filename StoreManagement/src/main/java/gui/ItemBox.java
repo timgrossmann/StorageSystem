@@ -46,10 +46,10 @@ public class ItemBox extends HBox {
 		this.name.setText(item.name);
 		this.amount.setText(String.valueOf(item.getAmount()));
 
-		if (item.images == null) {
-			this.image = new Image(item.images[0]);
-			this.imageView = new ImageView(image);
-		}
+//		if (item.images == null) {
+//			this.image = new Image(item.images[0]);
+//			this.imageView = new ImageView(image);
+//		}
 	}
 
 	public String getGtin() {
