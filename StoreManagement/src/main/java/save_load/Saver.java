@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.nio.file.Path;
 import java.util.List;
 
 import grossmann.StoreManagement.Alerter;
@@ -22,8 +23,8 @@ public class Saver {
 	}
 
 	public static boolean save(List<Item> items) {
-
-		File file = new File("/Users/TG/Desktop/Untitled.sav");
+		
+		File file = new File(System.getProperty("user.home"), "Desktop/sav.sav");
 
 		// chooser.setTitle("Save Tournament: ");
 		// chooser.setInitialDirectory(new File(System.getProperty("user.home")

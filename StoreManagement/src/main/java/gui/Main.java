@@ -73,7 +73,7 @@ public class Main extends Application {
 									protected Void call() throws Exception {
 										System.out.println("Save Thread activated");
 										try {
-											Thread.sleep(60000);
+											Thread.sleep(6000);
 										} catch (InterruptedException e) {
 											e.printStackTrace();
 										}
