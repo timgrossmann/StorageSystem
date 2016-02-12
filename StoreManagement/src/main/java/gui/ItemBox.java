@@ -18,16 +18,16 @@ public class ItemBox extends HBox {
 	private static int counter = 0;
 
 	public ItemBox() {
-		
-		gtin.setText("12345");
-		amount.setText("10");
-		
+
+		gtin.setText("12345" + counter++);
+		amount.setText("10" + counter++);
+
 		if (counter < 2) {
 			name.setText("Number: " + counter++);
 		} else {
 			name.setText("Umber: " + counter++);
 		}
-		
+
 		this.getChildren().add(gtin);
 		this.getChildren().add(name);
 		this.getChildren().add(amount);
@@ -46,10 +46,10 @@ public class ItemBox extends HBox {
 		this.name.setText(item.name);
 		this.amount.setText(String.valueOf(item.getAmount()));
 
-//		if (item.images == null) {
-//			this.image = new Image(item.images[0]);
-//			this.imageView = new ImageView(image);
-//		}
+		// if (item.images == null) {
+		// this.image = new Image(item.images[0]);
+		// this.imageView = new ImageView(image);
+		// }
 	}
 
 	public String getGtin() {
@@ -65,11 +65,21 @@ public class ItemBox extends HBox {
 	}
 
 	public int getAmount() {
-		return Integer.parseInt(amount.getText());
+		return item.getAmount();
 	}
 
-	public void setAmount(int amount) {
-		this.amount.setText(String.valueOf(amount));
+	public void increaseAmount() {
+		this.item.increaseAmount();
+		this.amount.setText(String.valueOf(item.getAmount()));
+	}
+
+	public void decreaseAmount() {
+		this.item.decreaseAmount();
+		this.amount.setText(String.valueOf(item.getAmount()));
+	}
+
+	public Item getItem() {
+		return item;
 	}
 
 }

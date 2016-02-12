@@ -1,6 +1,8 @@
 package grossmann.StoreManagement;
 
-public final class Item {
+import java.io.Serializable;
+
+public final class Item implements Serializable{
 	public final String gtin;
 	public final String outpan_url;
 	public final String name;

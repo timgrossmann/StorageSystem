@@ -1,15 +1,17 @@
 package gui;
 
-import com.sun.javafx.binding.StringFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
+import grossmann.StoreManagement.Item;
 import javafx.application.Application;
-import javafx.beans.binding.StringExpression;
+import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import save_load.Saver;
 
 public class Main extends Application {
 
@@ -18,6 +20,7 @@ public class Main extends Application {
 	public static Controller controller;
 	private static String gtin = "";
 	private static boolean isThreadOn = false;
+	private static boolean saveThreadActive = false;
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -47,19 +50,43 @@ public class Main extends Application {
 						protected Void call() throws Exception {
 							System.out.println("Called");
 							try {
-								Thread.sleep(5000);
+								Thread.sleep(1000);
 							} catch (InterruptedException e) {
 								e.printStackTrace();
 							}
-							
+
 							String output = (("0000000000000" + gtin).substring(gtin.length()));
-							
+
 							if (controller.addButton.isSelected()) {
 								controller.addItem(output);
 							} else if (controller.removeButton.isSelected()) {
 								controller.removeItem(output);
 							} else {
-								 System.out.println("Option not possible");
+								System.out.println("Option not possible");
+							}
+
+							if (!checkSaveThreadOn()) {
+								setSaveThreadActive(true);
+								new Thread(new Task<Void>() {
+
+									@Override
+									protected Void call() throws Exception {
+										System.out.println("Save Thread activated");
+										try {
+											Thread.sleep(60000);
+										} catch (InterruptedException e) {
+											e.printStackTrace();
+										}
+
+										serializeItems();
+										System.out.println("serialized");
+										
+										setSaveThreadActive(false);
+
+										return null;
+									}
+
+								}).start();
 							}
 
 							gtin = "";
@@ -76,7 +103,24 @@ public class Main extends Application {
 		});
 	}
 
-	private synchronized static boolean checkThreadOn() {
+	private static void serializeItems() {
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				List<ItemBox> temp = new ArrayList<ItemBox>(controller.items);
+
+				List<Item> items = new ArrayList<Item>();
+
+				for (ItemBox itemBox : temp) {
+					items.add(itemBox.getItem());
+				}
+
+				Saver.save(items);
+			}
+		});
+	}
+
+	private static boolean checkThreadOn() {
 		if (isThreadOn) {
 			return true;
 		} else {
@@ -84,8 +128,20 @@ public class Main extends Application {
 		}
 	}
 
-	private synchronized static void setIsThreadOn(boolean state) {
+	private static void setIsThreadOn(boolean state) {
 		isThreadOn = state;
+	}
+
+	private static boolean checkSaveThreadOn() {
+		if (saveThreadActive) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	private static void setSaveThreadActive(boolean state) {
+		saveThreadActive = state;
 	}
 
 	public static void main(String[] args) {
