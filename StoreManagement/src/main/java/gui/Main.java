@@ -47,7 +47,7 @@ public class Main extends Application {
 						protected Void call() throws Exception {
 							System.out.println("Called");
 							try {
-								Thread.sleep(100);
+								Thread.sleep(5000);
 							} catch (InterruptedException e) {
 								e.printStackTrace();
 							}

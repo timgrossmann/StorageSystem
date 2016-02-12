@@ -4,7 +4,6 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -15,6 +14,8 @@ import javax.net.ssl.HttpsURLConnection;
 import com.google.gson.Gson;
 
 import exceptions.NoNameForProductException;
+import grossmann.StoreManagement.Alerter;
+import grossmann.StoreManagement.Alerter.AlerterType;
 import grossmann.StoreManagement.Item;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -22,10 +23,11 @@ import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 
@@ -38,12 +40,22 @@ public class Controller implements Initializable {
 	@FXML
 	ToggleGroup addRemoveToggle;
 	@FXML
+	ToggleGroup searchToggle;
+	@FXML
 	ToggleButton addButton;
 	@FXML
 	ToggleButton removeButton;
 	@FXML
 	TextField searchBox;
-
+	@FXML
+	RadioButton nameSearch;
+	@FXML
+	RadioButton amountSearch;
+	@FXML
+	RadioButton barcodeSearch;
+	@FXML
+	RadioButton attributeSearch;
+	
 	ObservableMap<String, ItemBox> itemsMap = FXCollections.observableMap(new HashMap<String, ItemBox>());
 	ObservableList<ItemBox> items = FXCollections.observableArrayList(itemsMap.values());
 	ObservableList<ItemBox> searchItems = FXCollections.observableArrayList();
@@ -133,16 +145,12 @@ public class Controller implements Initializable {
 				} catch (NoNameForProductException e) {
 					System.out.println("Item not Found");
 
-					TextInputDialog dialog = new TextInputDialog();
-					dialog.setTitle("Item not Found");
-					dialog.setHeaderText("The Item is not yet listed");
-					dialog.setContentText("Please enter the name of the Product:");
-
-					Optional<String> result = dialog.showAndWait();
+					Optional<String> result = Alerter.getTextDialog("Item not Found", "The Item is not yet listed", "Please enter the name of the Product:");
 					result.ifPresent(name -> listNewItem(gtin, name));
 
 				} catch (IOException e) {
-					System.out.println("Not a Barcode!");
+					Alert alert = Alerter.getAlert(AlerterType.WARNING, "Not a valid Barcode", null, "The entered Barcode is not valid.\nPlease try again");
+					alert.showAndWait();
 				}
 			}
 		});
@@ -172,7 +180,13 @@ public class Controller implements Initializable {
 			out.close();
 
 			if(httpCon.getResponseCode() == 200) {
+				Alert alert = Alerter.getAlert(AlerterType.INFO, "Item Added", null, "Item is now listed.");
+				alert.showAndWait();
+				
 				addItem(gtin);
+			} else {
+				Alert alert = Alerter.getAlert(AlerterType.WARNING, "Item not Added", null, "Item could not be listed, please try again.");
+				alert.showAndWait();
 			}
 			
 		} catch (MalformedURLException e) {
@@ -197,9 +211,18 @@ public class Controller implements Initializable {
 			@Override
 			public void run() {
 				System.out.println("Remove: " + gtin);
-				items = FXCollections.observableArrayList(itemsMap.values());
-				listView.setItems(items);
 
+				if(itemsMap.containsKey(gtin) && itemsMap.get(gtin).getAmount() > 0) {
+					itemsMap.get(gtin).setAmount(itemsMap.get(gtin).getAmount() - 1);
+				} else if(itemsMap.containsKey(gtin)) {
+					Alert alert = Alerter.getAlert(AlerterType.INFO, "No Item in Stock", null, "There is no more Item in Stock");
+					alert.showAndWait();
+				} else {
+					Alert alert = Alerter.getAlert(AlerterType.WARNING, "No Item Found", null, "There is no Item with this Barcode");
+					alert.showAndWait();
+				}
+				
+				
 			}
 		});
 
