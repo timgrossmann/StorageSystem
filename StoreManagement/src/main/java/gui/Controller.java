@@ -25,13 +25,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import save_load.Loader;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
+import save_load.Loader;
 
 public class Controller implements Initializable {
 
@@ -56,7 +57,9 @@ public class Controller implements Initializable {
 	@FXML
 	RadioButton barcodeSearch;
 	@FXML
-	RadioButton attributeSearch;
+	RadioButton categorieSearch;
+	@FXML
+	MenuItem loadMenu;
 
 	ObservableMap<String, ItemBox> itemsMap = FXCollections.observableMap(new HashMap<String, ItemBox>());
 	ObservableList<ItemBox> items = FXCollections.observableArrayList(itemsMap.values());
@@ -112,16 +115,26 @@ public class Controller implements Initializable {
 			}
 		});
 
-		testButton.setOnAction(event -> {
-			List<Item> temp = Loader.load();
-
-			for (Item item : temp) {
-				itemsMap.put(item.gtin, new ItemBox(item));
-			}
-
-			updateList();
+		loadMenu.setOnAction(event -> {
+			loadFile(true);
 		});
 
+	}
+
+	public void loadFile(boolean state) {
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				List<Item> temp = Loader.load(state);
+
+				if (temp != null) {
+					for (Item item : temp) {
+						itemsMap.put(item.gtin, new ItemBox(item));
+					}
+					updateList();
+				}
+			}
+		});
 	}
 
 	private Item getNewItem(String gtin) throws IOException {

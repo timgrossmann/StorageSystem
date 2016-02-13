@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import save_load.Loader;
 import save_load.Saver;
 
 public class Main extends Application {
@@ -39,6 +40,9 @@ public class Main extends Application {
 
 		primaryStage.show();
 
+		// Load the current file with Programm start
+		controller.loadFile(false);
+
 		primaryScene.setOnKeyPressed(event -> {
 
 			if (event.getCode().isDigitKey()) {
@@ -50,7 +54,7 @@ public class Main extends Application {
 						protected Void call() throws Exception {
 							System.out.println("Called");
 							try {
-								Thread.sleep(1000);
+								Thread.sleep(5000);
 							} catch (InterruptedException e) {
 								e.printStackTrace();
 							}
@@ -73,14 +77,14 @@ public class Main extends Application {
 									protected Void call() throws Exception {
 										System.out.println("Save Thread activated");
 										try {
-											Thread.sleep(6000);
+											Thread.sleep(60000);
 										} catch (InterruptedException e) {
 											e.printStackTrace();
 										}
 
 										serializeItems();
 										System.out.println("serialized");
-										
+
 										setSaveThreadActive(false);
 
 										return null;
@@ -115,7 +119,7 @@ public class Main extends Application {
 					items.add(itemBox.getItem());
 				}
 
-				Saver.save(items);
+				Saver.save(items, false);
 			}
 		});
 	}

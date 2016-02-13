@@ -13,7 +13,7 @@
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Close" />
+                    <MenuItem fx:id="loadMenu" mnemonicParsing="false" text="Load" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edit">
@@ -51,11 +51,11 @@
                                     </RadioButton>
                                     <RadioButton fx:id="amountSearch" mnemonicParsing="false" text="Amount" toggleGroup="$searchToggle" />
                                     <RadioButton fx:id="barcodeSearch" mnemonicParsing="false" text="Barcode" toggleGroup="$searchToggle" />
-                                    <RadioButton fx:id="attributeSearch" mnemonicParsing="false" text="Attribute" toggleGroup="$searchToggle" />
+                                    <RadioButton fx:id="categorieSearch" mnemonicParsing="false" text="Categorie" toggleGroup="$searchToggle" />
                                  </children>
                               </HBox>
                               <Separator prefWidth="200.0" />
-                              <Button fx:id="testButton" mnemonicParsing="false" text="Button" />
+                              <Button fx:id="testButton" mnemonicParsing="false" text="Load" />
                               <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                  <children>
                                     <ToggleButton fx:id="addButton" mnemonicParsing="false" text="Add">

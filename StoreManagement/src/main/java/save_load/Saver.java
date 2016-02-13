@@ -5,15 +5,15 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.nio.file.Path;
 import java.util.List;
 
 import grossmann.StoreManagement.Alerter;
 import grossmann.StoreManagement.Item;
+import gui.Main;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.FileChooser;
-import javafx.stage.StageStyle;
+import javafx.stage.FileChooser.ExtensionFilter;
 
 public class Saver {
 
@@ -22,21 +22,20 @@ public class Saver {
 	private Saver() {
 	}
 
-	public static boolean save(List<Item> items) {
-		
-		File file = new File(System.getProperty("user.home"), "Desktop/sav.sav");
+	public static boolean save(List<Item> items, boolean setLocation) {
 
-		// chooser.setTitle("Save Tournament: ");
-		// chooser.setInitialDirectory(new File(System.getProperty("user.home")
-		// + "/Desktop"));
-		// chooser.setSelectedExtensionFilter(new ExtensionFilter("Save Files
-		// (*.sav)", "*.sav"));
-		// chooser.getExtensionFilters().add(new ExtensionFilter("Save Files
-		// (*.sav)", "*.sav"));
-		//
-		// File file = chooser.showSaveDialog(Main.primaryStage);
-		//
-		// System.out.println(file.getAbsolutePath());
+		File file;
+
+		if (setLocation) {
+			chooser.setTitle("Save Tournament: ");
+			chooser.setInitialDirectory(new File(System.getProperty("user.home") + "/Desktop"));
+			chooser.setSelectedExtensionFilter(new ExtensionFilter("SaveFiles(*.sav)", "*.sav"));
+			chooser.getExtensionFilters().add(new ExtensionFilter("Save Files(*.sav)", "*.sav"));
+
+			file = chooser.showSaveDialog(Main.primaryStage);
+		} else {
+			file = new File(System.getProperty("user.home"), "Desktop/saveFile.sav");
+		}
 
 		if (file != null) {
 

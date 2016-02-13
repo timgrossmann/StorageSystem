@@ -23,14 +23,20 @@ public class Loader {
 	private Loader() {
 	}
 
-	public static List<Item> load() {
+	public static List<Item> load(boolean selectFile) {
 
-		chooser.setTitle("Open Tournament: ");
-		chooser.setInitialDirectory(new File(System.getProperty("user.home") + "/Desktop"));
-		chooser.setSelectedExtensionFilter(new ExtensionFilter("Save Files (*.sav)", "*.sav"));
-		chooser.getExtensionFilters().add(new ExtensionFilter("Save Files (*.sav)", "*.sav"));
+		File file;
 
-		File file = chooser.showOpenDialog(Main.primaryStage);
+		if (selectFile) {
+			chooser.setTitle("Open Tournament: ");
+			chooser.setInitialDirectory(new File(System.getProperty("user.home") + "/Desktop"));
+			chooser.setSelectedExtensionFilter(new ExtensionFilter("Save Files (*.sav)", "*.sav"));
+			chooser.getExtensionFilters().add(new ExtensionFilter("Save Files (*.sav)", "*.sav"));
+
+			file = chooser.showOpenDialog(Main.primaryStage);
+		} else {
+			file = new File(System.getProperty("user.home"), "Desktop/saveFile.sav");
+		}
 
 		if (file != null) {
 
@@ -52,6 +58,7 @@ public class Loader {
 				e.printStackTrace();
 			}
 		}
+
 		return null;
 
 	}
