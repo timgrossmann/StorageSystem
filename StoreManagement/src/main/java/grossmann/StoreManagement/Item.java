@@ -3,6 +3,11 @@ package grossmann.StoreManagement;
 import java.io.Serializable;
 
 public final class Item implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4372500228175284569L;
+
 	public final String gtin;
 	public final String outpan_url;
 	public final String name;
@@ -36,6 +41,8 @@ public final class Item implements Serializable {
 			amount--;
 		}
 	}
+	
+	
 
 	// public class Attributes {
 	// @SerializedName(value = "Package Contents")

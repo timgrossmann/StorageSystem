@@ -39,8 +39,6 @@ public class Controller implements Initializable {
 	@FXML
 	ListView<ItemBox> listView = new ListView<ItemBox>();
 	@FXML
-	Button testButton = new Button();
-	@FXML
 	ToggleGroup addRemoveToggle;
 	@FXML
 	ToggleGroup searchToggle;
@@ -60,6 +58,18 @@ public class Controller implements Initializable {
 	RadioButton categorieSearch;
 	@FXML
 	MenuItem loadMenu;
+	@FXML
+	MenuItem saveMenu;
+	@FXML
+	MenuItem exitMenu;
+	@FXML
+	MenuItem updateMenu;
+	@FXML
+	MenuItem deleteMenu;
+	@FXML
+	MenuItem sortMenu;
+	@FXML
+	MenuItem aboutMenu;
 
 	ObservableMap<String, ItemBox> itemsMap = FXCollections.observableMap(new HashMap<String, ItemBox>());
 	ObservableList<ItemBox> items = FXCollections.observableArrayList(itemsMap.values());
@@ -68,14 +78,6 @@ public class Controller implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 
 		Main.controller = this;
-
-		// itemsMap.put("12345", new ItemBox());
-		// itemsMap.put("14513", new ItemBox());
-		// itemsMap.put("51212", new ItemBox());
-		// itemsMap.put("12382", new ItemBox());
-		// itemsMap.put("84322", new ItemBox());
-		// itemsMap.put("12456", new ItemBox());
-		// itemsMap.put("98999", new ItemBox());
 
 		updateList();
 
@@ -246,24 +248,26 @@ public class Controller implements Initializable {
 	public boolean removeItem(String gtin) {
 
 		Platform.runLater(new Runnable() {
-
 			@Override
 			public void run() {
 				System.out.println("Remove: " + gtin);
 
-				if (itemsMap.containsKey(gtin) && itemsMap.get(gtin).getAmount() > 0) {
+				if (itemsMap.containsKey(gtin)) {
 					itemsMap.get(gtin).decreaseAmount();
-					;
-				} else if (itemsMap.containsKey(gtin)) {
-					Alert alert = Alerter.getAlert(AlertType.INFORMATION, "No Item in Stock", null,
-							"There is no more Item in Stock");
-					alert.showAndWait();
+					if (itemsMap.get(gtin).getAmount() == 1) {
+						Alert alert = Alerter.getAlert(AlertType.INFORMATION, "Last Item", null,
+								"Only one of this kind left in Stock");
+						alert.showAndWait();
+					} else if (itemsMap.get(gtin).getAmount() == 0) {
+						Alert alert = Alerter.getAlert(AlertType.WARNING, "No more Item", null,
+								"This was the last one of this Item\nPlease rebuy");
+						alert.showAndWait();
+					}
 				} else {
 					Alert alert = Alerter.getAlert(AlertType.WARNING, "No Item Found", null,
 							"There is no Item with this Barcode");
 					alert.showAndWait();
 				}
-
 			}
 		});
 

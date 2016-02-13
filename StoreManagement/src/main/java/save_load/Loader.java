@@ -50,7 +50,7 @@ public class Loader {
 
 			} catch (FileNotFoundException e) {
 
-				Alert alert = Alerter.getAlert(AlertType.INFORMATION, "Coudn´t find file", "Saving failed",
+				Alert alert = Alerter.getAlert(AlertType.INFORMATION, "Coudn´t find file", "Loading failed",
 						"Please try again!");
 				alert.showAndWait();
 
