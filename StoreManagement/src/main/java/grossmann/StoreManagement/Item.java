@@ -1,6 +1,7 @@
 package grossmann.StoreManagement;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 public final class Item implements Serializable {
 	/**
@@ -28,6 +29,12 @@ public final class Item implements Serializable {
 		this.amount = 1;
 	}
 
+	
+	
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
+
 	public int getAmount() {
 		return amount;
 	}
@@ -41,8 +48,47 @@ public final class Item implements Serializable {
 			amount--;
 		}
 	}
-	
-	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + amount;
+		result = prime * result + Arrays.hashCode(categories);
+		result = prime * result + ((gtin == null) ? 0 : gtin.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((outpan_url == null) ? 0 : outpan_url.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Item other = (Item) obj;
+		if (!Arrays.equals(categories, other.categories))
+			return false;
+		if (gtin == null) {
+			if (other.gtin != null)
+				return false;
+		} else if (!gtin.equals(other.gtin))
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (outpan_url == null) {
+			if (other.outpan_url != null)
+				return false;
+		} else if (!outpan_url.equals(other.outpan_url))
+			return false;
+		return true;
+	}
 
 	// public class Attributes {
 	// @SerializedName(value = "Package Contents")

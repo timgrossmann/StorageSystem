@@ -5,7 +5,8 @@ import java.util.List;
 
 import grossmann.StoreManagement.Item;
 import javafx.application.Application;
-import javafx.application.Platform;
+import javafx.application.Platform;import javafx.beans.value.ChangeListener;
+import javafx.collections.ListChangeListener;
 import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -39,7 +40,7 @@ public class Main extends Application {
 		Main.primaryStage = primaryStage;
 
 		primaryStage.show();
-
+		
 		// Load the current file with Programm start
 		controller.loadFile(false);
 
@@ -54,7 +55,7 @@ public class Main extends Application {
 						protected Void call() throws Exception {
 							System.out.println("Called");
 							try {
-								Thread.sleep(5000);
+								Thread.sleep(7000);
 							} catch (InterruptedException e) {
 								e.printStackTrace();
 							}
@@ -83,7 +84,6 @@ public class Main extends Application {
 										}
 
 										serializeItems();
-										System.out.println("serialized");
 
 										setSaveThreadActive(false);
 
@@ -107,7 +107,7 @@ public class Main extends Application {
 		});
 	}
 
-	private static void serializeItems() {
+	public static void serializeItems() {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
@@ -120,6 +120,8 @@ public class Main extends Application {
 				}
 
 				Saver.save(items, false);
+				
+				System.out.println("serialized");
 			}
 		});
 	}

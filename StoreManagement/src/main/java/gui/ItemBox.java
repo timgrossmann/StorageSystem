@@ -26,6 +26,7 @@ public class ItemBox extends HBox {
 		if (item.categories != null) {
 			this.getChildren().add(categories);
 		}
+
 	}
 
 	private void setupParts() {
@@ -73,6 +74,12 @@ public class ItemBox extends HBox {
 
 	public Item getItem() {
 		return item;
+	}
+
+	public void setItem(Item item) {
+		item.setAmount(this.getAmount());
+		this.item = item;
+		setupParts();
 	}
 
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.input.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -16,16 +17,34 @@
                     <menus>
                       <Menu mnemonicParsing="false" text="File">
                         <items>
-                              <MenuItem fx:id="saveMenu" mnemonicParsing="false" text="Save" />
-                          <MenuItem fx:id="loadMenu" mnemonicParsing="false" text="Load" />
-                              <MenuItem fx:id="exitMenu" mnemonicParsing="false" text="Exit" />
+                              <MenuItem fx:id="saveMenu" mnemonicParsing="false" text="Save">
+                                 <accelerator>
+                                    <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                                 </accelerator></MenuItem>
+                          <MenuItem fx:id="loadMenu" mnemonicParsing="false" text="Load">
+                                 <accelerator>
+                                    <KeyCodeCombination alt="UP" code="L" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                                 </accelerator></MenuItem>
+                              <MenuItem fx:id="exitMenu" mnemonicParsing="false" text="Exit">
+                                 <accelerator>
+                                    <KeyCodeCombination alt="UP" code="ESCAPE" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                                 </accelerator></MenuItem>
                         </items>
                       </Menu>
                       <Menu mnemonicParsing="false" text="Edit">
                         <items>
-                              <MenuItem fx:id="updateMenu" mnemonicParsing="false" text="Upadte Items" />
-                          <MenuItem fx:id="deleteMenu" mnemonicParsing="false" text="Delete Item" />
-                              <MenuItem fx:id="sortMenu" mnemonicParsing="false" text="Sort" />
+                              <MenuItem fx:id="updateMenu" mnemonicParsing="false" text="Upadte Items">
+                                 <accelerator>
+                                    <KeyCodeCombination alt="UP" code="U" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                                 </accelerator></MenuItem>
+                          <MenuItem fx:id="deleteMenu" mnemonicParsing="false" text="Delete Item">
+                                 <accelerator>
+                                    <KeyCodeCombination alt="UP" code="DELETE" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                                 </accelerator></MenuItem>
+                              <MenuItem fx:id="sortMenu" mnemonicParsing="false" text="Sort">
+                                 <accelerator>
+                                    <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                                 </accelerator></MenuItem>
                         </items>
                       </Menu>
                       <Menu mnemonicParsing="false" text="Help">

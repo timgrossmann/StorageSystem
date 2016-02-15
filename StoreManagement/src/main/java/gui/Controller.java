@@ -19,13 +19,14 @@ import grossmann.StoreManagement.Alerter;
 import grossmann.StoreManagement.Item;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
@@ -121,6 +122,85 @@ public class Controller implements Initializable {
 			loadFile(true);
 		});
 
+		listView.getSelectionModel().getSelectedItems().addListener(new ListChangeListener<ItemBox>() {
+			@Override
+			public void onChanged(javafx.collections.ListChangeListener.Change<? extends ItemBox> c) {
+				System.out.println(listView.getSelectionModel().getSelectedItem());
+				// TODO load Item into preview (Add GUI for Preview)
+			}
+		});
+
+		setupMenuItems();
+
+	}
+
+	private void setupMenuItems() {
+		exitMenu.setOnAction(event -> Platform.exit());
+
+		loadMenu.setOnAction(event -> loadFile(true));
+
+		saveMenu.setOnAction(event -> Main.serializeItems());
+
+		sortMenu.setOnAction(event -> {
+			Optional<String> sortOption = Alerter.getChoiceDialog("Sorting", null, "Select how you want to sort: ");
+			sortOption.ifPresent(letter -> sortItems(letter));
+			// TODO
+		});
+
+		updateMenu.setOnAction(event -> {
+			
+			ObservableMap<String, ItemBox> map = FXCollections.observableMap(itemsMap);
+
+			//TODO
+			
+			new Thread(new Task<Void>() {
+				@Override
+				protected Void call() throws Exception {
+//					
+//					System.out.println("Update called");
+//
+//					map.forEach((a, b) -> {
+//						Item temp;
+//						try {
+//							temp = getNewItem(a);
+//
+//							if (!temp.equals(b.getItem())) {
+//								System.out.println(temp.name + " unequal to " + b.getItem().name);
+//								b.setItem(temp);
+//							}
+//						} catch (Exception e1) {
+//							e1.printStackTrace();
+//						}
+//					});
+//					
+//					itemsMap = map;
+//					
+//					updateList();
+//					
+					return null;
+				}
+			}).start();
+
+		});
+
+		deleteMenu.setOnAction(event -> {
+			itemsMap.remove(listView.getSelectionModel().getSelectedItem().getGtin());
+			updateList();
+		});
+
+	}
+
+	public void sortItems(String order) {
+
+		switch (order) {
+		case "Name":
+			break;
+		case "Amount":
+			break;
+		case "Categorie":
+			break;
+		}
+
 	}
 
 	public void loadFile(boolean state) {
@@ -176,9 +256,10 @@ public class Controller implements Initializable {
 					if (!itemsMap.containsKey(gtin)) {
 						itemsMap.put(gtin, new ItemBox(getNewItem(gtin)));
 						updateList();
+						listView.getSelectionModel().select(itemsMap.get(gtin));
 					} else {
 						itemsMap.get(gtin).increaseAmount();
-						;
+						listView.getSelectionModel().select(itemsMap.get(gtin));
 					}
 				} catch (NoNameForProductException e) {
 					System.out.println("Item not Found");
@@ -231,18 +312,21 @@ public class Controller implements Initializable {
 			}
 
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 	}
 
 	public void updateList() {
-		items = FXCollections.observableArrayList(itemsMap.values());
-		listView.setItems(items);
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				items = FXCollections.observableArrayList(itemsMap.values());
+				listView.setItems(items);
+			}
+		});
 	}
 
 	public boolean removeItem(String gtin) {
@@ -254,6 +338,7 @@ public class Controller implements Initializable {
 
 				if (itemsMap.containsKey(gtin)) {
 					itemsMap.get(gtin).decreaseAmount();
+					listView.getSelectionModel().select(itemsMap.get(gtin));
 					if (itemsMap.get(gtin).getAmount() == 1) {
 						Alert alert = Alerter.getAlert(AlertType.INFORMATION, "Last Item", null,
 								"Only one of this kind left in Stock");
