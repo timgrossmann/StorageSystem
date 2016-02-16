@@ -33,18 +33,25 @@
                       </Menu>
                       <Menu mnemonicParsing="false" text="Edit">
                         <items>
-                              <MenuItem fx:id="updateMenu" mnemonicParsing="false" text="Upadte Items">
+                              <MenuItem fx:id="repeatMenu" mnemonicParsing="false" text="Repeat last Action">
                                  <accelerator>
-                                    <KeyCodeCombination alt="UP" code="U" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                                    <KeyCodeCombination alt="UP" code="R" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                                 </accelerator>
+                              </MenuItem>
+                              <MenuItem fx:id="sortMenu" mnemonicParsing="false" text="Sort Items">
+                                 <accelerator>
+                                    <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                                  </accelerator></MenuItem>
                           <MenuItem fx:id="deleteMenu" mnemonicParsing="false" text="Delete Item">
                                  <accelerator>
                                     <KeyCodeCombination alt="UP" code="DELETE" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                                  </accelerator></MenuItem>
-                              <MenuItem fx:id="sortMenu" mnemonicParsing="false" text="Sort">
+                              <MenuItem fx:id="updateMenu" mnemonicParsing="false" text="Upadte Selected">
                                  <accelerator>
-                                    <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
-                                 </accelerator></MenuItem>
+                                    <KeyCodeCombination alt="UP" code="U" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                                 </accelerator>
+                              </MenuItem>
+                              <MenuItem fx:id="updateAllMenu" mnemonicParsing="false" text="Upadte All Items" />
                         </items>
                       </Menu>
                       <Menu mnemonicParsing="false" text="Help">

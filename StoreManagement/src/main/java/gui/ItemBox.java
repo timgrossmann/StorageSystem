@@ -1,6 +1,7 @@
 package gui;
 
 import grossmann.StoreManagement.Item;
+import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -30,6 +31,7 @@ public class ItemBox extends HBox {
 	}
 
 	private void setupParts() {
+
 		this.gtin.setText(item.gtin);
 		this.name.setText(item.name);
 		this.amount.setText(String.valueOf(item.getAmount()));
@@ -79,7 +81,14 @@ public class ItemBox extends HBox {
 	public void setItem(Item item) {
 		item.setAmount(this.getAmount());
 		this.item = item;
-		setupParts();
+
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				setupParts();
+			}
+		});
+
 	}
 
 }

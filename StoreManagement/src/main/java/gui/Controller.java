@@ -66,9 +66,13 @@ public class Controller implements Initializable {
 	@FXML
 	MenuItem updateMenu;
 	@FXML
+	MenuItem updateAllMenu;
+	@FXML
 	MenuItem deleteMenu;
 	@FXML
 	MenuItem sortMenu;
+	@FXML
+	MenuItem repeatMenu;
 	@FXML
 	MenuItem aboutMenu;
 
@@ -118,10 +122,6 @@ public class Controller implements Initializable {
 			}
 		});
 
-		loadMenu.setOnAction(event -> {
-			loadFile(true);
-		});
-
 		listView.getSelectionModel().getSelectedItems().addListener(new ListChangeListener<ItemBox>() {
 			@Override
 			public void onChanged(javafx.collections.ListChangeListener.Change<? extends ItemBox> c) {
@@ -135,6 +135,11 @@ public class Controller implements Initializable {
 	}
 
 	private void setupMenuItems() {
+		aboutMenu.setOnAction(event -> {
+			System.out.println("About");
+			// TODO
+		});
+
 		exitMenu.setOnAction(event -> Platform.exit());
 
 		loadMenu.setOnAction(event -> loadFile(true));
@@ -147,45 +152,71 @@ public class Controller implements Initializable {
 			// TODO
 		});
 
-		updateMenu.setOnAction(event -> {
-			
-			ObservableMap<String, ItemBox> map = FXCollections.observableMap(itemsMap);
+		updateAllMenu.setOnAction(event -> {
 
-			//TODO
-			
 			new Thread(new Task<Void>() {
 				@Override
 				protected Void call() throws Exception {
-//					
-//					System.out.println("Update called");
-//
-//					map.forEach((a, b) -> {
-//						Item temp;
-//						try {
-//							temp = getNewItem(a);
-//
-//							if (!temp.equals(b.getItem())) {
-//								System.out.println(temp.name + " unequal to " + b.getItem().name);
-//								b.setItem(temp);
-//							}
-//						} catch (Exception e1) {
-//							e1.printStackTrace();
-//						}
-//					});
-//					
-//					itemsMap = map;
-//					
-//					updateList();
-//					
+
+					System.out.println("Update called");
+
+					itemsMap.forEach((a, b) -> {
+						Item temp;
+						try {
+							temp = getNewItem(a);
+
+							if (!temp.equals(b.getItem())) {
+								System.out.println(temp.name + " unequal to " + b.getItem().name);
+								b.setItem(temp);
+								System.out.println("Changed to " + temp.name);
+							}
+						} catch (Exception e1) {
+							e1.printStackTrace();
+						}
+					});
+
+					updateList();
+
+					Main.serializeItems();
+
 					return null;
 				}
 			}).start();
 
 		});
 
+		updateMenu.setOnAction(event -> {
+
+			if (!listView.getSelectionModel().isEmpty()) {
+				Item temp;
+				ItemBox itemBox = listView.getSelectionModel().getSelectedItem();
+
+				try {
+					temp = getNewItem(itemBox.getGtin());
+
+					if (!temp.equals(itemBox.getItem())) {
+						System.out.println(temp.name + " unequal to " + itemBox.getItem().name);
+						itemBox.setItem(temp);
+						System.out.println("Changed to " + temp.name);
+					}
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			} else {
+				Alert alert = Alerter.getAlert(AlertType.INFORMATION, "No Item selected", null,
+						"Please select the Item you want to update!");
+				alert.showAndWait();
+			}
+
+		});
+
 		deleteMenu.setOnAction(event -> {
 			itemsMap.remove(listView.getSelectionModel().getSelectedItem().getGtin());
 			updateList();
+		});
+
+		repeatMenu.setOnAction(event -> {
+			// TODO
 		});
 
 	}
