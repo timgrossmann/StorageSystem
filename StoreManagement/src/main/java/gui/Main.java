@@ -52,7 +52,7 @@ public class Main extends Application {
 						protected Void call() throws Exception {
 							System.out.println("Called");
 							try {
-								Thread.sleep(200);
+								Thread.sleep(250);
 							} catch (InterruptedException e) {
 								e.printStackTrace();
 							}

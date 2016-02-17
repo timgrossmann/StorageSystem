@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.input.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
@@ -43,9 +44,9 @@
                                           <KeyCodeCombination alt="UP" code="R" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                                        </accelerator>
                                     </MenuItem>
-                                    <MenuItem fx:id="sortMenu" mnemonicParsing="false" text="Sort Items">
+                                    <MenuItem fx:id="groupByMenu" mnemonicParsing="false" text="Group by">
                                        <accelerator>
-                                          <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                                          <KeyCodeCombination alt="UP" code="G" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                                        </accelerator>
                                     </MenuItem>
                                 <MenuItem fx:id="deleteMenu" mnemonicParsing="false" text="Delete Item">
@@ -64,11 +65,17 @@
                             <Menu mnemonicParsing="false" text="Help">
                               <items>
                                 <MenuItem fx:id="aboutMenu" mnemonicParsing="false" text="About" />
+                                    <MenuItem fx:id="printMenu" mnemonicParsing="false" text="Print Overview">
+                                       <accelerator>
+                                          <KeyCodeCombination alt="UP" code="P" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                                       </accelerator>
+                                    </MenuItem>
+                                    <MenuItem fx:id="printShoppingMenu" mnemonicParsing="false" text="Print Shopping List" />
                               </items>
                             </Menu>
                           </menus>
                         </MenuBar>
-                        <VBox maxHeight="1.7976931348623157E308" prefHeight="771.0" prefWidth="355.0" spacing="10.0" BorderPane.alignment="CENTER" VBox.vgrow="ALWAYS">
+                        <VBox prefHeight="771.0" prefWidth="355.0" spacing="10.0" BorderPane.alignment="CENTER" VBox.vgrow="ALWAYS">
                            <children>
                               <HBox alignment="CENTER" spacing="20.0">
                                  <children>
@@ -89,9 +96,86 @@
                                  </children>
                               </HBox>
                               <Separator prefWidth="200.0" />
-                              <AnchorPane maxHeight="1.7976931348623157E308" prefHeight="749.0" prefWidth="345.0" VBox.vgrow="ALWAYS">
+                              <AnchorPane prefHeight="749.0" prefWidth="345.0" VBox.vgrow="ALWAYS">
                                  <children>
-                                    <VBox maxHeight="1.7976931348623157E308" prefHeight="622.0" prefWidth="335.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    <ScrollPane hbarPolicy="NEVER" pannable="true" prefHeight="624.0" prefViewportHeight="622.0" prefViewportWidth="335.0" prefWidth="337.0" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <content>
+                                          <VBox alignment="CENTER" prefHeight="622.0" prefWidth="335.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <Label fx:id="nameLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="75.0" prefWidth="335.0" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" wrapText="true" VBox.vgrow="ALWAYS">
+                                                   <font>
+                                                      <Font size="16.0" />
+                                                   </font>
+                                                </Label>
+                                                <ImageView fx:id="imageView" fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                                                <TilePane alignment="CENTER" prefHeight="3.0" prefWidth="335.0">
+                                                   <children>
+                                                      <HBox alignment="CENTER" prefHeight="17.0" prefWidth="167.0" spacing="10.0" TilePane.alignment="CENTER">
+                                                         <children>
+                                                            <Label text="Gtin:" underline="true">
+                                                               <font>
+                                                                  <Font size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Label fx:id="gtinLabel">
+                                                               <font>
+                                                                  <Font size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" prefHeight="17.0" prefWidth="132.0" spacing="10.0" TilePane.alignment="CENTER">
+                                                         <children>
+                                                            <Label text="Amount:" underline="true" wrapText="true">
+                                                               <font>
+                                                                  <Font size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Label fx:id="amountLabel">
+                                                               <font>
+                                                                  <Font size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                </TilePane>
+                                                <TilePane alignment="CENTER" prefHeight="0.0" prefWidth="335.0">
+                                                   <children>
+                                                      <HBox alignment="TOP_CENTER" prefHeight="53.0" prefWidth="335.0" spacing="10.0" TilePane.alignment="CENTER">
+                                                         <children>
+                                                            <Label text="Categories:" underline="true">
+                                                               <font>
+                                                                  <Font size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Label fx:id="categoriesLabel">
+                                                               <font>
+                                                                  <Font size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox alignment="TOP_CENTER" prefHeight="53.0" prefWidth="335.0" spacing="10.0" TilePane.alignment="CENTER">
+                                                         <children>
+                                                            <Label text="Attributes:" underline="true">
+                                                               <font>
+                                                                  <Font size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Label fx:id="attributesLabel">
+                                                               <font>
+                                                                  <Font size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                </TilePane>
+                                             </children>
+                                          </VBox>
+                                       </content>
+                                    </ScrollPane>
                                  </children>
                               </AnchorPane>
                               <Separator prefWidth="200.0" />

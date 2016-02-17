@@ -4,6 +4,8 @@ import grossmann.StoreManagement.Item;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
 public class ItemBox extends HBox {
@@ -13,8 +15,8 @@ public class ItemBox extends HBox {
 	private Label name = new Label();
 	private Label amount = new Label();
 	private Label categories = new Label();
-	// private Image image;
-	// private ImageView imageView;
+	private Image image;
+	private String attributes = "";
 
 	public ItemBox(Item item) {
 		this.setSpacing(20);
@@ -36,20 +38,24 @@ public class ItemBox extends HBox {
 		this.name.setText(item.name);
 		this.amount.setText(String.valueOf(item.getAmount()));
 
-		if (this.item.categories != null && item.categories.length >= 1) {
-			String temp = item.categories[0];
+		this.categories.setText(getCategoriesText());
 
-			for (int i = 1; i < item.categories.length; i++) {
-				temp += ",\n" + item.categories[i];
-			}
+//		if (item.images.length != 0) {
+//			this.image = new Image(item.images[0]);
+//		}
+	}
 
-			this.categories.setText(temp.trim());
+//	public Image getImage() {
+//		return image;
+//	}
+
+	public String getAttributes() {
+		String temp = "";
+		for (String key : item.attributes.keySet()) {
+			temp += key + ": " + item.attributes.get(key) + "\n";
 		}
-
-		// if (item.images == null) {
-		// this.image = new Image(item.images[0]);
-		// this.imageView = new ImageView(image);
-		// }
+		attributes = temp;
+		return attributes;
 	}
 
 	public String getGtin() {
@@ -77,9 +83,22 @@ public class ItemBox extends HBox {
 	public Item getItem() {
 		return item;
 	}
-	
-	public String[] getCategories(){
+
+	public String[] getCategories() {
 		return item.categories;
+	}
+
+	public String getCategoriesText() {
+		if (this.item.categories != null && item.categories.length >= 1) {
+			String temp = item.categories[0];
+
+			for (int i = 1; i < item.categories.length; i++) {
+				temp += ",\n" + item.categories[i];
+			}
+
+			return temp.trim();
+		}
+		return "";
 	}
 
 	public void setItem(Item item) {

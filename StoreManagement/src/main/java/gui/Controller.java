@@ -18,6 +18,8 @@ import exceptions.NoNameForProductException;
 import grossmann.StoreManagement.Alerter;
 import grossmann.StoreManagement.Item;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -25,14 +27,21 @@ import javafx.collections.ObservableMap;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import save_load.Loader;
 
 public class Controller implements Initializable {
@@ -70,11 +79,27 @@ public class Controller implements Initializable {
 	@FXML
 	MenuItem deleteMenu;
 	@FXML
-	MenuItem sortMenu;
+	MenuItem groupByMenu;
 	@FXML
 	MenuItem repeatMenu;
 	@FXML
 	MenuItem aboutMenu;
+	@FXML
+	MenuItem printMenu;
+	@FXML
+	MenuItem printShoppingMenu;
+	@FXML
+	Label nameLabel;
+	@FXML
+	Label gtinLabel;
+	@FXML
+	Label amountLabel;
+	@FXML
+	Label categoriesLabel;
+	@FXML
+	Label attributesLabel;
+	@FXML
+	ImageView imageView;
 
 	ObservableMap<String, ItemBox> itemsMap = FXCollections.observableMap(new HashMap<String, ItemBox>());
 	ObservableList<ItemBox> items = FXCollections.observableArrayList(itemsMap.values());
@@ -91,51 +116,28 @@ public class Controller implements Initializable {
 		addButton.setSelected(true);
 
 		searchBox.textProperty().addListener((observable, oldVal, newVal) -> {
+			renewSearch(newVal);
+		});
 
-			searchItems.clear();
-
-			if (newVal.equals("")) {
-				listView.setItems(items);
-			} else {
-
-				if (searchToggle.getSelectedToggle().equals(nameSearch)) {
-					itemsMap.forEach((a, b) -> {
-						if (b.getName().toLowerCase().contains(newVal.toLowerCase())) {
-							searchItems.add(b);
-						}
-					});
-				} else if (searchToggle.getSelectedToggle().equals(amountSearch)) {
-					itemsMap.forEach((a, b) -> {
-						if (String.valueOf(b.getAmount()).contains(newVal)) {
-							searchItems.add(b);
-						}
-					});
-				} else if (searchToggle.getSelectedToggle().equals(barcodeSearch)) {
-					itemsMap.forEach((a, b) -> {
-						if (b.getGtin().contains(newVal)) {
-							searchItems.add(b);
-						}
-					});
-				} else if (searchToggle.getSelectedToggle().equals(categorieSearch)) {
-					itemsMap.forEach((a, b) -> {
-						for (String cat : b.getCategories()) {
-							if (cat.contains(newVal)) {
-								searchItems.add(b);
-								break;
-							}
-						}
-					});
-				}
-
-				listView.setItems(searchItems);
+		searchToggle.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
+			public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
+				renewSearch(searchBox.getText());
 			}
 		});
 
 		listView.getSelectionModel().getSelectedItems().addListener(new ListChangeListener<ItemBox>() {
 			@Override
 			public void onChanged(javafx.collections.ListChangeListener.Change<? extends ItemBox> c) {
-				System.out.println(listView.getSelectionModel().getSelectedItem());
-				// TODO load Item into preview (Add GUI for Preview)
+				if (!listView.getSelectionModel().isEmpty()) {
+					ItemBox itemBox = listView.getSelectionModel().getSelectedItem();
+
+					nameLabel.setText(itemBox.getName());
+					amountLabel.setText(String.valueOf(itemBox.getAmount()));
+					gtinLabel.setText(itemBox.getGtin());
+					categoriesLabel.setText(itemBox.getCategoriesText());
+					attributesLabel.setText(itemBox.getAttributes());
+					// imageView.setImage(itemBox.getImage());
+				}
 			}
 		});
 
@@ -145,8 +147,12 @@ public class Controller implements Initializable {
 
 	private void setupMenuItems() {
 		aboutMenu.setOnAction(event -> {
-			System.out.println("About");
-			// TODO
+			AnchorPane root = new AnchorPane(); // Load About here //TODO
+			Stage stage = new Stage();
+			stage.setScene(new Scene(root));
+			stage.initStyle(StageStyle.UTILITY);
+			stage.setTitle("About");
+			stage.show();
 		});
 
 		exitMenu.setOnAction(event -> Platform.exit());
@@ -155,8 +161,8 @@ public class Controller implements Initializable {
 
 		saveMenu.setOnAction(event -> Main.serializeItems());
 
-		sortMenu.setOnAction(event -> {
-			Optional<String> sortOption = Alerter.getChoiceDialog("Sorting", null, "Select how you want to sort: ");
+		groupByMenu.setOnAction(event -> {
+			Optional<String> sortOption = Alerter.getChoiceDialog("Sorting", null, "Select how you want to group: ");
 			sortOption.ifPresent(letter -> sortItems(letter));
 			// TODO
 		});
@@ -239,6 +245,63 @@ public class Controller implements Initializable {
 				}
 			}
 		});
+
+		printMenu.setOnAction(event -> System.out.println("Print Items")); // TODO
+																			// print
+																			// Whole
+																			// List
+																			// of
+																			// Items
+
+		printShoppingMenu.setOnAction(event -> System.out.println("Print Shopping")); // TODO
+																						// list
+																						// of
+																						// items
+																						// with
+																						// 0
+																						// Amount
+
+	}
+
+	public void renewSearch(String newVal) {
+		listView.getSelectionModel().clearSelection();
+		searchItems.clear();
+
+		if (newVal.equals("")) {
+			listView.setItems(items);
+		} else {
+
+			if (searchToggle.getSelectedToggle().equals(nameSearch)) {
+				itemsMap.forEach((a, b) -> {
+					if (b.getName().toLowerCase().contains(newVal.toLowerCase())) {
+						searchItems.add(b);
+					}
+				});
+			} else if (searchToggle.getSelectedToggle().equals(amountSearch)) {
+				itemsMap.forEach((a, b) -> {
+					if (String.valueOf(b.getAmount()).contains(newVal)) {
+						searchItems.add(b);
+					}
+				});
+			} else if (searchToggle.getSelectedToggle().equals(barcodeSearch)) {
+				itemsMap.forEach((a, b) -> {
+					if (b.getGtin().contains(newVal)) {
+						searchItems.add(b);
+					}
+				});
+			} else if (searchToggle.getSelectedToggle().equals(categorieSearch)) {
+				itemsMap.forEach((a, b) -> {
+					for (String cat : b.getCategories()) {
+						if (cat.toLowerCase().contains(newVal.toLowerCase())) {
+							searchItems.add(b);
+							break;
+						}
+					}
+				});
+			}
+
+			listView.setItems(searchItems);
+		}
 	}
 
 	public void sortItems(String order) {
