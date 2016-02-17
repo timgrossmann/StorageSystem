@@ -77,6 +77,10 @@ public class ItemBox extends HBox {
 	public Item getItem() {
 		return item;
 	}
+	
+	public String[] getCategories(){
+		return item.categories;
+	}
 
 	public void setItem(Item item) {
 		item.setAmount(this.getAmount());

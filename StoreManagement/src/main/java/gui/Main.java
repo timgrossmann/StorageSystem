@@ -5,7 +5,8 @@ import java.util.List;
 
 import grossmann.StoreManagement.Item;
 import javafx.application.Application;
-import javafx.application.Platform;import javafx.beans.value.ChangeListener;
+import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.ListChangeListener;
 import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
@@ -33,14 +34,10 @@ public class Main extends Application {
 
 		primaryStage.setScene(primaryScene);
 		primaryStage.setTitle("Storage Management System");
-		primaryStage.setMaxWidth(root.getPrefWidth());
-		primaryStage.setMaxHeight(root.getPrefHeight());
-		primaryStage.setMinWidth(root.getPrefWidth());
-		primaryStage.setMinHeight(root.getPrefHeight());
 		Main.primaryStage = primaryStage;
 
 		primaryStage.show();
-		
+
 		// Load the current file with Programm start
 		controller.loadFile(false);
 
@@ -120,7 +117,7 @@ public class Main extends Application {
 				}
 
 				Saver.save(items, false);
-				
+
 				System.out.println("serialized");
 			}
 		});

@@ -79,6 +79,7 @@ public class Controller implements Initializable {
 	ObservableMap<String, ItemBox> itemsMap = FXCollections.observableMap(new HashMap<String, ItemBox>());
 	ObservableList<ItemBox> items = FXCollections.observableArrayList(itemsMap.values());
 	ObservableList<ItemBox> searchItems = FXCollections.observableArrayList();
+	private static String lastCommand;
 
 	public void initialize(URL location, ResourceBundle resources) {
 
@@ -115,10 +116,18 @@ public class Controller implements Initializable {
 							searchItems.add(b);
 						}
 					});
+				} else if (searchToggle.getSelectedToggle().equals(categorieSearch)) {
+					itemsMap.forEach((a, b) -> {
+						for (String cat : b.getCategories()) {
+							if (cat.contains(newVal)) {
+								searchItems.add(b);
+								break;
+							}
+						}
+					});
 				}
 
 				listView.setItems(searchItems);
-
 			}
 		});
 
@@ -216,9 +225,20 @@ public class Controller implements Initializable {
 		});
 
 		repeatMenu.setOnAction(event -> {
-			// TODO
-		});
 
+			if (lastCommand != null) {
+				String[] props = lastCommand.split(" ");
+
+				switch (props[0]) {
+				case "ADD":
+					addItem(props[1]);
+					break;
+				case "RM":
+					removeItem(props[1]);
+					break;
+				}
+			}
+		});
 	}
 
 	public void sortItems(String order) {
@@ -277,6 +297,8 @@ public class Controller implements Initializable {
 	}
 
 	public boolean addItem(String gtin) {
+
+		lastCommand = "ADD " + gtin;
 
 		Platform.runLater(new Runnable() {
 
@@ -362,23 +384,31 @@ public class Controller implements Initializable {
 
 	public boolean removeItem(String gtin) {
 
+		lastCommand = "RM " + gtin;
+
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
 				System.out.println("Remove: " + gtin);
 
 				if (itemsMap.containsKey(gtin)) {
-					itemsMap.get(gtin).decreaseAmount();
-					listView.getSelectionModel().select(itemsMap.get(gtin));
-					if (itemsMap.get(gtin).getAmount() == 1) {
-						Alert alert = Alerter.getAlert(AlertType.INFORMATION, "Last Item", null,
-								"Only one of this kind left in Stock");
+					if (itemsMap.get(gtin).getAmount() == 2) {
+						Alert alert = Alerter.getAlert(AlertType.INFORMATION, "Only one Item left", null,
+								"Only one of this Item is left in Stock");
+						alert.showAndWait();
+					} else if (itemsMap.get(gtin).getAmount() == 1) {
+						Alert alert = Alerter.getAlert(AlertType.INFORMATION, "Last Item removed", null,
+								"This was the last one of this Item\nPlease rebuy");
 						alert.showAndWait();
 					} else if (itemsMap.get(gtin).getAmount() == 0) {
 						Alert alert = Alerter.getAlert(AlertType.WARNING, "No more Item", null,
-								"This was the last one of this Item\nPlease rebuy");
+								"No more item of this kind in stock");
 						alert.showAndWait();
 					}
+
+					itemsMap.get(gtin).decreaseAmount();
+					listView.getSelectionModel().select(itemsMap.get(gtin));
+
 				} else {
 					Alert alert = Alerter.getAlert(AlertType.WARNING, "No Item Found", null,
 							"There is no Item with this Barcode");
