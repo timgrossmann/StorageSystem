@@ -13,7 +13,7 @@ import javafx.stage.StageStyle;
 
 public class Alerter {
 
-	private static List<String> choices = new ArrayList<>(Arrays.asList("Name", "Amount", "Categorie"));
+	private static List<String> choices = new ArrayList<>(Arrays.asList("Name", "Amount"));
 
 	private Alerter() {
 	}

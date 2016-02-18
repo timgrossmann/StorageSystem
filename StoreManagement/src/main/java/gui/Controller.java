@@ -4,6 +4,9 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
@@ -17,6 +20,7 @@ import com.google.gson.Gson;
 import exceptions.NoNameForProductException;
 import grossmann.StoreManagement.Alerter;
 import grossmann.StoreManagement.Item;
+import grossmann.StoreManagement.Printer;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -26,6 +30,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -112,6 +117,7 @@ public class Controller implements Initializable {
 
 		updateList();
 
+		listView.setFixedCellSize(60);
 		listView.setItems(items);
 		addButton.setSelected(true);
 
@@ -132,9 +138,9 @@ public class Controller implements Initializable {
 					ItemBox itemBox = listView.getSelectionModel().getSelectedItem();
 
 					nameLabel.setText(itemBox.getName());
-					amountLabel.setText(String.valueOf(itemBox.getAmount()));
+					amountLabel.setText(String.valueOf(itemBox.getAmount()) + "x");
 					gtinLabel.setText(itemBox.getGtin());
-					categoriesLabel.setText(itemBox.getCategoriesText());
+					categoriesLabel.setText(itemBox.getCategoriesText("long"));
 					attributesLabel.setText(itemBox.getAttributes());
 					// imageView.setImage(itemBox.getImage());
 				}
@@ -147,12 +153,18 @@ public class Controller implements Initializable {
 
 	private void setupMenuItems() {
 		aboutMenu.setOnAction(event -> {
-			AnchorPane root = new AnchorPane(); // Load About here //TODO
-			Stage stage = new Stage();
-			stage.setScene(new Scene(root));
-			stage.initStyle(StageStyle.UTILITY);
-			stage.setTitle("About");
-			stage.show();
+			AnchorPane root;
+			try {
+				root = FXMLLoader.load(getClass().getResource("about.fxml"));
+
+				Stage stage = new Stage();
+				stage.setScene(new Scene(root));
+				stage.initStyle(StageStyle.UTILITY);
+				stage.setTitle("About");
+				stage.show();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		});
 
 		exitMenu.setOnAction(event -> Platform.exit());
@@ -164,7 +176,6 @@ public class Controller implements Initializable {
 		groupByMenu.setOnAction(event -> {
 			Optional<String> sortOption = Alerter.getChoiceDialog("Sorting", null, "Select how you want to group: ");
 			sortOption.ifPresent(letter -> sortItems(letter));
-			// TODO
 		});
 
 		updateAllMenu.setOnAction(event -> {
@@ -246,20 +257,30 @@ public class Controller implements Initializable {
 			}
 		});
 
-		printMenu.setOnAction(event -> System.out.println("Print Items")); // TODO
-																			// print
-																			// Whole
-																			// List
-																			// of
-																			// Items
+		printMenu.setOnAction(event -> {
+			boolean output = Printer.printOut(new ArrayList<ItemBox>(items), "ItemsStock");
 
-		printShoppingMenu.setOnAction(event -> System.out.println("Print Shopping")); // TODO
-																						// list
-																						// of
-																						// items
-																						// with
-																						// 0
-																						// Amount
+			if (output) {
+				Alert alert = Alerter.getAlert(AlertType.INFORMATION, "Print", null, "Successfully printed.");
+				alert.showAndWait();
+			}
+		});
+
+		printShoppingMenu.setOnAction(event -> {
+			ArrayList<ItemBox> temp = new ArrayList<>();
+
+			for (ItemBox item : items) {
+				if (item.getAmount() == 0) {
+					temp.add(item);
+				}
+			}
+			boolean output = Printer.printOut(temp, "ShoppingList");
+
+			if (output) {
+				Alert alert = Alerter.getAlert(AlertType.INFORMATION, "Print", null, "Successfully printed.");
+				alert.showAndWait();
+			}
+		});
 
 	}
 
@@ -306,14 +327,23 @@ public class Controller implements Initializable {
 
 	public void sortItems(String order) {
 
+		ArrayList<ItemBox> temp = new ArrayList<>(items);
+
 		switch (order) {
 		case "Name":
+			Collections.sort(temp, (a, b) -> {
+				return a.getName().compareTo(b.getName());
+			});
 			break;
 		case "Amount":
-			break;
-		case "Categorie":
+			Collections.sort(temp, (a, b) -> {
+				return a.getAmount() - b.getAmount();
+			});
 			break;
 		}
+
+		items = FXCollections.observableArrayList(temp);
+		listView.setItems(items);
 
 	}
 

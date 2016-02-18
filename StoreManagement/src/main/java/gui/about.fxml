@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <BorderPane prefHeight="300.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <bottom>
+            <Label text="Contact: Tim Grosmann | t.grossmann1994@web.de" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+         </bottom>
+         <top>
+            <VBox alignment="CENTER">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" text="Thank you!" underline="true" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" contentDisplay="CENTER" text="Store-Management-System" textAlignment="CENTER" underline="true">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </top>
+         <center>
+            <AnchorPane>
+               <children>
+                  <ScrollPane hbarPolicy="NEVER" prefHeight="221.0" prefWidth="380.0" style="-fx-padding: 0; -fx-background: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" BorderPane.alignment="CENTER">
+                     <content>
+                        <VBox prefHeight="191.0" prefWidth="348.0" spacing="10.0">
+                           <children>
+                              <HBox prefHeight="2.0" prefWidth="324.0" spacing="10.0">
+                                 <children>
+                                    <Label prefHeight="17.0" prefWidth="75.0" text="Created by:" />
+                                    <Label text="Tim Großmann" />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="2.0" prefWidth="324.0" spacing="10.0">
+                                 <children>
+                                    <Label prefHeight="17.0" prefWidth="75.0" text="Version:" />
+                                    <Label text="1.0 Basic" />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="127.0" prefWidth="404.0" spacing="10.0">
+                                 <children>
+                                    <Label prefHeight="17.0" prefWidth="75.0" text="Tools:" />
+                                    <VBox prefHeight="127.0" prefWidth="260.0" spacing="5.0">
+                                       <children>
+                                          <Label text="- Java 8" />
+                                          <Label text="- JavaFX" />
+                                          <Label text="- JavaFX-SceneBuilder" />
+                                          <Label text="- Google's GSON-Libary" />
+                                          <Label text="- Outpan.com - Barcode Database" />
+                                          <Label text="- TaoTronics USB Laser-Barcodescanner" />
+                                          <VBox>
+                                             <children>
+                                                <Label text="- Github" />
+                                                <Label text="(https://github.com/timgrossmann/StorageSystem)">
+                                                   <font>
+                                                      <Font size="10.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </VBox>
+                     </content>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </ScrollPane>
+               </children>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </AnchorPane>
+         </center>
+      </BorderPane>
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</AnchorPane>

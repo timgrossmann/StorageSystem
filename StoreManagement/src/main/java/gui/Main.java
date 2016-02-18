@@ -31,6 +31,8 @@ public class Main extends Application {
 		AnchorPane root = FXMLLoader.load(getClass().getResource("GUI.fxml"));
 		Scene primaryScene = new Scene(root, root.getPrefWidth(), root.getPrefHeight());
 		Main.primaryScene = primaryScene;
+		
+		primaryScene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 
 		primaryStage.setScene(primaryScene);
 		primaryStage.setTitle("Storage Management System");
