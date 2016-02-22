@@ -5,6 +5,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ChoiceDialog;
@@ -14,11 +17,15 @@ import javafx.stage.StageStyle;
 public class Alerter {
 
 	private static List<String> choices = new ArrayList<>(Arrays.asList("Name", "Amount"));
+	private static Logger log = LogManager.getLogger(Alerter.class);
+
 
 	private Alerter() {
 	}
 
 	public static Alert getAlert(AlertType type, String title, String header, String content) {
+		
+		log.info("GetAlert called with: " + type.name() + " - " + title + " - " + header + " - " + content);
 
 		Alert alert = null;
 
@@ -48,6 +55,8 @@ public class Alerter {
 	}
 
 	public static Optional<String> getTextDialog(String title, String header, String content) {
+		
+		log.info("GetAlert called with: " + title + " - " + header + " - " + content);
 
 		TextInputDialog dialog = new TextInputDialog();
 		dialog.setTitle(title);
@@ -60,12 +69,14 @@ public class Alerter {
 	}
 
 	public static Optional<String> getChoiceDialog(String title, String header, String content) {
+
+		log.info("GetAlert called with: " + title + " - " + header + " - " + content);
+		
 		ChoiceDialog<String> dialog = new ChoiceDialog<>(choices.get(0), choices);
 		dialog.setTitle(title);
 		dialog.setHeaderText(header);
 		dialog.setContentText(content);
 
-		// Traditional way to get the response value.
 		Optional<String> result = dialog.showAndWait();
 
 		return result;

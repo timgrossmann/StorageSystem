@@ -1,4 +1,4 @@
-package grossmann.StoreManagement;
+package Testing;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -8,6 +8,8 @@ import java.util.Map;
 import java.util.Scanner;
 
 import com.google.gson.Gson;
+
+import grossmann.StoreManagement.Item;
 
 /**
  * Hello world!

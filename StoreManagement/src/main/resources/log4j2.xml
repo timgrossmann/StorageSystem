@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Information about Logging in our Project:
+	- Info: 	Imagine creating the project just in the console... Log everything you would want to see
+				displayed. Such as e.g. "Team 1 made a goal" or "Team 5 won the match" - This just serves 
+				as the logging which will be running in the normal operation of the program
+				
+	- Debug: 	Once you got a problem, e.g. one Team gets 2 points with one click on the +-Button or the
+			 	following match is not properly set up, you set the level="" to level="debug" and are now
+			 	able to track the position in the code where the problem happens - This is for parts like
+			 	where a scene is switched, a window is prompted or the tournament is set up properly
+			 	
+	- Error:	This Log-Level will be used at positions where exceptions (which are not set up by ourselves
+				like the RemisException or the TourModeException) are thrown. Errors, which will not 
+				completely kill the Program or stop the user from continuing with the tournament - This is
+				e.g. used where a extra window should be opened but it couldn't be opened (About Window).
+				
+	- Fatal:	This one is only used if the whole program will be terminated or not even opened due to a
+				Error. - It's e.g. used in the Main class where the initial stage is setup and the program 
+				would terminate if the setup didn't work. 
+
+-->
+<Configuration>
+    <Appenders>
+        <File name="A1" fileName="A1.log" append="false">
+            <PatternLayout pattern="%t %-5p %c{2} - %m%n"/>
+        </File>
+        <Console name="STDOUT" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d %-5p [%t] %C{2} (%F:%L) - %m%n"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <!-- You my want to define class or package level per-logger rules -->
+        <Logger name="gui.Main" level="debug">
+            <AppenderRef ref="A1"/>
+        </Logger>
+        <Logger name="grossmann.StoreManagement.Alerter" level="debug">
+            <AppenderRef ref="A1"/>
+        </Logger>
+        <Logger name="gui.Controller" level="debug">
+            <AppenderRef ref="A1"/>
+        </Logger>
+         <Logger name="save_load.Printer" level="debug">
+            <AppenderRef ref="A1"/>
+        </Logger>
+        <Logger name="save_load.Loader" level="debug">
+            <AppenderRef ref="A1"/>
+        </Logger>
+        <Logger name="save_load.Saver" level="debug">
+            <AppenderRef ref="A1"/>
+        </Logger>
+        <Root level="info">
+            <AppenderRef ref="STDOUT"/>
+        </Root>
+    </Loggers>
+</Configuration>

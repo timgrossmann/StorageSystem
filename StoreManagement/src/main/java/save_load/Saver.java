@@ -7,6 +7,9 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import grossmann.StoreManagement.Alerter;
 import grossmann.StoreManagement.Item;
 import gui.Main;
@@ -18,6 +21,7 @@ import javafx.stage.FileChooser.ExtensionFilter;
 public class Saver {
 
 	private static FileChooser chooser = new FileChooser();
+	private static Logger log = LogManager.getLogger(Saver.class);
 
 	private Saver() {
 	}
@@ -27,6 +31,7 @@ public class Saver {
 		File file;
 
 		if (setLocation) {
+			log.debug("Saver called with Loaddialog");
 			chooser.setTitle("Save Tournament: ");
 			chooser.setInitialDirectory(new File(System.getProperty("user.home") + "/Desktop"));
 			chooser.setSelectedExtensionFilter(new ExtensionFilter("SaveFiles(*.sav)", "*.sav"));
@@ -34,6 +39,7 @@ public class Saver {
 
 			file = chooser.showSaveDialog(Main.primaryStage);
 		} else {
+			log.debug("Saver called without Dialog");
 			file = new File(System.getProperty("user.home"), "Desktop/saveFile.sav");
 		}
 
@@ -46,12 +52,14 @@ public class Saver {
 				return true;
 
 			} catch (FileNotFoundException e3) {
+				log.error("Saver - File not Found: " + e3.getMessage());
 
 				Alert alert = Alerter.getAlert(AlertType.INFORMATION, "Coudn´t find file", "Saving failed",
 						"Please try again!");
 				alert.showAndWait();
 
 			} catch (IOException e3) {
+				log.error("Saver - Exception: " + e3.getMessage());
 
 				Alert alert = Alerter.getAlert(AlertType.INFORMATION, "Coudn´t find memory", "Saving failed",
 						"Please try again!");

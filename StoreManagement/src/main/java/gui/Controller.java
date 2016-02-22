@@ -6,7 +6,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
@@ -15,12 +14,14 @@ import java.util.Scanner;
 
 import javax.net.ssl.HttpsURLConnection;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.google.gson.Gson;
 
 import exceptions.NoNameForProductException;
 import grossmann.StoreManagement.Alerter;
 import grossmann.StoreManagement.Item;
-import grossmann.StoreManagement.Printer;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -48,6 +49,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import save_load.Loader;
+import save_load.Printer;
+import save_load.Printer.PrintOutType;
 
 public class Controller implements Initializable {
 
@@ -110,16 +113,19 @@ public class Controller implements Initializable {
 	ObservableList<ItemBox> items = FXCollections.observableArrayList(itemsMap.values());
 	ObservableList<ItemBox> searchItems = FXCollections.observableArrayList();
 	private static String lastCommand;
+	private static Logger log = LogManager.getLogger(Controller.class);
 
 	public void initialize(URL location, ResourceBundle resources) {
 
 		Main.controller = this;
 
 		updateList();
+		log.debug("List updated");
 
 		listView.setFixedCellSize(60);
 		listView.setItems(items);
 		addButton.setSelected(true);
+		log.debug("ListView cellSize changed, items assigned");
 
 		searchBox.textProperty().addListener((observable, oldVal, newVal) -> {
 			renewSearch(newVal);
@@ -143,6 +149,7 @@ public class Controller implements Initializable {
 					categoriesLabel.setText(itemBox.getCategoriesText("long"));
 					attributesLabel.setText(itemBox.getAttributes());
 					// imageView.setImage(itemBox.getImage());
+					log.info("Overview set to " + itemBox.getName());
 				}
 			}
 		});
@@ -163,11 +170,14 @@ public class Controller implements Initializable {
 				stage.setTitle("About");
 				stage.show();
 			} catch (Exception e) {
-				e.printStackTrace();
+				log.error("Error loading About Window - " + e.getMessage());
 			}
 		});
 
-		exitMenu.setOnAction(event -> Platform.exit());
+		exitMenu.setOnAction(event -> {
+			Platform.exit();
+			log.debug("Window closed");
+		});
 
 		loadMenu.setOnAction(event -> loadFile(true));
 
@@ -183,8 +193,7 @@ public class Controller implements Initializable {
 			new Thread(new Task<Void>() {
 				@Override
 				protected Void call() throws Exception {
-
-					System.out.println("Update called");
+					log.debug("UpdateAll Thread Triggered");
 
 					itemsMap.forEach((a, b) -> {
 						Item temp;
@@ -192,12 +201,12 @@ public class Controller implements Initializable {
 							temp = getNewItem(a);
 
 							if (!temp.equals(b.getItem())) {
-								System.out.println(temp.name + " unequal to " + b.getItem().name);
+								log.info(temp.name + " unequal to " + b.getItem().name);
 								b.setItem(temp);
-								System.out.println("Changed to " + temp.name);
+								log.info("Changed to " + temp.name);
 							}
 						} catch (Exception e1) {
-							e1.printStackTrace();
+							log.error("Error updating Item " + b.getName() + " - " + e1.getMessage());
 						}
 					});
 
@@ -205,6 +214,7 @@ public class Controller implements Initializable {
 
 					Main.serializeItems();
 
+					log.debug("UpdateAll Thread terminated successfully");
 					return null;
 				}
 			}).start();
@@ -221,23 +231,25 @@ public class Controller implements Initializable {
 					temp = getNewItem(itemBox.getGtin());
 
 					if (!temp.equals(itemBox.getItem())) {
-						System.out.println(temp.name + " unequal to " + itemBox.getItem().name);
+						log.info(temp.name + " unequal to " + itemBox.getItem().name);
 						itemBox.setItem(temp);
-						System.out.println("Changed to " + temp.name);
+						log.info("Changed to " + temp.name);
 					}
 				} catch (Exception e1) {
-					e1.printStackTrace();
+					log.error("Error updating Item " + itemBox.getName() + " - " + e1.getMessage());
 				}
 			} else {
 				Alert alert = Alerter.getAlert(AlertType.INFORMATION, "No Item selected", null,
 						"Please select the Item you want to update!");
 				alert.showAndWait();
+				log.debug("Info Popup triggered, No item selected");
 			}
 
 		});
 
 		deleteMenu.setOnAction(event -> {
-			itemsMap.remove(listView.getSelectionModel().getSelectedItem().getGtin());
+			ItemBox rem = itemsMap.remove(listView.getSelectionModel().getSelectedItem().getGtin());
+			log.info("Item: " + rem.getName() + " removed");
 			updateList();
 		});
 
@@ -245,6 +257,7 @@ public class Controller implements Initializable {
 
 			if (lastCommand != null) {
 				String[] props = lastCommand.split(" ");
+				log.info("Repeat called with: " + lastCommand);
 
 				switch (props[0]) {
 				case "ADD":
@@ -258,15 +271,24 @@ public class Controller implements Initializable {
 		});
 
 		printMenu.setOnAction(event -> {
-			boolean output = Printer.printOut(new ArrayList<ItemBox>(items), "ItemsStock");
-
-			if (output) {
-				Alert alert = Alerter.getAlert(AlertType.INFORMATION, "Print", null, "Successfully printed.");
-				alert.showAndWait();
-			}
+			printOut(PrintOutType.OVERVIEW);
 		});
 
 		printShoppingMenu.setOnAction(event -> {
+			printOut(PrintOutType.SHOPPING);
+		});
+
+	}
+
+	public void printOut(PrintOutType type) {
+
+		boolean output = false;
+
+		switch (type) {
+		case OVERVIEW:
+			output = Printer.printOut(new ArrayList<ItemBox>(items), type);
+			break;
+		case SHOPPING:
 			ArrayList<ItemBox> temp = new ArrayList<>();
 
 			for (ItemBox item : items) {
@@ -274,13 +296,19 @@ public class Controller implements Initializable {
 					temp.add(item);
 				}
 			}
-			boolean output = Printer.printOut(temp, "ShoppingList");
+			output = Printer.printOut(temp, type);
+			break;
+		}
 
-			if (output) {
-				Alert alert = Alerter.getAlert(AlertType.INFORMATION, "Print", null, "Successfully printed.");
-				alert.showAndWait();
-			}
-		});
+		if (output) {
+			Alert alert = Alerter.getAlert(AlertType.INFORMATION, "Print", null, "Successfully printed.");
+			alert.showAndWait();
+			log.info(type.name() + " Successfully Printed");
+		} else {
+			Alert alert = Alerter.getAlert(AlertType.INFORMATION, "Print", null, "Printing not Successfull.");
+			alert.showAndWait();
+			log.info(type.name() + " Could NOT be printed");
+		}
 
 	}
 
@@ -290,6 +318,7 @@ public class Controller implements Initializable {
 
 		if (newVal.equals("")) {
 			listView.setItems(items);
+			log.info("All items are displayed");
 		} else {
 
 			if (searchToggle.getSelectedToggle().equals(nameSearch)) {
@@ -297,18 +326,21 @@ public class Controller implements Initializable {
 					if (b.getName().toLowerCase().contains(newVal.toLowerCase())) {
 						searchItems.add(b);
 					}
+					log.info("Only items with '" + newVal + "' in their name are displayed");
 				});
 			} else if (searchToggle.getSelectedToggle().equals(amountSearch)) {
 				itemsMap.forEach((a, b) -> {
 					if (String.valueOf(b.getAmount()).contains(newVal)) {
 						searchItems.add(b);
 					}
+					log.info("Only items with '" + newVal + "' as their amount are displayed");
 				});
 			} else if (searchToggle.getSelectedToggle().equals(barcodeSearch)) {
 				itemsMap.forEach((a, b) -> {
 					if (b.getGtin().contains(newVal)) {
 						searchItems.add(b);
 					}
+					log.info("Only items with '" + newVal + "' in their barcode are displayed");
 				});
 			} else if (searchToggle.getSelectedToggle().equals(categorieSearch)) {
 				itemsMap.forEach((a, b) -> {
@@ -318,6 +350,7 @@ public class Controller implements Initializable {
 							break;
 						}
 					}
+					log.info("Only items with '" + newVal + "' in their categories are displayed");
 				});
 			}
 
@@ -325,7 +358,10 @@ public class Controller implements Initializable {
 		}
 	}
 
+	///////////////////////////////////////////////////////////////////////
 	public void sortItems(String order) {
+
+		// TODO
 
 		ArrayList<ItemBox> temp = new ArrayList<>(items);
 
@@ -346,11 +382,15 @@ public class Controller implements Initializable {
 		listView.setItems(items);
 
 	}
+	///////////////////////////////////////////////////////////////////////
 
 	public void loadFile(boolean state) {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
+
+				log.debug("Loading File");
+
 				List<Item> temp = Loader.load(state);
 
 				if (temp != null) {
@@ -359,11 +399,15 @@ public class Controller implements Initializable {
 					}
 					updateList();
 				}
+
+				log.debug("File Loaded");
 			}
 		});
 	}
 
 	private Item getNewItem(String gtin) throws IOException {
+
+		log.info("Getting Item with Barcode: " + gtin);
 
 		Gson gson = new Gson();
 
@@ -392,12 +436,13 @@ public class Controller implements Initializable {
 	public boolean addItem(String gtin) {
 
 		lastCommand = "ADD " + gtin;
+		log.debug("LastCommand set to: " + lastCommand);
 
 		Platform.runLater(new Runnable() {
 
 			@Override
 			public void run() {
-				System.out.println("Add: " + gtin);
+				log.info("Add: " + gtin);
 				try {
 					if (!itemsMap.containsKey(gtin)) {
 						itemsMap.put(gtin, new ItemBox(getNewItem(gtin)));
@@ -408,13 +453,14 @@ public class Controller implements Initializable {
 						listView.getSelectionModel().select(itemsMap.get(gtin));
 					}
 				} catch (NoNameForProductException e) {
-					System.out.println("Item not Found");
+					log.error("Item not Found");
 
 					Optional<String> result = Alerter.getTextDialog("Item not Found", "The Item is not yet listed",
 							"Please enter the name of the Product:");
 					result.ifPresent(name -> listNewItem(gtin, name));
 
 				} catch (IOException e) {
+					log.debug("Entered Barcode is not Valid");
 					Alert alert = Alerter.getAlert(AlertType.WARNING, "Not a valid Barcode", null,
 							"The entered Barcode is not valid.\nPlease try again");
 					alert.showAndWait();
@@ -441,26 +487,26 @@ public class Controller implements Initializable {
 			out.writeBytes(content);
 			out.flush();
 
-			System.out.println(httpCon.getResponseCode());
-			System.out.println(httpCon.getResponseMessage());
-
+			log.debug(httpCon.getResponseCode() + " - " + httpCon.getResponseMessage());
 			out.close();
 
 			if (httpCon.getResponseCode() == 200) {
 				Alert alert = Alerter.getAlert(AlertType.INFORMATION, "Item Added", null, "Item is now listed.");
 				alert.showAndWait();
+				log.info("Item '" + name + "' now listed");
 
 				addItem(gtin);
 			} else {
+				log.debug("Item could not be listed");
 				Alert alert = Alerter.getAlert(AlertType.WARNING, "Item not Added", null,
 						"Item could not be listed, please try again.");
 				alert.showAndWait();
 			}
 
 		} catch (MalformedURLException e) {
-			e.printStackTrace();
+			log.error("MalformedURLException: " + e.getMessage());
 		} catch (IOException e) {
-			e.printStackTrace();
+			log.error("IOException: " + e.getMessage());
 		}
 
 	}
@@ -471,6 +517,8 @@ public class Controller implements Initializable {
 			public void run() {
 				items = FXCollections.observableArrayList(itemsMap.values());
 				listView.setItems(items);
+
+				log.info("List updated");
 			}
 		});
 	}
@@ -482,18 +530,21 @@ public class Controller implements Initializable {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				System.out.println("Remove: " + gtin);
+				log.info("Remove: " + gtin);
 
 				if (itemsMap.containsKey(gtin)) {
 					if (itemsMap.get(gtin).getAmount() == 2) {
+						log.info("One Item of '" + gtin + "' left");
 						Alert alert = Alerter.getAlert(AlertType.INFORMATION, "Only one Item left", null,
 								"Only one of this Item is left in Stock");
 						alert.showAndWait();
 					} else if (itemsMap.get(gtin).getAmount() == 1) {
+						log.info("No Item of '" + gtin + "' left");
 						Alert alert = Alerter.getAlert(AlertType.INFORMATION, "Last Item removed", null,
 								"This was the last one of this Item\nPlease rebuy");
 						alert.showAndWait();
 					} else if (itemsMap.get(gtin).getAmount() == 0) {
+						log.info("No Item '" + gtin + "' in Stock");
 						Alert alert = Alerter.getAlert(AlertType.WARNING, "No more Item", null,
 								"No more item of this kind in stock");
 						alert.showAndWait();
@@ -503,6 +554,7 @@ public class Controller implements Initializable {
 					listView.getSelectionModel().select(itemsMap.get(gtin));
 
 				} else {
+					log.debug("Item '" + gtin + "' not found");
 					Alert alert = Alerter.getAlert(AlertType.WARNING, "No Item Found", null,
 							"There is no Item with this Barcode");
 					alert.showAndWait();

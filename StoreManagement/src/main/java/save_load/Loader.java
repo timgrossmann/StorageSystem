@@ -4,21 +4,22 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.ObjectInputStream;
-import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import grossmann.StoreManagement.Alerter;
 import grossmann.StoreManagement.Item;
-import gui.ItemBox;
 import gui.Main;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
-import javafx.stage.StageStyle;
 
 public class Loader {
 	private static FileChooser chooser = new FileChooser();
+	private static Logger log = LogManager.getLogger(Loader.class);
 
 	private Loader() {
 	}
@@ -28,6 +29,7 @@ public class Loader {
 		File file;
 
 		if (selectFile) {
+			log.debug("Loader called with Loaddialog");
 			chooser.setTitle("Open Tournament: ");
 			chooser.setInitialDirectory(new File(System.getProperty("user.home") + "/Desktop"));
 			chooser.setSelectedExtensionFilter(new ExtensionFilter("Save Files (*.sav)", "*.sav"));
@@ -36,6 +38,7 @@ public class Loader {
 			file = chooser.showOpenDialog(Main.primaryStage);
 		} else {
 			file = new File(System.getProperty("user.home"), "Desktop/saveFile.sav");
+			log.debug("Loader called without Dialog");
 		}
 
 		if (file != null) {
@@ -49,13 +52,14 @@ public class Loader {
 				return items;
 
 			} catch (FileNotFoundException e) {
-
+				log.error("Loader - File not Found: " + e.getMessage());
+				
 				Alert alert = Alerter.getAlert(AlertType.INFORMATION, "Coudn´t find file", "Loading failed",
 						"Please try again!");
 				alert.showAndWait();
 
 			} catch (Exception e) {
-				e.printStackTrace();
+				log.error("Loader - Exception: " + e.getMessage());
 			}
 		}
 

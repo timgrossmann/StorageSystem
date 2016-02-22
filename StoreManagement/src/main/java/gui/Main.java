@@ -3,17 +3,17 @@ package gui;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import grossmann.StoreManagement.Item;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.collections.ListChangeListener;
 import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import save_load.Loader;
 import save_load.Saver;
 
 public class Main extends Application {
@@ -24,14 +24,16 @@ public class Main extends Application {
 	private static String gtin = "";
 	private static boolean isThreadOn = false;
 	private static boolean saveThreadActive = false;
+	private static Logger log = LogManager.getLogger(Main.class);
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 
 		AnchorPane root = FXMLLoader.load(getClass().getResource("GUI.fxml"));
+		log.debug("GUI.fxml loaded");
 		Scene primaryScene = new Scene(root, root.getPrefWidth(), root.getPrefHeight());
 		Main.primaryScene = primaryScene;
-		
+
 		primaryScene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 
 		primaryStage.setScene(primaryScene);
@@ -52,11 +54,11 @@ public class Main extends Application {
 					new Thread(new Task<Void>() {
 						@Override
 						protected Void call() throws Exception {
-							System.out.println("Called");
+							log.debug("ScanThread called");
 							try {
 								Thread.sleep(250);
 							} catch (InterruptedException e) {
-								e.printStackTrace();
+								log.error("Threadsleep error: " + e.getMessage());
 							}
 
 							String output = (("0000000000000" + gtin).substring(gtin.length()));
@@ -66,7 +68,8 @@ public class Main extends Application {
 							} else if (controller.removeButton.isSelected()) {
 								controller.removeItem(output);
 							} else {
-								System.out.println("Option not possible");
+								log.info("Option not possible");
+								controller.addRemoveToggle.selectToggle(controller.addButton);
 							}
 
 							if (!checkSaveThreadOn()) {
@@ -75,11 +78,11 @@ public class Main extends Application {
 
 									@Override
 									protected Void call() throws Exception {
-										System.out.println("Save Thread activated");
+										log.debug("Save Thread called");
 										try {
 											Thread.sleep(60000);
 										} catch (InterruptedException e) {
-											e.printStackTrace();
+											log.error("SaveThreadsleep error: " + e.getMessage());
 										}
 
 										serializeItems();
@@ -93,6 +96,7 @@ public class Main extends Application {
 							}
 
 							gtin = "";
+							log.info("Barcode set back to ''");
 							setIsThreadOn(false);
 
 							return null;
@@ -120,7 +124,7 @@ public class Main extends Application {
 
 				Saver.save(items, false);
 
-				System.out.println("serialized");
+				log.info("Items serialized");
 			}
 		});
 	}
@@ -151,6 +155,7 @@ public class Main extends Application {
 
 	public static void main(String[] args) {
 		launch(args);
+		log.debug("GUI launched");
 	}
 
 }
