@@ -112,7 +112,7 @@
                                                    <children>
                                                       <HBox prefHeight="25.0" prefWidth="167.0" spacing="10.0" VBox.vgrow="NEVER">
                                                          <children>
-                                                            <Label prefWidth="100.0" text="Gtin:" underline="true" HBox.hgrow="ALWAYS">
+                                                            <Label prefWidth="100.0" text="Code:" underline="true" HBox.hgrow="ALWAYS">
                                                                <font>
                                                                   <Font size="14.0" />
                                                                </font>

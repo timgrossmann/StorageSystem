@@ -72,6 +72,7 @@
                                                 </Label>
                                              </children>
                                           </VBox>
+                                          <Label text="- Log4J2 Logging-Framework" />
                                        </children>
                                     </VBox>
                                  </children>

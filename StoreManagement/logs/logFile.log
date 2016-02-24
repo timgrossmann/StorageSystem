@@ -1,0 +1,39 @@
+2016-02-24 14:01:15,054 DEBUG [main] gui.Main (Main.java:161) - GUI launching
+2016-02-24 14:01:15,361 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:125) - List updated
+2016-02-24 14:01:15,361 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:130) - ListView cellSize changed, items assigned
+2016-02-24 14:01:15,365 DEBUG [JavaFX Application Thread] gui.Main (Main.java:33) - GUI.fxml loaded
+2016-02-24 14:01:16,074 INFO  [JavaFX Application Thread] gui.Controller$6 (Controller.java:546) - List updated
+2016-02-24 14:01:16,103 DEBUG [JavaFX Application Thread] gui.Controller$4 (Controller.java:416) - Loading File
+2016-02-24 14:01:16,104 DEBUG [JavaFX Application Thread] save_load.Loader (Loader.java:41) - Loader called without Dialog
+2016-02-24 14:01:16,113 DEBUG [JavaFX Application Thread] gui.Controller$4 (Controller.java:427) - File Loaded
+2016-02-24 14:01:16,228 INFO  [JavaFX Application Thread] gui.Controller$6 (Controller.java:546) - List updated
+2016-02-24 14:01:18,321 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:309) - OVERVIEW Successfully Saved PrintFile
+2016-02-24 14:01:18,609 DEBUG [JavaFX Application Thread] save_load.Printing (Printing.java:32) - Default printer: HP Color LaserJet MFP M476nw (FB6A18)
+2016-02-24 14:01:18,773 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:316) - Successfully printed File
+2016-02-24 14:01:18,775 INFO  [JavaFX Application Thread] StoreManagement.Alerter (Alerter.java:28) - GetAlert called with: INFORMATION - Print - null - Successfully printed.
+2016-02-24 14:01:25,378 DEBUG [Thread-7] gui.Main$1 (Main.java:61) - ScanThread called
+2016-02-24 14:01:25,635 INFO  [JavaFX Application Thread] gui.Controller$7 (Controller.java:558) - Remove: 0000000000123
+2016-02-24 14:01:25,635 INFO  [Thread-7] gui.Main$1 (Main.java:103) - Barcode set back to ''
+2016-02-24 14:01:25,635 DEBUG [Thread-8] gui.Main$1$1 (Main.java:85) - Save Thread called
+2016-02-24 14:01:25,637 INFO  [JavaFX Application Thread] gui.Controller$2 (Controller.java:154) - Overview set to I-Vapor Vaporizer
+2016-02-24 14:01:26,890 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:262) - Repeat called with: RM 0000000000123
+2016-02-24 14:01:26,891 INFO  [JavaFX Application Thread] gui.Controller$7 (Controller.java:558) - Remove: 0000000000123
+2016-02-24 14:01:27,056 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:262) - Repeat called with: RM 0000000000123
+2016-02-24 14:01:27,057 INFO  [JavaFX Application Thread] gui.Controller$7 (Controller.java:558) - Remove: 0000000000123
+2016-02-24 14:01:27,057 INFO  [JavaFX Application Thread] gui.Controller$7 (Controller.java:562) - One Item of '0000000000123' left
+2016-02-24 14:01:27,058 INFO  [JavaFX Application Thread] StoreManagement.Alerter (Alerter.java:28) - GetAlert called with: INFORMATION - Only one Item left - null - Only one of this Item is left in Stock
+2016-02-24 14:01:28,825 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:262) - Repeat called with: RM 0000000000123
+2016-02-24 14:01:28,825 INFO  [JavaFX Application Thread] gui.Controller$7 (Controller.java:558) - Remove: 0000000000123
+2016-02-24 14:01:28,826 INFO  [JavaFX Application Thread] gui.Controller$7 (Controller.java:567) - No Item of '0000000000123' left
+2016-02-24 14:01:28,826 INFO  [JavaFX Application Thread] StoreManagement.Alerter (Alerter.java:28) - GetAlert called with: INFORMATION - Last Item removed - null - This was the last one of this Item
+Please rebuy
+2016-02-24 14:01:29,504 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:262) - Repeat called with: RM 0000000000123
+2016-02-24 14:01:29,505 INFO  [JavaFX Application Thread] gui.Controller$7 (Controller.java:558) - Remove: 0000000000123
+2016-02-24 14:01:29,505 INFO  [JavaFX Application Thread] gui.Controller$7 (Controller.java:572) - No Item '0000000000123' in Stock
+2016-02-24 14:01:29,506 INFO  [JavaFX Application Thread] StoreManagement.Alerter (Alerter.java:28) - GetAlert called with: WARNING - No more Item - null - No more item of this kind in stock
+2016-02-24 14:01:31,871 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:309) - SHOPPING Successfully Saved PrintFile
+2016-02-24 14:01:31,939 DEBUG [JavaFX Application Thread] save_load.Printing (Printing.java:32) - Default printer: HP Color LaserJet MFP M476nw (FB6A18)
+2016-02-24 14:01:32,069 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:316) - Successfully printed File
+2016-02-24 14:01:32,069 INFO  [JavaFX Application Thread] StoreManagement.Alerter (Alerter.java:28) - GetAlert called with: INFORMATION - Print - null - Successfully printed.
+2016-02-24 14:01:34,678 DEBUG [JavaFX Application Thread] gui.Main (Main.java:49) - Window closed
+2016-02-24 14:01:34,702 DEBUG [main] gui.Main (Main.java:163) - Program ended

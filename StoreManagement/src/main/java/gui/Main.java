@@ -45,6 +45,10 @@ public class Main extends Application {
 		// Load the current file with Programm start
 		controller.loadFile(false);
 
+		primaryStage.setOnCloseRequest(event -> {
+			log.debug("Window closed");
+		});
+
 		primaryScene.setOnKeyPressed(event -> {
 
 			if (event.getCode().isDigitKey()) {
@@ -154,8 +158,9 @@ public class Main extends Application {
 	}
 
 	public static void main(String[] args) {
+		log.debug("GUI launching");
 		launch(args);
-		log.debug("GUI launched");
+		log.debug("Program ended");
 	}
 
 }

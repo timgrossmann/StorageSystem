@@ -15,7 +15,7 @@ import gui.Main;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 
-public class Printer {
+public class SaveToFile {
 
 	public enum PrintOutType {
 		OVERVIEW, SHOPPING;
@@ -23,29 +23,40 @@ public class Printer {
 
 	private static FileChooser chooser = new FileChooser();
 	private static File file;
-	private static Logger log = LogManager.getLogger(Printer.class);
+	private static Logger log = LogManager.getLogger(SaveToFile.class);
 
-	private Printer() {
+	private SaveToFile() {
 	}
 
-	public static boolean printOut(ArrayList<ItemBox> items, PrintOutType type) {
+	public static boolean printOut(ArrayList<ItemBox> items, PrintOutType type, boolean selectFile) {
 
-		chooser.setTitle("Print List: ");
-		chooser.setInitialDirectory(new File(System.getProperty("user.home") + "/Desktop"));
-		chooser.setSelectedExtensionFilter(new ExtensionFilter("TextFiles(*.txt)", "*.txt"));
-		chooser.getExtensionFilters().add(new ExtensionFilter("TextFiles(*.txt)", "*.txt"));
 		String header = "Printout";
+		String fileName = "printOut.txt";
+
 		switch (type) {
 		case OVERVIEW:
 			header = "Overview";
+			fileName = "Overview.txt";
 			break;
 		case SHOPPING:
 			header = "Shopping";
+			fileName = "Shopping.txt";
 			break;
 		}
-		chooser.setInitialFileName(header + ".txt");
 
-		file = chooser.showSaveDialog(Main.primaryStage);
+		if (selectFile) {
+			log.debug("Printing called with SaveDialog");
+			chooser.setTitle("Print List: ");
+			chooser.setInitialDirectory(new File(System.getProperty("user.home") + "/Desktop"));
+			chooser.setSelectedExtensionFilter(new ExtensionFilter("TextFiles(*.txt)", "*.txt"));
+			chooser.getExtensionFilters().add(new ExtensionFilter("TextFiles(*.txt)", "*.txt"));
+			chooser.setInitialFileName(header + ".txt");
+
+			file = chooser.showSaveDialog(Main.primaryStage);
+		} else {
+			log.debug("Printing called without SaveDialog");
+			file = new File(System.getProperty("user.home"), "Desktop/" + fileName);
+		}
 
 		if (file != null) {
 			try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {

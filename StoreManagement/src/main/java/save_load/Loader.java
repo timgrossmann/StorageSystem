@@ -47,6 +47,7 @@ public class Loader {
 
 				Object temp = o.readObject();
 
+				@SuppressWarnings("unchecked")
 				List<Item> items = (List<Item>) temp;
 
 				return items;

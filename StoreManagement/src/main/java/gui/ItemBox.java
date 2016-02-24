@@ -4,8 +4,6 @@ import grossmann.StoreManagement.Item;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
 public class ItemBox extends HBox {
@@ -14,7 +12,7 @@ public class ItemBox extends HBox {
 	private Label name = new Label();
 	private Label amount = new Label();
 	private Label categories = new Label();
-	private Image image;
+//	private Image image;
 	private String attributes = "";
 
 	public ItemBox(Item item) {

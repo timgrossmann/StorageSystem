@@ -22,9 +22,13 @@ Information about Logging in our Project:
 -->
 <Configuration>
     <Appenders>
-        <File name="A1" fileName="A1.log" append="false">
-            <PatternLayout pattern="%t %-5p %c{2} - %m%n"/>
-        </File>
+    <RollingFile name="RollingFile" fileName="logs/logFile.log" append="false"
+filePattern="logs/$${date:yyyy-MM}/${name}-%d{yyyy-MM-dd}-%i.log.gz">
+			<PatternLayout pattern="%d %-5p [%t] %C{2} (%F:%L) - %m%n"/>
+			<Policies>
+				<SizeBasedTriggeringPolicy size="100 MB"/> <!-- Or every 100 MB -->
+			</Policies>
+		</RollingFile>
         <Console name="STDOUT" target="SYSTEM_OUT">
             <PatternLayout pattern="%d %-5p [%t] %C{2} (%F:%L) - %m%n"/>
         </Console>
@@ -32,22 +36,22 @@ Information about Logging in our Project:
     <Loggers>
         <!-- You my want to define class or package level per-logger rules -->
         <Logger name="gui.Main" level="debug">
-            <AppenderRef ref="A1"/>
+            <AppenderRef ref="RollingFile"/>
         </Logger>
         <Logger name="grossmann.StoreManagement.Alerter" level="debug">
-            <AppenderRef ref="A1"/>
+            <AppenderRef ref="RollingFile"/>
         </Logger>
         <Logger name="gui.Controller" level="debug">
-            <AppenderRef ref="A1"/>
+            <AppenderRef ref="RollingFile"/>
         </Logger>
          <Logger name="save_load.Printer" level="debug">
-            <AppenderRef ref="A1"/>
+            <AppenderRef ref="RollingFile"/>
         </Logger>
         <Logger name="save_load.Loader" level="debug">
-            <AppenderRef ref="A1"/>
+            <AppenderRef ref="RollingFile"/>
         </Logger>
         <Logger name="save_load.Saver" level="debug">
-            <AppenderRef ref="A1"/>
+            <AppenderRef ref="RollingFile"/>
         </Logger>
         <Root level="info">
             <AppenderRef ref="STDOUT"/>

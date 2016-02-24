@@ -1,6 +1,7 @@
 package gui;
 
 import java.io.DataOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -49,8 +50,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import save_load.Loader;
-import save_load.Printer;
-import save_load.Printer.PrintOutType;
+import save_load.Printing;
+import save_load.SaveToFile;
+import save_load.SaveToFile.PrintOutType;
 
 public class Controller implements Initializable {
 
@@ -283,10 +285,12 @@ public class Controller implements Initializable {
 	public void printOut(PrintOutType type) {
 
 		boolean output = false;
+		String fileToPrint = "";
 
 		switch (type) {
 		case OVERVIEW:
-			output = Printer.printOut(new ArrayList<ItemBox>(items), type);
+			output = SaveToFile.printOut(new ArrayList<ItemBox>(items), type, false);
+			fileToPrint = "Overview.txt";
 			break;
 		case SHOPPING:
 			ArrayList<ItemBox> temp = new ArrayList<>();
@@ -296,20 +300,36 @@ public class Controller implements Initializable {
 					temp.add(item);
 				}
 			}
-			output = Printer.printOut(temp, type);
+			output = SaveToFile.printOut(temp, type, false);
+			fileToPrint = "Shopping.txt";
 			break;
 		}
 
 		if (output) {
-			Alert alert = Alerter.getAlert(AlertType.INFORMATION, "Print", null, "Successfully printed.");
-			alert.showAndWait();
-			log.info(type.name() + " Successfully Printed");
-		} else {
-			Alert alert = Alerter.getAlert(AlertType.INFORMATION, "Print", null, "Printing not Successfull.");
-			alert.showAndWait();
-			log.info(type.name() + " Could NOT be printed");
-		}
+			log.debug(type.name() + " Successfully Saved PrintFile");
+			File file = new File(System.getProperty("user.home") + "/Desktop/" + fileToPrint);
 
+			if (file != null) {
+				boolean printOut = Printing.printFile(file);
+
+				if (printOut) {
+					log.debug("Successfully printed File");
+					Alert alert = Alerter.getAlert(AlertType.INFORMATION, "Print", null, "Successfully printed.");
+					alert.showAndWait();
+				} else {
+					log.debug("File was saved but could not be printed");
+					Alert alert = Alerter.getAlert(AlertType.INFORMATION, "Print Failed", null,
+							"File saved but could not be printed.");
+					alert.showAndWait();
+				}
+			}
+
+		} else {
+			Alert alert = Alerter.getAlert(AlertType.INFORMATION, "Error", null,
+					"File could not be saved and printed.");
+			alert.showAndWait();
+			log.debug(type.name() + "PrintFile could NOT be saved and printed");
+		}
 	}
 
 	public void renewSearch(String newVal) {
@@ -326,22 +346,25 @@ public class Controller implements Initializable {
 					if (b.getName().toLowerCase().contains(newVal.toLowerCase())) {
 						searchItems.add(b);
 					}
-					log.info("Only items with '" + newVal + "' in their name are displayed");
 				});
+				log.info("Only items with '" + newVal + "' in their name are displayed");
+
 			} else if (searchToggle.getSelectedToggle().equals(amountSearch)) {
 				itemsMap.forEach((a, b) -> {
 					if (String.valueOf(b.getAmount()).contains(newVal)) {
 						searchItems.add(b);
 					}
-					log.info("Only items with '" + newVal + "' as their amount are displayed");
 				});
+				log.info("Only items with '" + newVal + "' as their amount are displayed");
+
 			} else if (searchToggle.getSelectedToggle().equals(barcodeSearch)) {
 				itemsMap.forEach((a, b) -> {
 					if (b.getGtin().contains(newVal)) {
 						searchItems.add(b);
 					}
-					log.info("Only items with '" + newVal + "' in their barcode are displayed");
 				});
+				log.info("Only items with '" + newVal + "' in their barcode are displayed");
+
 			} else if (searchToggle.getSelectedToggle().equals(categorieSearch)) {
 				itemsMap.forEach((a, b) -> {
 					for (String cat : b.getCategories()) {
@@ -350,8 +373,8 @@ public class Controller implements Initializable {
 							break;
 						}
 					}
-					log.info("Only items with '" + newVal + "' in their categories are displayed");
 				});
+				log.info("Only items with '" + newVal + "' in their categories are displayed");
 			}
 
 			listView.setItems(searchItems);
@@ -360,8 +383,6 @@ public class Controller implements Initializable {
 
 	///////////////////////////////////////////////////////////////////////
 	public void sortItems(String order) {
-
-		// TODO
 
 		ArrayList<ItemBox> temp = new ArrayList<>(items);
 
@@ -375,6 +396,9 @@ public class Controller implements Initializable {
 			Collections.sort(temp, (a, b) -> {
 				return a.getAmount() - b.getAmount();
 			});
+			break;
+		case "Categories":
+			// TODO Think about how to group by categories
 			break;
 		}
 
@@ -516,6 +540,7 @@ public class Controller implements Initializable {
 			@Override
 			public void run() {
 				items = FXCollections.observableArrayList(itemsMap.values());
+
 				listView.setItems(items);
 
 				log.info("List updated");
