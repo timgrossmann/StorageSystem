@@ -214,9 +214,9 @@
                <children>
                   <VBox>
                      <children>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
+                        <HBox maxHeight="28.0" minHeight="28.0" prefHeight="28.0" prefWidth="200.0" VBox.vgrow="NEVER">
                            <children>
-                              <Label prefWidth="490.0" text="Name" />
+                              <Label prefWidth="585.0" text="Name" />
                               <Label prefWidth="75.0" text="Amount" />
                               <Label text="Categories" />
                            </children>

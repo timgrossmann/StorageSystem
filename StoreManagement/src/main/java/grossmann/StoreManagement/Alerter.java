@@ -16,7 +16,7 @@ import javafx.stage.StageStyle;
 
 public class Alerter {
 
-	private static List<String> choices = new ArrayList<>(Arrays.asList("Name", "Amount"));
+	private static List<String> choices = new ArrayList<>(Arrays.asList("Name", "Amount", "Categorie"));
 	private static Logger log = LogManager.getLogger(Alerter.class);
 
 

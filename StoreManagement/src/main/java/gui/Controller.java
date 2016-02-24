@@ -187,7 +187,7 @@ public class Controller implements Initializable {
 
 		groupByMenu.setOnAction(event -> {
 			Optional<String> sortOption = Alerter.getChoiceDialog("Sorting", null, "Select how you want to group: ");
-			sortOption.ifPresent(letter -> sortItems(letter));
+			sortOption.ifPresent(letter -> groupItems(letter));
 		});
 
 		updateAllMenu.setOnAction(event -> {
@@ -381,8 +381,9 @@ public class Controller implements Initializable {
 		}
 	}
 
-	///////////////////////////////////////////////////////////////////////
-	public void sortItems(String order) {
+	public void groupItems(String order) {
+		
+		log.debug("Grouping valled with " + order);
 
 		ArrayList<ItemBox> temp = new ArrayList<>(items);
 
@@ -391,14 +392,27 @@ public class Controller implements Initializable {
 			Collections.sort(temp, (a, b) -> {
 				return a.getName().compareTo(b.getName());
 			});
+			log.info("Grouped by Name");
 			break;
 		case "Amount":
 			Collections.sort(temp, (a, b) -> {
 				return a.getAmount() - b.getAmount();
 			});
+			log.info("Grouped by Amount");
 			break;
-		case "Categories":
-			// TODO Think about how to group by categories
+		case "Categorie":
+			Collections.sort(temp, (a, b) -> {
+				if (a.getCategories().length == 0 && b.getCategories().length == 0) {
+					return -1;
+				} else if (a.getCategories().length == 0) {
+					return 1;
+				} else if (b.getCategories().length == 0) {
+					return -1;
+				} else {
+					return a.getCategories()[0].compareTo(b.getCategories()[0]);
+				}
+			});
+			log.info("Grouped by Categorie");
 			break;
 		}
 
@@ -406,7 +420,6 @@ public class Controller implements Initializable {
 		listView.setItems(items);
 
 	}
-	///////////////////////////////////////////////////////////////////////
 
 	public void loadFile(boolean state) {
 		Platform.runLater(new Runnable() {

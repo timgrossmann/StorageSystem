@@ -12,7 +12,7 @@ public class ItemBox extends HBox {
 	private Label name = new Label();
 	private Label amount = new Label();
 	private Label categories = new Label();
-//	private Image image;
+	// private Image image;
 	private String attributes = "";
 
 	public ItemBox(Item item) {
@@ -21,7 +21,7 @@ public class ItemBox extends HBox {
 		this.item = item;
 		setupParts();
 		this.getChildren().add(name);
-		name.setPrefWidth(500);
+		name.setPrefWidth(600);
 		this.getChildren().add(amount);
 		amount.setPrefWidth(30);
 		if (item.categories != null) {
