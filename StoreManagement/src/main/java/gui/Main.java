@@ -14,7 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import parts.Item;
-import save_load.Saver;
+import save_load.JSONSaver;
 
 public class Main extends Application {
 
@@ -72,7 +72,7 @@ public class Main extends Application {
 						protected Void call() throws Exception {
 							log.debug("ScanThread called");
 							try {
-								Thread.sleep(5000);
+								Thread.sleep(100);
 							} catch (InterruptedException e) {
 								log.error("Threadsleep error: " + e.getMessage());
 							}
@@ -148,7 +148,7 @@ public class Main extends Application {
 					items.add(itemBox.getItem());
 				}
 
-				Saver.save(items, false);
+				JSONSaver.save(items, false);
 				log.info("Items serialized");
 			}
 		});

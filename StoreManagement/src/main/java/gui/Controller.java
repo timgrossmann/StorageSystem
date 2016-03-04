@@ -48,7 +48,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import parts.Item;
-import save_load.Loader;
+import save_load.JSONLoader;
 import save_load.Printing;
 import save_load.SaveToFile;
 import save_load.SaveToFile.PrintOutType;
@@ -446,7 +446,7 @@ public class Controller implements Initializable {
 
 				log.debug("Loading File");
 
-				List<Item> temp = Loader.load(state);
+				List<Item> temp = JSONLoader.load(state);
 
 				if (temp != null) {
 					for (Item item : temp) {

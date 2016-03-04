@@ -1,14 +1,16 @@
 package save_load;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import com.google.gson.Gson;
 
 import gui.Alerter;
 import gui.Main;
@@ -18,12 +20,12 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import parts.Item;
 
-public class Saver {
+public class JSONSaver {
 
 	private static FileChooser chooser = new FileChooser();
-	private static Logger log = LogManager.getLogger(Saver.class);
+	private static Logger log = LogManager.getLogger(JSONSaver.class);
 
-	private Saver() {
+	private JSONSaver() {
 	}
 
 	/**
@@ -48,14 +50,26 @@ public class Saver {
 			file = chooser.showSaveDialog(Main.primaryStage);
 		} else {
 			log.debug("Saver called without Dialog");
-			file = new File(System.getProperty("user.home"), "Desktop/saveFile.sav");
+			file = new File(System.getProperty("user.home"), "Desktop/saveFileJSON.json");
 		}
+
+		Gson gson = new Gson();
 		
 		if (file != null) {
 
-			try (ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream(file))) {
+			try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
+				
+				bw.write("{\"items\": [");
 
-				o.writeObject(items);
+				for(int i = 0 ; i < items.size() - 1; i++) {
+					bw.write("\n" + gson.toJson(items.get(i)) + ",");
+				}
+				
+				if(items.size() > 0) {
+					bw.write("\n" + gson.toJson(items.get(items.size() - 1)));
+				}
+				
+				bw.write("\n] }");
 
 				return true;
 
