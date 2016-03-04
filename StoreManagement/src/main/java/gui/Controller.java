@@ -188,8 +188,13 @@ public class Controller implements Initializable {
 		});
 
 		exitMenu.setOnAction(event -> {
-			Platform.exit();
-			log.debug("Window closed");
+			Platform.runLater(new Runnable() {
+				@Override
+				public void run() {
+					Platform.exit();
+					log.debug("Window closed");
+				}
+			});
 		});
 
 		loadMenu.setOnAction(event -> loadFile(true));
@@ -343,8 +348,9 @@ public class Controller implements Initializable {
 	}
 
 	/**
-	 * updates the items we search for with the text in the searchbox
-	 * and the currently selected Searchradiobutton
+	 * updates the items we search for with the text in the searchbox and the
+	 * currently selected Searchradiobutton
+	 * 
 	 * @param newVal
 	 */
 	public void renewSearch(String newVal) {
@@ -396,9 +402,9 @@ public class Controller implements Initializable {
 		}
 	}
 
-	
 	/**
 	 * sorts the items in the list in the with the choicedialog selected order
+	 * 
 	 * @param order
 	 */
 	public void groupItems(String order) {
@@ -460,8 +466,9 @@ public class Controller implements Initializable {
 	}
 
 	/**
-	 * with the help of the Google Gson libary, the JSON gets translated into a new Item
-	 * pulled from Outpan.com with the passed Barcode
+	 * with the help of the Google Gson libary, the JSON gets translated into a
+	 * new Item pulled from Outpan.com with the passed Barcode
+	 * 
 	 * @param gtin
 	 * @return
 	 * @throws IOException
@@ -525,8 +532,9 @@ public class Controller implements Initializable {
 	}
 
 	/**
-	 * if the barcode hasn't already got a name on outpan.com
-	 * the item will be listed online with the passed name
+	 * if the barcode hasn't already got a name on outpan.com the item will be
+	 * listed online with the passed name
+	 * 
 	 * @param gtin
 	 * @param name
 	 */

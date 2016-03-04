@@ -26,13 +26,12 @@ public class Main extends Application {
 	private static boolean saveThreadActive = false;
 	private static Logger log = LogManager.getLogger(Main.class);
 
-	
 	/**
-	 * JavaFX GUI startUp Method
-	 * Loads the GUI.fxml File as the startup Window gui
+	 * JavaFX GUI startUp Method Loads the GUI.fxml File as the startup Window
+	 * gui
 	 * 
-	 * Main logic for the case of entering a Barcode (if the focus is not in the search-Textbox) 
-	 * -> primaryScene.setOnKeyPressed
+	 * Main logic for the case of entering a Barcode (if the focus is not in the
+	 * search-Textbox) -> primaryScene.setOnKeyPressed
 	 * 
 	 * 
 	 */
@@ -61,10 +60,12 @@ public class Main extends Application {
 		});
 
 		primaryScene.setOnKeyPressed(event -> {
-			//only gets Called if the pressed Key if a Digit, preventing a lot of errors
+			// only gets Called if the pressed Key if a Digit, preventing a lot
+			// of errors
 			if (event.getCode().isDigitKey()) {
 
-				//if the WorkerThread is not already running, it creates a new Thread executing the add/remove
+				// if the WorkerThread is not already running, it creates a new
+				// Thread executing the add/remove
 				if (!checkThreadOn()) {
 					setIsThreadOn(true);
 					new Thread(new Task<Void>() {
@@ -77,12 +78,15 @@ public class Main extends Application {
 								log.error("Threadsleep error: " + e.getMessage());
 							}
 
-							//waits for the Thread.sleep(ms) time and then gets the Barcode with leading Zeroes 
-							//easy way to get leading zeroes without a Formatter
+							// waits for the Thread.sleep(ms) time and then gets
+							// the Barcode with leading Zeroes
+							// easy way to get leading zeroes without a
+							// Formatter
 							String output = (("0000000000000" + gtin).substring(gtin.length()));
 
-							//checks for the currently selected Button and starts the corresponding tast
-							//with the now formatted Barcode
+							// checks for the currently selected Button and
+							// starts the corresponding tast
+							// with the now formatted Barcode
 							if (controller.addButton.isSelected()) {
 								controller.addItem(output);
 							} else if (controller.removeButton.isSelected()) {
@@ -92,11 +96,13 @@ public class Main extends Application {
 								controller.addRemoveToggle.selectToggle(controller.addButton);
 							}
 
-							//if the saveThread wasn't already started, it will be started
+							// if the saveThread wasn't already started, it will
+							// be started
 							if (!checkSaveThreadOn()) {
-								//this prevents the saveThread from starting over with every Productscan
+								// this prevents the saveThread from starting
+								// over with every Productscan
 								setSaveThreadActive(true);
-								
+
 								new Thread(new Task<Void>() {
 									@Override
 									protected Void call() throws Exception {
@@ -107,7 +113,8 @@ public class Main extends Application {
 											log.error("SaveThreadsleep error: " + e.getMessage());
 										}
 
-										//after the Thread.sleep(ms) time, the current state gets saved out
+										// after the Thread.sleep(ms) time, the
+										// current state gets saved out
 										serializeItems();
 										setSaveThreadActive(false);
 
@@ -115,26 +122,28 @@ public class Main extends Application {
 									}
 								}).start();
 							}
-							//here the current Barcode gets reseted to empty, so the next scan won't have any
-							//digits already assigned
+							// here the current Barcode gets reseted to empty,
+							// so the next scan won't have any
+							// digits already assigned
 							gtin = "";
 							log.info("Barcode set back to ''");
-							
-							//ends the current scan process and the next item can be scanned
+
+							// ends the current scan process and the next item
+							// can be scanned
 							setIsThreadOn(false);
 							return null;
 						}
 					}).start();
 				}
-				
-				//adds the pressed key to the barcode variable
+
+				// adds the pressed key to the barcode variable
 				gtin += event.getText();
 			}
 		});
 	}
 
 	/**
-	 * Calls the serializeItems action on the GUI Thread 
+	 * Calls the serializeItems action on the GUI Thread
 	 */
 	public static void serializeItems() {
 		Platform.runLater(new Runnable() {
@@ -142,7 +151,7 @@ public class Main extends Application {
 			public void run() {
 				List<ItemBox> temp = new ArrayList<ItemBox>(controller.items);
 
-				//Create a list with just the Items for searialzation 
+				// Create a list with just the Items for searialzation
 				List<Item> items = new ArrayList<Item>();
 				for (ItemBox itemBox : temp) {
 					items.add(itemBox.getItem());

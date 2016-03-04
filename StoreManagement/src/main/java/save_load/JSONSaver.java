@@ -11,6 +11,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import gui.Alerter;
 import gui.Main;
@@ -50,7 +51,7 @@ public class JSONSaver {
 			file = chooser.showSaveDialog(Main.primaryStage);
 		} else {
 			log.debug("Saver called without Dialog");
-			file = new File(System.getProperty("user.home"), "Desktop/saveFileJSON.json");
+			file = new File(System.getProperty("user.home"), "Desktop/saveFile.json");
 		}
 
 		Gson gson = new Gson();
@@ -59,17 +60,7 @@ public class JSONSaver {
 
 			try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
 				
-				bw.write("{\"items\": [");
-
-				for(int i = 0 ; i < items.size() - 1; i++) {
-					bw.write("\n" + gson.toJson(items.get(i)) + ",");
-				}
-				
-				if(items.size() > 0) {
-					bw.write("\n" + gson.toJson(items.get(items.size() - 1)));
-				}
-				
-				bw.write("\n] }");
+				gson.toJson(items, new TypeToken<List<Item>>(){}.getType(), bw);
 
 				return true;
 

@@ -4,13 +4,13 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import gui.Alerter;
 import gui.Main;
@@ -46,7 +46,7 @@ public class JSONLoader {
 
 			file = chooser.showOpenDialog(Main.primaryStage);
 		} else {
-			file = new File(System.getProperty("user.home"), "Desktop/saveFileJSON.json");
+			file = new File(System.getProperty("user.home"), "Desktop/saveFile.json");
 			log.debug("Loader called without Dialog");
 		}
 
@@ -56,16 +56,7 @@ public class JSONLoader {
 
 			try (BufferedReader br = new BufferedReader(new FileReader(file))) {
 				
-				List<Item> items = new ArrayList<Item>();
-				String nextObj;
-				
-				br.readLine();
-				nextObj = br.readLine();
-				
-				while(nextObj != null && !nextObj.equals("] }")) {
-					items.add(gson.fromJson(nextObj, Item.class));
-					nextObj = br.readLine();
-				}
+				List<Item> items = gson.fromJson(br, new TypeToken<List<Item>>(){}.getType());
 
 				return items;
 
