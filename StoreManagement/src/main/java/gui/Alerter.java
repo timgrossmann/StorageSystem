@@ -1,4 +1,4 @@
-package grossmann.StoreManagement;
+package gui;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,10 +23,17 @@ public class Alerter {
 	private Alerter() {
 	}
 
+	/**
+	 * returns an with the parameter assigned Texts for shorter Code in the Controller Class
+	 * @param type
+	 * @param title
+	 * @param header
+	 * @param content
+	 * @return
+	 */
 	public static Alert getAlert(AlertType type, String title, String header, String content) {
 		
 		log.info("GetAlert called with: " + type.name() + " - " + title + " - " + header + " - " + content);
-
 		Alert alert = null;
 
 		switch (type) {
@@ -54,6 +61,14 @@ public class Alerter {
 		return alert;
 	}
 
+	/**
+	 * returns the in the dialog entered Text 
+	 * For shorter Code in the Controller.class
+	 * @param title
+	 * @param header
+	 * @param content
+	 * @return
+	 */
 	public static Optional<String> getTextDialog(String title, String header, String content) {
 		
 		log.info("GetAlert called with: " + title + " - " + header + " - " + content);
@@ -68,6 +83,13 @@ public class Alerter {
 		return result;
 	}
 
+	/**
+	 * returns the selected Choice of the choices array
+	 * @param title
+	 * @param header
+	 * @param content
+	 * @return
+	 */
 	public static Optional<String> getChoiceDialog(String title, String header, String content) {
 
 		log.info("GetAlert called with: " + title + " - " + header + " - " + content);

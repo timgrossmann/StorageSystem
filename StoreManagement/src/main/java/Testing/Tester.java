@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 import com.google.gson.Gson;
 
-import grossmann.StoreManagement.Item;
+import parts.Item;
 
 /**
  * Hello world!

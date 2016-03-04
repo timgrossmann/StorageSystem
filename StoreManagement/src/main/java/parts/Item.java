@@ -1,4 +1,4 @@
-package grossmann.StoreManagement;
+package parts;
 
 import java.io.Serializable;
 import java.util.Arrays;

@@ -27,7 +27,17 @@ public class SaveToFile {
 
 	private SaveToFile() {
 	}
-
+	
+	/**
+	 *Creates the file that will then be printed
+	 *Formatting of the file decided here, also if the file is the shopping list or an overview
+	 *
+	 * Either saved at the standart file place or on the chosen place
+	 * @param items
+	 * @param type
+	 * @param selectFile
+	 * @return
+	 */
 	public static boolean printOut(ArrayList<ItemBox> items, PrintOutType type, boolean selectFile) {
 
 		String header = "Printout";
@@ -81,8 +91,8 @@ public class SaveToFile {
 					}
 					break;
 				}
-
 				return true;
+				
 			} catch (FileNotFoundException e) {
 				log.error("Printout - File not Found: " + e.getMessage());
 			} catch (IOException e) {

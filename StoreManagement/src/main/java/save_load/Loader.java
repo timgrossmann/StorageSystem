@@ -9,13 +9,13 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import grossmann.StoreManagement.Alerter;
-import grossmann.StoreManagement.Item;
+import gui.Alerter;
 import gui.Main;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
+import parts.Item;
 
 public class Loader {
 	private static FileChooser chooser = new FileChooser();
@@ -24,6 +24,12 @@ public class Loader {
 	private Loader() {
 	}
 
+	/**
+	 * Either loads from the standart File or opens LoadDialog for the user to select a file
+	 * depending of the value of selectFile
+	 * @param selectFile
+	 * @return
+	 */
 	public static List<Item> load(boolean selectFile) {
 
 		File file;

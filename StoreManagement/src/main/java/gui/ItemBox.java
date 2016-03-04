@@ -1,10 +1,10 @@
 package gui;
 
-import grossmann.StoreManagement.Item;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import parts.Item;
 
 public class ItemBox extends HBox {
 
@@ -16,9 +16,12 @@ public class ItemBox extends HBox {
 	private String attributes = "";
 
 	public ItemBox(Item item) {
+		// set formatting of the ItemBox
 		this.setSpacing(20);
 		this.setAlignment(Pos.CENTER_LEFT);
 		this.item = item;
+		
+		//setup and add the Labels
 		setupParts();
 		this.getChildren().add(name);
 		name.setPrefWidth(600);
@@ -34,7 +37,6 @@ public class ItemBox extends HBox {
 
 		this.name.setText(item.name);
 		this.amount.setText(String.valueOf(item.getAmount()));
-
 		this.categories.setText(getCategoriesText("short"));
 
 		// if (item.images.length != 0) {
@@ -85,6 +87,12 @@ public class ItemBox extends HBox {
 		return item.categories;
 	}
 
+	/**
+	 * depending of the usage, this method returns the Categories either 
+	 * with only 3 or all the categories
+	 * @param length
+	 * @return
+	 */
 	public String getCategoriesText(String length) {
 		if (this.item.categories != null && item.categories.length >= 1) {
 			String temp = item.categories[0];
@@ -107,6 +115,10 @@ public class ItemBox extends HBox {
 		return "";
 	}
 
+	/**
+	 * upon call of the updateItem/s MenuItem, the GUI-Thread will update the current ItemBox
+	 * @param item
+	 */
 	public void setItem(Item item) {
 		item.setAmount(this.getAmount());
 		this.item = item;

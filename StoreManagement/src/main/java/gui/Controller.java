@@ -21,8 +21,6 @@ import org.apache.logging.log4j.Logger;
 import com.google.gson.Gson;
 
 import exceptions.NoNameForProductException;
-import grossmann.StoreManagement.Alerter;
-import grossmann.StoreManagement.Item;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -49,6 +47,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import parts.Item;
 import save_load.Loader;
 import save_load.Printing;
 import save_load.SaveToFile;
@@ -117,28 +116,38 @@ public class Controller implements Initializable {
 	private static String lastCommand;
 	private static Logger log = LogManager.getLogger(Controller.class);
 
+	/**
+	 * defines what happens, before the GUI is started
+	 */
 	public void initialize(URL location, ResourceBundle resources) {
 
+		// set the controller var in the Main class to this Controller
 		Main.controller = this;
 
 		updateList();
 		log.debug("List updated");
 
+		// Formatting of the listView
 		listView.setFixedCellSize(60);
 		listView.setItems(items);
 		addButton.setSelected(true);
 		log.debug("ListView cellSize changed, items assigned");
 
+		// is activated if the text in the searchbox is changed
 		searchBox.textProperty().addListener((observable, oldVal, newVal) -> {
 			renewSearch(newVal);
 		});
 
+		// is called when the selected Search Radiobutton is changed
 		searchToggle.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
 			public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
 				renewSearch(searchBox.getText());
 			}
 		});
 
+		// gets called if an item in the listview is selected -> will load the
+		// currently selected item
+		// in the overview on the left
 		listView.getSelectionModel().getSelectedItems().addListener(new ListChangeListener<ItemBox>() {
 			@Override
 			public void onChanged(javafx.collections.ListChangeListener.Change<? extends ItemBox> c) {
@@ -157,9 +166,11 @@ public class Controller implements Initializable {
 		});
 
 		setupMenuItems();
-
 	}
 
+	/**
+	 * Sets up the behaviour of the Items int the menubar
+	 */
 	private void setupMenuItems() {
 		aboutMenu.setOnAction(event -> {
 			AnchorPane root;
@@ -191,62 +202,34 @@ public class Controller implements Initializable {
 		});
 
 		updateAllMenu.setOnAction(event -> {
-
 			new Thread(new Task<Void>() {
 				@Override
 				protected Void call() throws Exception {
 					log.debug("UpdateAll Thread Triggered");
 
 					itemsMap.forEach((a, b) -> {
-						Item temp;
-						try {
-							temp = getNewItem(a);
-
-							if (!temp.equals(b.getItem())) {
-								log.info(temp.name + " unequal to " + b.getItem().name);
-								b.setItem(temp);
-								log.info("Changed to " + temp.name);
-							}
-						} catch (Exception e1) {
-							log.error("Error updating Item " + b.getName() + " - " + e1.getMessage());
-						}
+						updateItem(b);
 					});
 
 					updateList();
-
 					Main.serializeItems();
 
 					log.debug("UpdateAll Thread terminated successfully");
 					return null;
 				}
 			}).start();
-
 		});
 
 		updateMenu.setOnAction(event -> {
-
 			if (!listView.getSelectionModel().isEmpty()) {
-				Item temp;
 				ItemBox itemBox = listView.getSelectionModel().getSelectedItem();
-
-				try {
-					temp = getNewItem(itemBox.getGtin());
-
-					if (!temp.equals(itemBox.getItem())) {
-						log.info(temp.name + " unequal to " + itemBox.getItem().name);
-						itemBox.setItem(temp);
-						log.info("Changed to " + temp.name);
-					}
-				} catch (Exception e1) {
-					log.error("Error updating Item " + itemBox.getName() + " - " + e1.getMessage());
-				}
+				updateItem(itemBox);
 			} else {
 				Alert alert = Alerter.getAlert(AlertType.INFORMATION, "No Item selected", null,
 						"Please select the Item you want to update!");
 				alert.showAndWait();
 				log.debug("Info Popup triggered, No item selected");
 			}
-
 		});
 
 		deleteMenu.setOnAction(event -> {
@@ -256,7 +239,6 @@ public class Controller implements Initializable {
 		});
 
 		repeatMenu.setOnAction(event -> {
-
 			if (lastCommand != null) {
 				String[] props = lastCommand.split(" ");
 				log.info("Repeat called with: " + lastCommand);
@@ -282,6 +264,33 @@ public class Controller implements Initializable {
 
 	}
 
+	/**
+	 * Updates the Item in the ItemBox itemBox
+	 * 
+	 * @param itemBox
+	 */
+	private void updateItem(ItemBox itemBox) {
+		try {
+			Item temp = getNewItem(itemBox.getGtin());
+
+			// checks if the currently fetched temp Item is the still the same
+			// item as the one online
+			if (!temp.equals(itemBox.getItem())) {
+				log.info(temp.name + " unequal to " + itemBox.getItem().name);
+				itemBox.setItem(temp);
+				log.info("Changed to " + temp.name);
+			}
+		} catch (Exception e1) {
+			log.error("Error updating Item " + itemBox.getName() + " - " + e1.getMessage());
+		}
+	}
+
+	/**
+	 * prints out either the shopping List or the Overview of the items in stock
+	 * depending on the type
+	 * 
+	 * @param type
+	 */
 	public void printOut(PrintOutType type) {
 
 		boolean output = false;
@@ -295,6 +304,7 @@ public class Controller implements Initializable {
 		case SHOPPING:
 			ArrayList<ItemBox> temp = new ArrayList<>();
 
+			// adds every Item which has an amount of 0 to the shopping list
 			for (ItemBox item : items) {
 				if (item.getAmount() == 0) {
 					temp.add(item);
@@ -332,6 +342,11 @@ public class Controller implements Initializable {
 		}
 	}
 
+	/**
+	 * updates the items we search for with the text in the searchbox
+	 * and the currently selected Searchradiobutton
+	 * @param newVal
+	 */
 	public void renewSearch(String newVal) {
 		listView.getSelectionModel().clearSelection();
 		searchItems.clear();
@@ -381,10 +396,14 @@ public class Controller implements Initializable {
 		}
 	}
 
+	
+	/**
+	 * sorts the items in the list in the with the choicedialog selected order
+	 * @param order
+	 */
 	public void groupItems(String order) {
-		
-		log.debug("Grouping valled with " + order);
 
+		log.debug("Grouping valled with " + order);
 		ArrayList<ItemBox> temp = new ArrayList<>(items);
 
 		switch (order) {
@@ -418,7 +437,6 @@ public class Controller implements Initializable {
 
 		items = FXCollections.observableArrayList(temp);
 		listView.setItems(items);
-
 	}
 
 	public void loadFile(boolean state) {
@@ -436,28 +454,30 @@ public class Controller implements Initializable {
 					}
 					updateList();
 				}
-
 				log.debug("File Loaded");
 			}
 		});
 	}
 
+	/**
+	 * with the help of the Google Gson libary, the JSON gets translated into a new Item
+	 * pulled from Outpan.com with the passed Barcode
+	 * @param gtin
+	 * @return
+	 * @throws IOException
+	 */
 	private Item getNewItem(String gtin) throws IOException {
 
 		log.info("Getting Item with Barcode: " + gtin);
-
 		Gson gson = new Gson();
-
 		URL url = new URL("https://api.outpan.com/v2/products/" + gtin + "?apikey=e13a9fb0bda8684d72bc3dba1b16ae1e");
 
 		StringBuilder temp = new StringBuilder();
-
 		Scanner scanner = new Scanner(url.openStream());
 
 		while (scanner.hasNext()) {
 			temp.append(scanner.nextLine());
 		}
-
 		scanner.close();
 
 		Item item = new Item(gson.fromJson(temp.toString(), Item.class));
@@ -467,16 +487,13 @@ public class Controller implements Initializable {
 		} else {
 			throw new NoNameForProductException();
 		}
-
 	}
 
 	public boolean addItem(String gtin) {
-
 		lastCommand = "ADD " + gtin;
 		log.debug("LastCommand set to: " + lastCommand);
 
 		Platform.runLater(new Runnable() {
-
 			@Override
 			public void run() {
 				log.info("Add: " + gtin);
@@ -504,12 +521,16 @@ public class Controller implements Initializable {
 				}
 			}
 		});
-
 		return false;
 	}
 
+	/**
+	 * if the barcode hasn't already got a name on outpan.com
+	 * the item will be listed online with the passed name
+	 * @param gtin
+	 * @param name
+	 */
 	private void listNewItem(String gtin, String name) {
-
 		try {
 			URL url = new URL("https://api.outpan.com/v2/products/" + gtin + "/name"
 					+ "?apikey=e13a9fb0bda8684d72bc3dba1b16ae1e");
@@ -545,7 +566,6 @@ public class Controller implements Initializable {
 		} catch (IOException e) {
 			log.error("IOException: " + e.getMessage());
 		}
-
 	}
 
 	public void updateList() {
@@ -553,9 +573,7 @@ public class Controller implements Initializable {
 			@Override
 			public void run() {
 				items = FXCollections.observableArrayList(itemsMap.values());
-
 				listView.setItems(items);
-
 				log.info("List updated");
 			}
 		});
@@ -599,7 +617,6 @@ public class Controller implements Initializable {
 				}
 			}
 		});
-
 		return false;
 	}
 

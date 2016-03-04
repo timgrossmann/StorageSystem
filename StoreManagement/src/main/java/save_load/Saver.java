@@ -10,13 +10,13 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import grossmann.StoreManagement.Alerter;
-import grossmann.StoreManagement.Item;
+import gui.Alerter;
 import gui.Main;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
+import parts.Item;
 
 public class Saver {
 
@@ -26,6 +26,14 @@ public class Saver {
 	private Saver() {
 	}
 
+	/**
+	 * Serializes the items either to the standart File location or a location
+	 * chosen with the SaveDialog
+	 * 
+	 * @param items
+	 * @param setLocation
+	 * @return
+	 */
 	public static boolean save(List<Item> items, boolean setLocation) {
 
 		File file;

@@ -1,11 +1,54 @@
-2016-02-24 21:46:19,561 DEBUG [main] gui.Main (Main.java:162) - GUI launching
-2016-02-24 21:46:19,857 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:125) - List updated
-2016-02-24 21:46:19,857 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:130) - ListView cellSize changed, items assigned
-2016-02-24 21:46:19,861 DEBUG [JavaFX Application Thread] gui.Main (Main.java:33) - GUI.fxml loaded
-2016-02-24 21:46:20,943 INFO  [JavaFX Application Thread] gui.Controller$6 (Controller.java:559) - List updated
-2016-02-24 21:46:21,713 DEBUG [JavaFX Application Thread] gui.Controller$4 (Controller.java:429) - Loading File
-2016-02-24 21:46:21,715 DEBUG [JavaFX Application Thread] save_load.Loader (Loader.java:41) - Loader called without Dialog
-2016-02-24 21:46:21,727 DEBUG [JavaFX Application Thread] gui.Controller$4 (Controller.java:440) - File Loaded
-2016-02-24 21:46:21,728 INFO  [JavaFX Application Thread] gui.Controller$6 (Controller.java:559) - List updated
-2016-02-24 21:47:57,183 DEBUG [JavaFX Application Thread] gui.Main (Main.java:50) - Window closed
-2016-02-24 21:47:57,205 DEBUG [main] gui.Main (Main.java:164) - Program ended
+2016-03-04 19:56:37,831 DEBUG [main] gui.Main (Main.java:187) - GUI launching
+2016-03-04 19:56:38,133 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:128) - List updated
+2016-03-04 19:56:38,134 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:134) - ListView cellSize changed, items assigned
+2016-03-04 19:56:38,138 DEBUG [JavaFX Application Thread] gui.Main (Main.java:43) - GUI.fxml loaded
+2016-03-04 19:56:39,154 INFO  [JavaFX Application Thread] gui.Controller$6 (Controller.java:577) - List updated
+2016-03-04 19:56:39,742 DEBUG [JavaFX Application Thread] gui.Controller$4 (Controller.java:447) - Loading File
+2016-03-04 19:56:39,745 DEBUG [JavaFX Application Thread] save_load.Loader (Loader.java:47) - Loader called without Dialog
+2016-03-04 19:56:39,755 DEBUG [JavaFX Application Thread] gui.Controller$4 (Controller.java:457) - File Loaded
+2016-03-04 19:56:39,756 INFO  [JavaFX Application Thread] gui.Controller$6 (Controller.java:577) - List updated
+2016-03-04 19:56:41,496 DEBUG [Thread-6] gui.Main$1 (Main.java:73) - ScanThread called
+2016-03-04 19:56:46,498 DEBUG [Thread-6] gui.Controller (Controller.java:494) - LastCommand set to: ADD 0000042142341
+2016-03-04 19:56:46,499 INFO  [JavaFX Application Thread] gui.Controller$5 (Controller.java:499) - Add: 0000042142341
+2016-03-04 19:56:46,499 INFO  [Thread-6] gui.Main$1 (Main.java:121) - Barcode set back to ''
+2016-03-04 19:56:46,499 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:471) - Getting Item with Barcode: 0000042142341
+2016-03-04 19:56:46,499 DEBUG [Thread-7] gui.Main$1$1 (Main.java:103) - Save Thread called
+2016-03-04 19:57:00,294 DEBUG [JavaFX Application Thread] gui.Controller$5 (Controller.java:517) - Entered Barcode is not Valid
+2016-03-04 19:57:05,718 DEBUG [Thread-8] gui.Main$1 (Main.java:73) - ScanThread called
+2016-03-04 19:57:10,723 DEBUG [Thread-8] gui.Controller (Controller.java:494) - LastCommand set to: ADD 0000042143482
+2016-03-04 19:57:10,724 INFO  [Thread-8] gui.Main$1 (Main.java:121) - Barcode set back to ''
+2016-03-04 19:57:10,724 INFO  [JavaFX Application Thread] gui.Controller$5 (Controller.java:499) - Add: 0000042143482
+2016-03-04 19:57:10,724 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:471) - Getting Item with Barcode: 0000042143482
+2016-03-04 19:57:11,150 INFO  [JavaFX Application Thread] gui.Controller$2 (Controller.java:163) - Overview set to San Benedetto Aqua Mineral Naturale
+2016-03-04 19:57:11,154 INFO  [JavaFX Application Thread] gui.Controller$6 (Controller.java:577) - List updated
+2016-03-04 19:57:14,518 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:244) - Repeat called with: ADD 0000042143482
+2016-03-04 19:57:14,518 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:494) - LastCommand set to: ADD 0000042143482
+2016-03-04 19:57:14,519 INFO  [JavaFX Application Thread] gui.Controller$5 (Controller.java:499) - Add: 0000042143482
+2016-03-04 19:57:14,701 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:244) - Repeat called with: ADD 0000042143482
+2016-03-04 19:57:14,701 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:494) - LastCommand set to: ADD 0000042143482
+2016-03-04 19:57:14,702 INFO  [JavaFX Application Thread] gui.Controller$5 (Controller.java:499) - Add: 0000042143482
+2016-03-04 19:57:14,869 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:244) - Repeat called with: ADD 0000042143482
+2016-03-04 19:57:14,869 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:494) - LastCommand set to: ADD 0000042143482
+2016-03-04 19:57:14,870 INFO  [JavaFX Application Thread] gui.Controller$5 (Controller.java:499) - Add: 0000042143482
+2016-03-04 19:57:15,054 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:244) - Repeat called with: ADD 0000042143482
+2016-03-04 19:57:15,054 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:494) - LastCommand set to: ADD 0000042143482
+2016-03-04 19:57:15,055 INFO  [JavaFX Application Thread] gui.Controller$5 (Controller.java:499) - Add: 0000042143482
+2016-03-04 19:57:15,229 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:244) - Repeat called with: ADD 0000042143482
+2016-03-04 19:57:15,229 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:494) - LastCommand set to: ADD 0000042143482
+2016-03-04 19:57:15,230 INFO  [JavaFX Application Thread] gui.Controller$5 (Controller.java:499) - Add: 0000042143482
+2016-03-04 19:57:15,389 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:244) - Repeat called with: ADD 0000042143482
+2016-03-04 19:57:15,390 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:494) - LastCommand set to: ADD 0000042143482
+2016-03-04 19:57:15,393 INFO  [JavaFX Application Thread] gui.Controller$5 (Controller.java:499) - Add: 0000042143482
+2016-03-04 19:57:15,558 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:244) - Repeat called with: ADD 0000042143482
+2016-03-04 19:57:15,558 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:494) - LastCommand set to: ADD 0000042143482
+2016-03-04 19:57:15,559 INFO  [JavaFX Application Thread] gui.Controller$5 (Controller.java:499) - Add: 0000042143482
+2016-03-04 19:57:17,951 DEBUG [JavaFX Application Thread] save_load.Saver (Saver.java:50) - Saver called without Dialog
+2016-03-04 19:57:17,955 INFO  [JavaFX Application Thread] gui.Main$2 (Main.java:152) - Items serialized
+2016-03-04 19:57:21,310 DEBUG [JavaFX Application Thread] save_load.Saver (Saver.java:50) - Saver called without Dialog
+2016-03-04 19:57:21,311 INFO  [JavaFX Application Thread] gui.Main$2 (Main.java:152) - Items serialized
+2016-03-04 19:57:46,500 DEBUG [JavaFX Application Thread] save_load.Saver (Saver.java:50) - Saver called without Dialog
+2016-03-04 19:57:46,501 INFO  [JavaFX Application Thread] gui.Main$2 (Main.java:152) - Items serialized
+2016-03-04 19:58:02,595 DEBUG [JavaFX Application Thread] save_load.Saver (Saver.java:50) - Saver called without Dialog
+2016-03-04 19:58:02,596 INFO  [JavaFX Application Thread] gui.Main$2 (Main.java:152) - Items serialized
+2016-03-04 19:58:06,248 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:192) - Window closed
+2016-03-04 19:58:06,865 DEBUG [main] gui.Main (Main.java:189) - Program ended

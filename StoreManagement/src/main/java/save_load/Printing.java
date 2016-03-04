@@ -27,19 +27,28 @@ public class Printing {
 	private Printing() {
 	}
 
+	/**
+	 * Prints the file with the currently set Default Printer of the Device
+	 * @param file
+	 * @return
+	 */
 	public static boolean printFile(File file) {
 		String defaultPrinter = PrintServiceLookup.lookupDefaultPrintService().getName();
 		log.debug("Default printer: " + defaultPrinter);
 
+		//gets the default Printer
 		PrintService service = PrintServiceLookup.lookupDefaultPrintService();
 
 		try (FileInputStream in = new FileInputStream(file)) {
 			PrintRequestAttributeSet pras = new HashPrintRequestAttributeSet();
+			//only 1 Copy of the selected File
 			pras.add(new Copies(1));
 
+			//defines that the input is a filestream from a file
 			DocFlavor flavor = DocFlavor.INPUT_STREAM.AUTOSENSE;
 			Doc doc = new SimpleDoc(in, flavor, null);
 
+			//creates the job and starts printing
 			DocPrintJob job = service.createPrintJob();
 			job.print(doc, pras);
 
