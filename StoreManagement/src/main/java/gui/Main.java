@@ -84,6 +84,10 @@ public class Main extends Application {
 							// Formatter
 							String output = (("0000000000000" + gtin).substring(gtin.length()));
 
+							if (!output.matches("[A-Za-z0-9_.-~]+")) {
+								output = replaceIllegalChars(output);
+							}
+
 							// checks for the currently selected Button and
 							// starts the corresponding tast
 							// with the now formatted Barcode
@@ -196,6 +200,20 @@ public class Main extends Application {
 		log.debug("GUI launching");
 		launch(args);
 		log.debug("Program ended");
+	}
+
+	public static String replaceIllegalChars(String output) {
+
+		output = output.replaceAll("Ä", "Ae");
+		output = output.replaceAll("ä", "ae");
+		output = output.replaceAll("Ö", "Oe");
+		output = output.replaceAll("ö", "oe");
+		output = output.replaceAll("Ü", "Ue");
+		output = output.replaceAll("ü", "ue");
+		output = output.replaceAll("ß", "ss");
+		output = output.replaceAll("/", "");
+		
+		return output;
 	}
 
 }

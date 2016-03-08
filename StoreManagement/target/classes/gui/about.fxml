@@ -48,7 +48,7 @@
                               <HBox prefHeight="2.0" prefWidth="324.0" spacing="10.0">
                                  <children>
                                     <Label prefHeight="17.0" prefWidth="75.0" text="Version:" />
-                                    <Label text="1.0 Basic" />
+                                    <Label text="1.1 Basic" />
                                  </children>
                               </HBox>
                               <HBox prefHeight="127.0" prefWidth="404.0" spacing="10.0">
@@ -62,6 +62,7 @@
                                           <Label text="- Google's GSON-Libary" />
                                           <Label text="- Outpan.com - Barcode Database" />
                                           <Label text="- TaoTronics USB Laser-Barcodescanner" />
+                                          <Label text="- RaspberryPi 3" />
                                           <VBox>
                                              <children>
                                                 <Label text="- Github" />

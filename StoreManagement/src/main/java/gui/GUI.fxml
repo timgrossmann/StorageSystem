@@ -100,7 +100,7 @@
                                  <children>
                                     <ScrollPane hbarPolicy="NEVER" pannable="true" prefHeight="624.0" prefViewportHeight="622.0" prefViewportWidth="335.0" prefWidth="337.0" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <content>
-                                          <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" prefHeight="611.0" prefWidth="335.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                          <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" prefHeight="611.0" prefWidth="314.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <children>
                                                 <Label fx:id="nameLabel" alignment="TOP_CENTER" contentDisplay="TOP" prefHeight="75.0" prefWidth="295.0" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" wrapText="true" VBox.vgrow="ALWAYS">
                                                    <font>
@@ -142,7 +142,7 @@
                                                 </VBox>
                                                 <VBox maxHeight="1.7976931348623157E308" spacing="15.0" VBox.vgrow="ALWAYS">
                                                    <children>
-                                                      <HBox prefHeight="25.0" prefWidth="335.0" spacing="10.0" VBox.vgrow="ALWAYS">
+                                                      <HBox maxHeight="1.7976931348623157E308" prefHeight="25.0" prefWidth="335.0" spacing="10.0" VBox.vgrow="ALWAYS">
                                                          <children>
                                                             <Label prefWidth="100.0" text="Categories:" underline="true">
                                                                <font>

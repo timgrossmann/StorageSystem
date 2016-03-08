@@ -1,2 +1,3 @@
 - dynamic Sizing of the overview boxes for categories and attributes
-- centering of the title
+- Input at the first start of the program, which asks for the API key of the outpan.com API. 
+	this will then be saved interanally and loaded again upon next start
