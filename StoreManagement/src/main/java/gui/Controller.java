@@ -47,6 +47,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import parts.IllegalStringReplacer;
 import parts.Item;
 import save_load.JSONLoader;
 import save_load.Printing;
@@ -488,7 +489,7 @@ public class Controller implements Initializable {
 		scanner.close();
 
 		Item item = new Item(gson.fromJson(temp.toString(), Item.class));
-
+		
 		if (item.name != null) {
 			return item;
 		} else {
@@ -546,6 +547,9 @@ public class Controller implements Initializable {
 			HttpsURLConnection httpCon = (HttpsURLConnection) url.openConnection();
 			httpCon.setDoOutput(true);
 			httpCon.setRequestMethod("POST");
+			
+			//replaces umlauts, ß, ", ' and / 
+			name = IllegalStringReplacer.replaceIllegalChars(name);
 
 			String content = "name=" + name;
 			DataOutputStream out = new DataOutputStream(httpCon.getOutputStream());

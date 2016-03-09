@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>StorageSystem WebOverview</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        
+        <link rel="stylesheet" href="additional.css" type="text/css"/>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    </head>
+    
+    <body>
+        <div class="container" id="outermost">
+            <div class="jumbotron">
+                <div clas="row">
+                    <p class="col-md-12 text-center">Items in Stock - Overview</p>
+                </div>
+                
+                <div class="row">
+                    <label class = "col-sm-2 text-center" for="searchField" id="searchLabel">Search for:
+                    </label>
+                    <input type="text" placeholder="Search..." class = "col-sm-10" id="searchField"/>
+                </div>
+                
+                <div class="row center-block">
+                    <label class="radio-inline col-xs-2 col-sm-2 col-sm-offset-2 col-xs-offset-2">
+                        <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="name" checked> Name
+                    </label>
+                    
+                    <label class="radio-inline col-xs-2 col-sm-2">
+                        <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="barcode"> Barcode
+                    </label>
+                    
+                    <label class="radio-inline col-xs-2 col-sm-2">
+                        <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="amount"> Amount
+                    </label>
+                    
+                    <label class="radio-inline col-xs-2 col-sm-2">
+                        <input type="radio" name="inlineRadioOptions" id="inlineRadio4" value="categories"> Categorie
+                    </label>
+                </div>
+            </div>
+            <div>
+                <hr/>      
+                <table class="table table-striped">
+                    <tr><th>Barcode</th><th>Name</th><th>Amount</th><th>Categories</th></tr>
+                    <tr><td>Test</td><td>Test4</td><td>Test5</td><td>Test6</td></tr>
+                </table>
+            </div>
+        </div>
+        
+        
+        <script src="behaviour.js" type="text/javascript"></script>
+    </body>
+        
+</html>

@@ -1,0 +1,17 @@
+2016-03-08 16:46:19,910 DEBUG [main] gui.Main (Main.java:200) - GUI launching
+2016-03-08 16:46:20,276 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:128) - List updated
+2016-03-08 16:46:20,276 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:134) - ListView cellSize changed, items assigned
+2016-03-08 16:46:20,281 DEBUG [JavaFX Application Thread] gui.Main (Main.java:42) - GUI.fxml loaded
+2016-03-08 16:46:21,362 INFO  [JavaFX Application Thread] gui.Controller$7 (Controller.java:585) - List updated
+2016-03-08 16:46:21,964 DEBUG [JavaFX Application Thread] gui.Controller$5 (Controller.java:453) - Loading File
+2016-03-08 16:46:22,011 DEBUG [JavaFX Application Thread] gui.Controller$5 (Controller.java:463) - File Loaded
+2016-03-08 16:46:22,014 INFO  [JavaFX Application Thread] gui.Controller$7 (Controller.java:585) - List updated
+2016-03-08 16:46:22,877 INFO  [JavaFX Application Thread] gui.Controller$2 (Controller.java:163) - Overview set to Universal Backlit Photographic Film, 8 mil, 36" x 100 ft Roll, White
+2016-03-08 16:46:28,412 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:242) - Item: Universal Backlit Photographic Film, 8 mil, 36" x 100 ft Roll, White removed
+2016-03-08 16:46:28,417 INFO  [JavaFX Application Thread] gui.Controller$7 (Controller.java:585) - List updated
+2016-03-08 16:46:30,724 INFO  [JavaFX Application Thread] gui.Controller$2 (Controller.java:163) - Overview set to I-Vapor Vaporizer
+2016-03-08 16:46:32,771 INFO  [JavaFX Application Thread] gui.Main$2 (Main.java:165) - Items serialized
+2016-03-08 16:46:38,930 INFO  [JavaFX Application Thread] gui.Controller$2 (Controller.java:163) - Overview set to Wowbab BIO-Getreideriegel sizilianische Zitrone
+2016-03-08 16:46:40,785 INFO  [JavaFX Application Thread] gui.Main$2 (Main.java:165) - Items serialized
+2016-03-08 16:46:42,122 DEBUG [JavaFX Application Thread] gui.Controller$3 (Controller.java:195) - Window closed
+2016-03-08 16:46:42,726 DEBUG [main] gui.Main (Main.java:202) - Program ended

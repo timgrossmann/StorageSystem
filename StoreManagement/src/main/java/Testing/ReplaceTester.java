@@ -1,12 +1,12 @@
 package testing;
 
-import gui.Main;
+import parts.IllegalStringReplacer;
 
 public class ReplaceTester {
 	
 	public static void main(String[] args) {
 		
-		System.out.println(Main.replaceIllegalChars("Teß/tär"));
+		System.out.println(IllegalStringReplacer.replaceIllegalChars("Teß/tär"));
 		
 		
 	}

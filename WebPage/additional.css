@@ -1,0 +1,17 @@
+#searchField {
+    width: 70%;
+    height: 30px;
+}
+
+#searchLabel {
+    height: 30px;
+    padding-top: 5px;
+}
+
+.jumbotron {
+    margin: 10px -5px 0 -5px;
+}
+
+.row {
+    margin-bottom: 5px
+}
