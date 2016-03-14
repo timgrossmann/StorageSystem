@@ -45,8 +45,8 @@ public class JSONSaver {
 			log.debug("Saver called with Loaddialog");
 			chooser.setTitle("Save Tournament: ");
 			chooser.setInitialDirectory(new File(System.getProperty("user.home") + "/Desktop"));
-			chooser.setSelectedExtensionFilter(new ExtensionFilter("SaveFiles(*.sav)", "*.sav"));
-			chooser.getExtensionFilters().add(new ExtensionFilter("Save Files(*.sav)", "*.sav"));
+			chooser.setSelectedExtensionFilter(new ExtensionFilter("JSON File(*.json)", "*.json"));
+			chooser.getExtensionFilters().add(new ExtensionFilter("JSON Files(*.json)", "*.json"));
 
 			file = chooser.showSaveDialog(Main.primaryStage);
 		} else {

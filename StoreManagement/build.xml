@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="StoreManagement">
+    <property environment="env"/>
+    <property name="ECLIPSE_HOME" value="../../../../../Applications/Eclipse.app/Contents/Eclipse/"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.8"/>
+    <property name="source" value="1.8"/>
+    <path id="Maven Dependencies.libraryclasspath">
+        <pathelement location="../../../.m2/repository/junit/junit/3.8.1/junit-3.8.1.jar"/>
+        <pathelement location="../../../.m2/repository/org/apache/logging/log4j/log4j-api/2.4/log4j-api-2.4.jar"/>
+        <pathelement location="../../../.m2/repository/org/apache/logging/log4j/log4j-core/2.4/log4j-core-2.4.jar"/>
+    </path>
+    <path id="gson_lib.userclasspath">
+        <pathelement location="../../../Documents/workspace/gson-2.5.jar"/>
+    </path>
+    <path id="JavaFX SDK.libraryclasspath">
+        <pathelement location="${ECLIPSE_HOME}plugins/org.eclipse.fx.ide.css.jfx8_2.0.0.201506111511.jar"/>
+    </path>
+    <path id="Plug-in Dependencies.libraryclasspath"/>
+    <path id="StoreManagement.classpath">
+        <pathelement location="target/classes"/>
+        <pathelement location="target/test-classes"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+        <path refid="gson_lib.userclasspath"/>
+        <path refid="JavaFX SDK.libraryclasspath"/>
+        <path refid="Plug-in Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.App.classpath">
+        <path refid="StoreManagement.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.InputTester.classpath">
+        <path refid="StoreManagement.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.Main (4).classpath">
+        <path refid="StoreManagement.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.PrintTest.classpath">
+        <path refid="StoreManagement.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.ReplaceTester.classpath">
+        <path refid="StoreManagement.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <target name="init">
+        <mkdir dir="target/classes"/>
+        <mkdir dir="target/test-classes"/>
+        <copy includeemptydirs="false" todir="target/classes">
+            <fileset dir="src/main/java">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+        <copy includeemptydirs="false" todir="target/test-classes">
+            <fileset dir="src/test/java">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="target/classes"/>
+        <delete dir="target/test-classes"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="target/classes" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src/main/java"/>
+            <classpath refid="StoreManagement.classpath"/>
+        </javac>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="target/test-classes" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src/test/java"/>
+            <classpath refid="StoreManagement.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+    <target name="App">
+        <java classname="testing.Tester" failonerror="true" fork="yes">
+            <classpath refid="run.App.classpath"/>
+        </java>
+    </target>
+    <target name="InputTester">
+        <java classname="parts.InputTester" failonerror="true" fork="yes">
+            <classpath refid="run.InputTester.classpath"/>
+        </java>
+    </target>
+    <target name="Main (4)">
+        <java classname="gui.Main" failonerror="true" fork="yes">
+            <classpath refid="run.Main (4).classpath"/>
+        </java>
+    </target>
+    <target name="PrintTest">
+        <java classname="testing.PrintTest" failonerror="true" fork="yes">
+            <classpath refid="run.PrintTest.classpath"/>
+        </java>
+    </target>
+    <target name="ReplaceTester">
+        <java classname="testing.ReplaceTester" failonerror="true" fork="yes">
+            <classpath refid="run.ReplaceTester.classpath"/>
+        </java>
+    </target>
+</project>
