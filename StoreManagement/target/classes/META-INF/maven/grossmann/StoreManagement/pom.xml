@@ -39,15 +39,14 @@
   </dependencies>
   <build>
         <plugins>
- 	<plugin>
-		<groupId>com.zenjava</groupId>
-		<artifactId>javafx-maven-plugin</artifactId>
-		<version>8.1.4</version>
-		<configuration>
-			<vendor>Tim</vendor>
-			<mainClass>gui.Main</mainClass>
-		</configuration>
-	</plugin>
+			<plugin>
+				<groupId>com.zenjava</groupId>
+				<artifactId>javafx-maven-plugin</artifactId>
+				<version>8.1.4</version>
+				<configuration>
+					<mainClass>gui.Main</mainClass>
+				</configuration>
+			</plugin>
        </plugins>
    	</build>
 

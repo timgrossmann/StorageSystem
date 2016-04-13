@@ -1,12 +1,10 @@
-2016-03-14 11:02:30,315 DEBUG [main] gui.Main (Main.java:196) - GUI launching
-2016-03-14 11:02:30,608 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:129) - List updated
-2016-03-14 11:02:30,609 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:135) - ListView cellSize changed, items assigned
-2016-03-14 11:02:30,614 DEBUG [JavaFX Application Thread] gui.Main (Main.java:42) - GUI.fxml loaded
-2016-03-14 11:02:31,587 INFO  [JavaFX Application Thread] gui.Controller$7 (Controller.java:589) - List updated
-2016-03-14 11:02:32,197 DEBUG [JavaFX Application Thread] gui.Controller$5 (Controller.java:454) - Loading File
-2016-03-14 11:02:32,235 DEBUG [JavaFX Application Thread] gui.Controller$5 (Controller.java:464) - File Loaded
-2016-03-14 11:02:32,235 INFO  [JavaFX Application Thread] gui.Controller$7 (Controller.java:589) - List updated
-2016-03-14 11:02:35,153 INFO  [JavaFX Application Thread] gui.Controller$2 (Controller.java:164) - Overview set to I-Vapor Vaporizer
-2016-03-14 11:02:40,136 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:479) - Getting Item with Barcode: 0000000000123
-2016-03-14 11:02:43,278 DEBUG [JavaFX Application Thread] gui.Controller$3 (Controller.java:196) - Window closed
-2016-03-14 11:02:43,882 DEBUG [main] gui.Main (Main.java:198) - Program ended
+2016-04-13 20:37:27,611 DEBUG [main] gui.Main (Main.java:196) - GUI launching
+2016-04-13 20:37:28,215 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:129) - List updated
+2016-04-13 20:37:28,215 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:135) - ListView cellSize changed, items assigned
+2016-04-13 20:37:28,220 DEBUG [JavaFX Application Thread] gui.Main (Main.java:42) - GUI.fxml loaded
+2016-04-13 20:37:29,031 INFO  [JavaFX Application Thread] gui.Controller$7 (Controller.java:589) - List updated
+2016-04-13 20:37:29,252 DEBUG [JavaFX Application Thread] gui.Controller$5 (Controller.java:454) - Loading File
+2016-04-13 20:37:29,296 DEBUG [JavaFX Application Thread] gui.Controller$5 (Controller.java:464) - File Loaded
+2016-04-13 20:37:29,304 INFO  [JavaFX Application Thread] gui.Controller$7 (Controller.java:589) - List updated
+2016-04-13 20:37:32,077 DEBUG [JavaFX Application Thread] gui.Main (Main.java:59) - Window closed
+2016-04-13 20:37:32,104 DEBUG [main] gui.Main (Main.java:198) - Program ended

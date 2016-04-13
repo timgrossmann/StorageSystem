@@ -212,7 +212,7 @@
          <center>
             <VBox>
                <children>
-                  <VBox>
+                  <VBox VBox.vgrow="ALWAYS">
                      <children>
                         <HBox maxHeight="28.0" minHeight="28.0" prefHeight="28.0" prefWidth="200.0" VBox.vgrow="NEVER">
                            <children>
@@ -224,7 +224,7 @@
                               <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
                            </padding>
                         </HBox>
-                        <ListView fx:id="listView" prefHeight="902.0" prefWidth="925.0" styleClass="listView" BorderPane.alignment="CENTER" VBox.vgrow="ALWAYS" />
+                        <ListView fx:id="listView" prefHeight="2000.0" prefWidth="925.0" styleClass="listView" BorderPane.alignment="CENTER" VBox.vgrow="ALWAYS" />
                      </children>
                   </VBox>
                </children>
