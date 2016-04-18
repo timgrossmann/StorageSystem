@@ -1,7 +1,7 @@
 # StorageSystem
 Personal Storage Management System
 
-This is a "small" personal project where i'll use Java, JavaFX, the Gson-Libary and Outpan.com as Barcode libary.
+This is a "small" personal project where i'll use Java, JavaFX, the Gson-Libary, JSON-server and Outpan.com as Barcode libary.
 I want to build an application, with which i can manage the items in my basement (preferably groceries).
 I'll try to keep the setup costs as low as possible, so it'll be a system everyone can build.
 
