@@ -71,6 +71,7 @@ public class SaveToFile {
 		if (file != null) {
 			try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
 
+				bw.write("\n\n");
 				bw.write(header + "\n\n");
 
 				switch (type) {

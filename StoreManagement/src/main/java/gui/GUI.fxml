@@ -54,12 +54,12 @@
                                           <KeyCodeCombination alt="UP" code="DELETE" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                                        </accelerator>
                                     </MenuItem>
-                                    <MenuItem fx:id="updateMenu" mnemonicParsing="false" text="Upadte Selected">
+                                    <MenuItem fx:id="updateMenu" mnemonicParsing="false" text="Update Selected">
                                        <accelerator>
                                           <KeyCodeCombination alt="UP" code="U" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                                        </accelerator>
                                     </MenuItem>
-                                    <MenuItem fx:id="updateAllMenu" mnemonicParsing="false" text="Upadte All Items" />
+                                    <MenuItem fx:id="updateAllMenu" mnemonicParsing="false" text="Update All Items" />
                               </items>
                             </Menu>
                             <Menu mnemonicParsing="false" text="Help">
