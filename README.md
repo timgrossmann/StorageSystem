@@ -22,6 +22,12 @@ Physical parts are:
 Total costs: 123€
 
 ![alt tag] (https://github.com/timgrossmann/StorageSystem/blob/master/img/storageSystem_V1_1.png)
+- UI of the JavaFX App
+
+
 ![alt tag] (https://raw.githubusercontent.com/timgrossmann/StorageSystem/master/img/WebView.png)
+- Very Simple but responsive WebPage of the Items
+
+
 ![alt tag](http://ecx.images-amazon.com/images/I/71T55P9USGL._SL1500_.jpg)
 ![alt tag] (http://ecx.images-amazon.com/images/I/51RxfzoqFXL._SY300_.jpg)
