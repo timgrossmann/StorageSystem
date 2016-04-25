@@ -9,7 +9,7 @@ Physical parts are:
   - TaoTronics USB Laser-Barcodescanner (23€)
   - RaspberryPI 3 StarterKit which includes: (100€)
       - Raspberry Pi 3
-      - Your Choice of Pibow 3 (please select above)
+      - Your Choice of Pibow 3
       - 8GB NOOBs microSD card
       - Chiclet Keyboard
       - Optical Mouse
