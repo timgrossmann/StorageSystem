@@ -1,9 +1,4 @@
-//definetly
+//
 - dynamic Sizing of the overview boxes for categories and attributes
 - listview scalable to fit all heights
-- Fullscreen auf Pi ? (falsche position des screens… Schwarzer rahmen rechts und unten)
-
-
-//Maybe
-- Input at the first start of the program, which asks for the API key of the outpan.com API. 
-	this will then be saved interanally and loaded again upon next start
+- fullscreen on the Pi
