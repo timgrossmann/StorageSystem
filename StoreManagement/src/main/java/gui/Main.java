@@ -10,8 +10,10 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import parts.Item;
 import save_load.JSONSaver;
@@ -40,15 +42,19 @@ public class Main extends Application {
 
 		AnchorPane root = FXMLLoader.load(getClass().getResource("GUI.fxml"));
 		log.debug("GUI.fxml loaded");
-		Scene primaryScene = new Scene(root, root.getPrefWidth(), root.getPrefHeight());
+		
+		//Set the scene dimensions to the Screen dimensions
+		Rectangle2D r = Screen.getPrimary().getBounds();
+		Scene primaryScene = new Scene(root, r.getWidth(), r.getHeight());
+		
 		Main.primaryScene = primaryScene;
-
+		
 		primaryScene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 
 		primaryStage.setScene(primaryScene);
 		primaryStage.setTitle("Storage Management System");
 		Main.primaryStage = primaryStage;
-//		primaryStage.setFullScreen(true);
+		primaryStage.setFullScreen(true);
 
 		primaryStage.show();
 
