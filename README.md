@@ -4,6 +4,7 @@ Personal Storage Management System
 This is a "small" personal project where i'll use Java, JavaFX, the Gson-Libary, Apache-Web-Server, JSON-server and Outpan.com as Barcode libary.
 I want to build an application, with which i can manage the items in my basement (preferably groceries).
 I'll try to keep the setup costs as low as possible, so it'll be a system everyone can build.
+I have to admit, that it got more expensive than i thought. (You could decrease the price by just buying a Pi (35€) and a smaller screen (30-45€) to about 100€).
 
 Physical parts are: 
   - TaoTronics USB Laser-Barcodescanner (23€)
