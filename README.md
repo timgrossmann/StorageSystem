@@ -16,10 +16,10 @@ Physical parts are:
       - Official Raspberry Pi 2A PSUn>
       - HDMI cable
       - Raspberry Pi Stickers
-  - not yet defined screen (€ = ?)
+  - Tontec 7 inch High Resolution 1024 * 600 Screen Display LCD TFT Monitor(55€)
 
 ------------------------------
-Total costs: 123€
+Total costs: 178€
 
 ![alt tag] (https://github.com/timgrossmann/StorageSystem/blob/master/img/storageSystem_V1_1.png)
 - UI of the JavaFX App
@@ -31,3 +31,4 @@ Total costs: 123€
 
 ![alt tag](http://ecx.images-amazon.com/images/I/71T55P9USGL._SL1500_.jpg)
 ![alt tag] (http://ecx.images-amazon.com/images/I/51RxfzoqFXL._SY300_.jpg)
+![alt tag] (http://ecx.images-amazon.com/images/I/61qFVwEcWrL._SL1200_.jpg)
