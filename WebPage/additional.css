@@ -15,3 +15,11 @@
 .row {
     margin-bottom: 5px
 }
+
+label {
+    font-size: 1.1em;
+}
+
+table {
+    font-size: 1.1em;
+}
