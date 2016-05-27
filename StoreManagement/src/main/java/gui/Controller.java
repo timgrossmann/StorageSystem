@@ -160,7 +160,6 @@ public class Controller implements Initializable {
 					gtinLabel.setText(itemBox.getGtin());
 					categoriesLabel.setText(itemBox.getCategoriesText("long"));
 					attributesLabel.setText(itemBox.getAttributes());
-					// imageView.setImage(itemBox.getImage());
 					log.info("Overview set to " + itemBox.getName());
 				}
 			}

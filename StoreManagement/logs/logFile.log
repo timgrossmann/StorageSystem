@@ -1,10 +1,10 @@
-2016-05-10 14:36:26,972 DEBUG [main] gui.Main (Main.java:202) - GUI launching
-2016-05-10 14:36:27,267 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:129) - List updated
-2016-05-10 14:36:27,267 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:135) - ListView cellSize changed, items assigned
-2016-05-10 14:36:27,272 DEBUG [JavaFX Application Thread] gui.Main (Main.java:44) - GUI.fxml loaded
-2016-05-10 14:36:28,219 INFO  [JavaFX Application Thread] gui.Controller$7 (Controller.java:589) - List updated
-2016-05-10 14:36:28,806 DEBUG [JavaFX Application Thread] gui.Controller$5 (Controller.java:454) - Loading File
-2016-05-10 14:36:28,841 DEBUG [JavaFX Application Thread] gui.Controller$5 (Controller.java:464) - File Loaded
-2016-05-10 14:36:28,843 INFO  [JavaFX Application Thread] gui.Controller$7 (Controller.java:589) - List updated
-2016-05-10 14:36:31,022 DEBUG [JavaFX Application Thread] gui.Controller$3 (Controller.java:196) - Window closed
-2016-05-10 14:36:31,621 DEBUG [main] gui.Main (Main.java:204) - Program ended
+2016-05-27 22:55:53,254 DEBUG [main] gui.Main (Main.java:202) - GUI launching
+2016-05-27 22:55:53,553 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:129) - List updated
+2016-05-27 22:55:53,553 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:135) - ListView cellSize changed, items assigned
+2016-05-27 22:55:53,558 DEBUG [JavaFX Application Thread] gui.Main (Main.java:44) - GUI.fxml loaded
+2016-05-27 22:55:54,259 INFO  [JavaFX Application Thread] gui.Controller$7 (Controller.java:588) - List updated
+2016-05-27 22:55:54,297 DEBUG [JavaFX Application Thread] gui.Controller$5 (Controller.java:453) - Loading File
+2016-05-27 22:55:54,337 DEBUG [JavaFX Application Thread] gui.Controller$5 (Controller.java:463) - File Loaded
+2016-05-27 22:55:54,430 INFO  [JavaFX Application Thread] gui.Controller$7 (Controller.java:588) - List updated
+2016-05-27 22:55:57,525 DEBUG [JavaFX Application Thread] gui.Main (Main.java:65) - Window closed
+2016-05-27 22:55:57,553 DEBUG [main] gui.Main (Main.java:204) - Program ended

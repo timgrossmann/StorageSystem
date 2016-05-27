@@ -54,7 +54,7 @@ public class Main extends Application {
 		primaryStage.setScene(primaryScene);
 		primaryStage.setTitle("Storage Management System");
 		Main.primaryStage = primaryStage;
-		primaryStage.setFullScreen(true);
+		//primaryStage.setFullScreen(true);
 
 		primaryStage.show();
 

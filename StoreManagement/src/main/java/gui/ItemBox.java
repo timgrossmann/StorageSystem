@@ -12,7 +12,6 @@ public class ItemBox extends HBox {
 	private Label name = new Label();
 	private Label amount = new Label();
 	private Label categories = new Label();
-	// private Image image;
 	private String attributes = "";
 
 	public ItemBox(Item item) {
@@ -24,9 +23,9 @@ public class ItemBox extends HBox {
 		//setup and add the Labels
 		setupParts();
 		this.getChildren().add(name);
-		name.setPrefWidth(600);
+		name.setPrefWidth(370);
 		this.getChildren().add(amount);
-		amount.setPrefWidth(30);
+		amount.setPrefWidth(50);
 		if (item.categories != null) {
 			this.getChildren().add(categories);
 		}
@@ -38,15 +37,7 @@ public class ItemBox extends HBox {
 		this.name.setText(item.name);
 		this.amount.setText(String.valueOf(item.getAmount()));
 		this.categories.setText(getCategoriesText("short"));
-
-		// if (item.images.length != 0) {
-		// this.image = new Image(item.images[0]); //TODO
-		// }
 	}
-
-	// public Image getImage() {
-	// return image;
-	// }
 
 	public String getAttributes() {
 		String temp = "";

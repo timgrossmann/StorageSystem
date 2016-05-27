@@ -8,7 +8,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="800.0" maxWidth="1280.0" minHeight="800.0" minWidth="1280.0" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controller">
+<AnchorPane prefHeight="600.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controller">
    <children>
       <BorderPane prefHeight="800.0" prefWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
@@ -79,20 +79,35 @@
                            <children>
                               <HBox alignment="CENTER" spacing="20.0">
                                  <children>
-                                    <Label text="Search:" />
+                                    <Label text="Search:">
+                                       <font>
+                                          <Font size="12.0" />
+                                       </font></Label>
                                     <TextField fx:id="searchBox" prefHeight="27.0" prefWidth="263.0" promptText="Search..." />
                                  </children>
                               </HBox>
-                              <HBox alignment="CENTER_LEFT" prefHeight="24.0" prefWidth="335.0" spacing="10.0">
+                              <HBox alignment="CENTER" prefHeight="24.0" prefWidth="335.0" spacing="10.0">
                                  <children>
                                     <RadioButton fx:id="nameSearch" mnemonicParsing="false" selected="true" text="Name">
                                        <toggleGroup>
                                           <ToggleGroup fx:id="searchToggle" />
                                        </toggleGroup>
+                                       <font>
+                                          <Font size="12.0" />
+                                       </font>
                                     </RadioButton>
-                                    <RadioButton fx:id="amountSearch" mnemonicParsing="false" text="Amount" toggleGroup="$searchToggle" />
-                                    <RadioButton fx:id="barcodeSearch" mnemonicParsing="false" text="Barcode" toggleGroup="$searchToggle" />
-                                    <RadioButton fx:id="categorieSearch" mnemonicParsing="false" text="Categorie" toggleGroup="$searchToggle" />
+                                    <RadioButton fx:id="amountSearch" mnemonicParsing="false" text="Amount" toggleGroup="$searchToggle">
+                                       <font>
+                                          <Font size="12.0" />
+                                       </font></RadioButton>
+                                    <RadioButton fx:id="barcodeSearch" mnemonicParsing="false" text="Barcode" toggleGroup="$searchToggle">
+                                       <font>
+                                          <Font size="12.0" />
+                                       </font></RadioButton>
+                                    <RadioButton fx:id="categorieSearch" mnemonicParsing="false" text="Categorie" toggleGroup="$searchToggle">
+                                       <font>
+                                          <Font size="12.0" />
+                                       </font></RadioButton>
                                  </children>
                               </HBox>
                               <Separator prefWidth="200.0" />
@@ -100,14 +115,13 @@
                                  <children>
                                     <ScrollPane hbarPolicy="NEVER" pannable="true" prefHeight="624.0" prefViewportHeight="622.0" prefViewportWidth="335.0" prefWidth="337.0" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <content>
-                                          <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" prefHeight="611.0" prefWidth="314.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                          <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" prefHeight="474.0" prefWidth="314.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <children>
                                                 <Label fx:id="nameLabel" alignment="TOP_CENTER" contentDisplay="TOP" prefHeight="75.0" prefWidth="295.0" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" wrapText="true" VBox.vgrow="ALWAYS">
                                                    <font>
                                                       <Font size="16.0" />
                                                    </font>
                                                 </Label>
-                                                <ImageView fx:id="imageView" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
                                                 <VBox maxHeight="1.7976931348623157E308" spacing="15.0" VBox.vgrow="SOMETIMES">
                                                    <children>
                                                       <HBox prefHeight="25.0" prefWidth="167.0" spacing="10.0" VBox.vgrow="NEVER">
@@ -142,7 +156,7 @@
                                                 </VBox>
                                                 <VBox maxHeight="1.7976931348623157E308" spacing="15.0" VBox.vgrow="ALWAYS">
                                                    <children>
-                                                      <HBox maxHeight="1.7976931348623157E308" prefHeight="25.0" prefWidth="335.0" spacing="10.0" VBox.vgrow="ALWAYS">
+                                                      <HBox maxHeight="1.7976931348623157E308" prefHeight="125.0" prefWidth="314.0" spacing="10.0" VBox.vgrow="ALWAYS">
                                                          <children>
                                                             <Label prefWidth="100.0" text="Categories:" underline="true">
                                                                <font>
@@ -156,7 +170,7 @@
                                                             </Label>
                                                          </children>
                                                       </HBox>
-                                                      <HBox maxHeight="1.7976931348623157E308" prefHeight="25.0" prefWidth="335.0" spacing="10.0" VBox.vgrow="ALWAYS">
+                                                      <HBox maxHeight="1.7976931348623157E308" prefHeight="125.0" prefWidth="314.0" spacing="10.0" VBox.vgrow="ALWAYS">
                                                          <children>
                                                             <Label prefWidth="100.0" text="Attributes:" underline="true">
                                                                <font>
@@ -189,12 +203,12 @@
                                           <ToggleGroup fx:id="addRemoveToggle" />
                                        </toggleGroup>
                                        <font>
-                                          <Font size="14.0" />
+                                          <Font size="16.0" />
                                        </font>
                                     </ToggleButton>
                                     <ToggleButton fx:id="removeButton" mnemonicParsing="false" prefWidth="100.0" text="Remove" toggleGroup="$addRemoveToggle">
                                        <font>
-                                          <Font size="14.0" />
+                                          <Font size="16.0" />
                                        </font>
                                     </ToggleButton>
                                  </children>
@@ -216,7 +230,7 @@
                      <children>
                         <HBox maxHeight="28.0" minHeight="28.0" prefHeight="28.0" prefWidth="200.0" VBox.vgrow="NEVER">
                            <children>
-                              <Label prefWidth="585.0" text="Name" />
+                              <Label prefWidth="425.0" text="Name" />
                               <Label prefWidth="75.0" text="Amount" />
                               <Label text="Categories" />
                            </children>
