@@ -36,7 +36,7 @@ Total costs: 178€
 
 
 <h2>Documentation of the problems with solutions</h2>
-<ul><h4>Running JavaFX with Maven</h4></ul>
+<u><h4>Running JavaFX with Maven</h4></u>
 <p>The first small problem was to get JavaFX running with Maven. Since i wanted to use the Logging-Framework Log4J, Maven was pretty easy to use and a good choice. <br />
 Problem : Deploying JavaFX as .jar to be executed via the commanline <br />
 Solution: Using the "JavaFX Maven Plugin" from https://github.com/javafx-maven-plugin/javafx-maven-plugin</p>
