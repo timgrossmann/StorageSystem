@@ -39,7 +39,7 @@ Total costs: 178€
 <h4>Running JavaFX with Maven</h4>
 <p>The first small problem was to get JavaFX running with Maven. Since i wanted to use the Logging-Framework Log4J, Maven was pretty easy to use and a good choice. <br />
 <b>Problem</b> : Deploying JavaFX as .jar to be executed via the commanline <br />
-<b>Solution</b>: Using the "JavaFX Maven Plugin" from https://github.com/javafx-maven-plugin/javafx-maven-plugin</p>
+<b>Solution</b>: Using the "JavaFX Maven Plugin" from https://github.com/javafx-maven-plugin/javafx-maven-plugin and building the .jar file on a PC/MAC/Linux computer</p>
 
 <br />
 
@@ -48,4 +48,14 @@ Total costs: 178€
 <b>Problem</b> : Installing Java ARM and getting JavaFX seperately <br />
 <b>Solution</b>: Installing the latest Oracle Java ARM version, removing all the other Java installations (making sure the now installed one is used). Downloading the "JavaFX Embedded SDK" here: http://gluonhq.com/labs/javafxports/downloads/ and extracting the parts in the corresponding folders of the oracle Java version.</p>
 
-<p>Will follow soon...</p>
+<br />
+
+<h4>JavaFX GUI displaying black/wrong</h4>
+<p>On the first working startup of the .jar file on the Pi, the whole screen turned black. Only one or two buttons displayed with a completely different style than defined. <br />
+<b>Problem</b>: The graphics memory is too low, by default < 100. <br />
+<b>Solution</b>: Increase the graphics memory usage of your Pi to 512 in the settings. Or using the CLI edit /boot/config.txt (you might need sudo rights) from whatever gpu_mem says to gpu_mem=512. (I'm using RasperryPi 3 so you might need to use a lower gpu_mem setting)</p>
+
+<br />
+
+<h4>JavaFX GUI displaying black/wrong</h4>
+<p></p>
