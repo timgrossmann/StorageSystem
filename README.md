@@ -72,3 +72,16 @@ Total costs: 178€
 Rectangle2D displayDims = Screen.getPrimary().getBounds();
 Scene primaryScene = new Scene(root, displayDims.getWidth(), displayDims.getHeight());
 ```
+
+<br />
+
+<h4>The Desktop on NOOBS is not the real Desktop path</h4>
+<p>If you want to save a File to the Desktop, in Java you can do it like this.</p>
+```
+new File(System.getProperty("user.home") + "/Desktop")
+```
+<p><b>Problem</b>: On the Pi, the user.home/Desktop is not the Desktop you get displayed when starting up the Pi. <br />
+<b>Solution</b>: You can create a soft link of the file on the user.home/Desktop to the file you created on your visible Desktop. Once your programm changes the user.home/Desktop file, since you linked them, the one on your visible Deskotp will also be changed. This is done like this:</p>
+```
+ln -s {target-filename} {symbolic-filename}
+```
