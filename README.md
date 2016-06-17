@@ -38,14 +38,14 @@ Total costs: 178€
 <h2>Documentation of the problems with solutions</h2>
 <h4>Running JavaFX with Maven</h4>
 <p>The first small problem was to get JavaFX running with Maven. Since i wanted to use the Logging-Framework Log4J, Maven was pretty easy to use and a good choice. <br />
-<b>Problem</b> : Deploying JavaFX as .jar to be executed via the commanline <br />
+<b>Problem</b>: Deploying JavaFX as .jar to be executed via the commanline <br />
 <b>Solution</b>: Using the "JavaFX Maven Plugin" from https://github.com/javafx-maven-plugin/javafx-maven-plugin and building the .jar file on a PC/MAC/Linux computer</p>
 
 <br />
 
 <h4>Running the JavaFX .jar on PI</h4>
 <p>Starting a JavaFX Application on a RaspberryPi isn't that easy, since Oracle removed JFX from their ARM install. <br />
-<b>Problem</b> : Installing Java ARM and getting JavaFX seperately <br />
+<b>Problem</b>: Installing Java ARM and getting JavaFX seperately <br />
 <b>Solution</b>: Installing the latest Oracle Java ARM version, removing all the other Java installations (making sure the now installed one is used). Downloading the "JavaFX Embedded SDK" here: http://gluonhq.com/labs/javafxports/downloads/ and extracting the parts in the corresponding folders of the oracle Java version.</p>
 
 <br />
@@ -57,5 +57,19 @@ Total costs: 178€
 
 <br />
 
-<h4>JavaFX GUI displaying black/wrong</h4>
-<p></p>
+<h4>GUI has black borders all around</h4>
+<p>The whole screen is smaller than your display (has black borders) and is shifted. <br />
+<b>Problem</b>: Overscan of your config is disabled <br />
+<b>Solution</b>: Uncomment the line #disable_overscan=0 (remove the #) in the /boot/config.txt and reboot your Pi.</p>
+
+<br />
+
+<h4>Make the GUI resize for different screens without fullscreen</h4>
+<p>If the GUI should be the size of the full display, but without using the fullscreen option <br />
+<b>Problem</b>: Fullscreen makes the access to the Desktop harder, you might want to be able to access the Desktop while your GUI is runnign. <br />
+<b>Solution</b>: In your programcode, when setting up the primaryStage, set the size of your primaryScene to the dimensions of you display. You can do this with:
+```
+Rectangle2D displayDims = Screen.getPrimary().getBounds();
+Scene primaryScene = new Scene(root, displayDims.getWidth(), displayDims.getHeight());
+
+```</p>
