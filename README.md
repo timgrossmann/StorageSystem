@@ -36,16 +36,16 @@ Total costs: 178€
 
 
 <h2>Documentation of the problems with solutions</h2>
-<h4><u>Running JavaFX with Maven</u></h4>
+<h4>Running JavaFX with Maven</h4>
 <p>The first small problem was to get JavaFX running with Maven. Since i wanted to use the Logging-Framework Log4J, Maven was pretty easy to use and a good choice. <br />
 <b>Problem</b> : Deploying JavaFX as .jar to be executed via the commanline <br />
 <b>Solution</b>: Using the "JavaFX Maven Plugin" from https://github.com/javafx-maven-plugin/javafx-maven-plugin</p>
 
 <br />
 
-<h4><u>Running the JavaFX .jar on PI</u></h4>
+<h4>Running the JavaFX .jar on PI</h4>
 <p>Starting a JavaFX Application on a RaspberryPi isn't that easy, since Oracle removed JFX from their ARM install. <br />
-<<b>Problem</b> : Installing Java ARM and getting JavaFX seperately <br />
+<b>Problem</b> : Installing Java ARM and getting JavaFX seperately <br />
 <b>Solution</b>: Installing the latest Oracle Java ARM version, removing all the other Java installations (making sure the now installed one is used). Downloading the "JavaFX Embedded SDK" here: http://gluonhq.com/labs/javafxports/downloads/ and extracting the parts in the corresponding folders of the oracle Java version.</p>
 
 <p>Will follow soon...</p>
