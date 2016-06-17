@@ -67,9 +67,8 @@ Total costs: 178€
 <h4>Make the GUI resize for different screens without fullscreen</h4>
 <p>If the GUI should be the size of the full display, but without using the fullscreen option <br />
 <b>Problem</b>: Fullscreen makes the access to the Desktop harder, you might want to be able to access the Desktop while your GUI is runnign. <br />
-<b>Solution</b>: In your programcode, when setting up the primaryStage, set the size of your primaryScene to the dimensions of you display. You can do this with:
+<b>Solution</b>: In your programcode, when setting up the primaryStage, set the size of your primaryScene to the dimensions of you display. You can do this with:</p>
 ```
 Rectangle2D displayDims = Screen.getPrimary().getBounds();
 Scene primaryScene = new Scene(root, displayDims.getWidth(), displayDims.getHeight());
-
-```</p>
+```
