@@ -85,3 +85,10 @@ new File(System.getProperty("user.home") + "/Desktop")
 ```
 ln -s {target-filename} {symbolic-filename}
 ```
+
+<br />
+
+<h4>PI is not using the right Resolution of your Display</h4>
+<p>If you realize, that your JavaFX Application is smaller and squished you should change the hdmi settings of the PI<br />
+<b>Problem</b>: The displayed resolution is smaller than the actual resolution your display is capable of <br />
+<b>Solution</b>: Take a look at https://www.raspberrypi.org/documentation/configuration/config-txt.md on how to change the displayed resolution. For me the solution was to change the hdmi_group -> 2 (since it's a monitor and not a TV) and then you just have to search the right resolution in the hdmi_mode table. For me it was hdmi_mode -> 16</p>
