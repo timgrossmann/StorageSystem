@@ -1,10 +1,9 @@
-2016-05-27 22:55:53,254 DEBUG [main] gui.Main (Main.java:202) - GUI launching
-2016-05-27 22:55:53,553 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:129) - List updated
-2016-05-27 22:55:53,553 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:135) - ListView cellSize changed, items assigned
-2016-05-27 22:55:53,558 DEBUG [JavaFX Application Thread] gui.Main (Main.java:44) - GUI.fxml loaded
-2016-05-27 22:55:54,259 INFO  [JavaFX Application Thread] gui.Controller$7 (Controller.java:588) - List updated
-2016-05-27 22:55:54,297 DEBUG [JavaFX Application Thread] gui.Controller$5 (Controller.java:453) - Loading File
-2016-05-27 22:55:54,337 DEBUG [JavaFX Application Thread] gui.Controller$5 (Controller.java:463) - File Loaded
-2016-05-27 22:55:54,430 INFO  [JavaFX Application Thread] gui.Controller$7 (Controller.java:588) - List updated
-2016-05-27 22:55:57,525 DEBUG [JavaFX Application Thread] gui.Main (Main.java:65) - Window closed
-2016-05-27 22:55:57,553 DEBUG [main] gui.Main (Main.java:204) - Program ended
+2016-06-25 13:12:52,249 DEBUG [main] gui.Main (Main.java:202) - GUI launching
+2016-06-25 13:12:52,735 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:125) - List updated
+2016-06-25 13:12:52,736 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:131) - ListView cellSize changed, items assigned
+2016-06-25 13:12:52,742 DEBUG [JavaFX Application Thread] gui.Main (Main.java:44) - GUI.fxml loaded
+2016-06-25 13:12:53,993 INFO  [JavaFX Application Thread] gui.Controller$7 (Controller.java:594) - List updated
+2016-06-25 13:12:54,615 DEBUG [JavaFX Application Thread] gui.Controller$5 (Controller.java:458) - Loading File
+2016-06-25 13:12:57,426 DEBUG [JavaFX Application Thread] gui.Controller$5 (Controller.java:468) - File Loaded
+2016-06-25 13:13:00,943 DEBUG [JavaFX Application Thread] gui.Main (Main.java:65) - Window closed
+2016-06-25 13:13:01,638 DEBUG [main] gui.Main (Main.java:204) - Program ended

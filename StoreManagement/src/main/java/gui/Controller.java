@@ -43,10 +43,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import parts.IllegalStringReplacer;
 import parts.Item;
 import save_load.JSONLoader;
@@ -108,8 +106,6 @@ public class Controller implements Initializable {
 	Label categoriesLabel;
 	@FXML
 	Label attributesLabel;
-	@FXML
-	ImageView imageView;
 
 	ObservableMap<String, ItemBox> itemsMap = FXCollections.observableMap(new HashMap<String, ItemBox>());
 	ObservableList<ItemBox> items = FXCollections.observableArrayList(itemsMap.values());
@@ -152,20 +148,30 @@ public class Controller implements Initializable {
 		listView.getSelectionModel().getSelectedItems().addListener(new ListChangeListener<ItemBox>() {
 			@Override
 			public void onChanged(javafx.collections.ListChangeListener.Change<? extends ItemBox> c) {
-				if (!listView.getSelectionModel().isEmpty()) {
-					ItemBox itemBox = listView.getSelectionModel().getSelectedItem();
-
-					nameLabel.setText(itemBox.getName());
-					amountLabel.setText(String.valueOf(itemBox.getAmount()) + "x");
-					gtinLabel.setText(itemBox.getGtin());
-					categoriesLabel.setText(itemBox.getCategoriesText("long"));
-					attributesLabel.setText(itemBox.getAttributes());
-					log.info("Overview set to " + itemBox.getName());
-				}
+				//Update the overview section on the left side of the GUI
+				updateOverview();
 			}
 		});
 
 		setupMenuItems();
+	}
+	
+	/**
+	 * Updates the GUI sections labels on the left side of the GUI with the currently selected Item
+	 */
+	private void updateOverview() {
+		
+		//check if anything is selected
+		if (!listView.getSelectionModel().isEmpty()) {
+			ItemBox itemBox = listView.getSelectionModel().getSelectedItem();
+
+			nameLabel.setText(itemBox.getName());
+			amountLabel.setText(String.valueOf(itemBox.getAmount()) + "x");
+			gtinLabel.setText(itemBox.getGtin());
+			categoriesLabel.setText(itemBox.getCategoriesText("long"));
+			attributesLabel.setText(itemBox.getAttributes());
+			log.info("Overview set to " + itemBox.getName());
+		}	
 	}
 
 	/**
@@ -179,7 +185,6 @@ public class Controller implements Initializable {
 
 				Stage stage = new Stage();
 				stage.setScene(new Scene(root));
-				stage.initStyle(StageStyle.UTILITY);
 				stage.setTitle("About");
 				stage.show();
 			} catch (Exception e) {
@@ -512,6 +517,7 @@ public class Controller implements Initializable {
 					} else {
 						itemsMap.get(gtin).increaseAmount();
 						listView.getSelectionModel().select(itemsMap.get(gtin));
+						updateOverview();
 					}
 				} catch (NoNameForProductException e) {
 					log.error("Item not Found");
