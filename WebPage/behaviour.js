@@ -2,7 +2,7 @@
 var resultData;
 
 //upon pageLoad, all the Items are added to the table (sorted)
-$.getJSON("http://localhost:3000/db", function(data) {
+$.getJSON("http://192.168.178.29:3000/db", function(data) {
 
     //Sorting the Items by their name
     data.sort(function(a, b) {
