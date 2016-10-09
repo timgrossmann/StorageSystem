@@ -68,7 +68,7 @@ Total costs: 178€
 <p>If the GUI should be the size of the full display, but without using the fullscreen option <br />
 <b>Problem</b>: Fullscreen makes the access to the Desktop harder, you might want to be able to access the Desktop while your GUI is runnign. <br />
 <b>Solution</b>: In your programcode, when setting up the primaryStage, set the size of your primaryScene to the dimensions of you display. You can do this with:</p>
-```
+```java
 Rectangle2D displayDims = Screen.getPrimary().getBounds();
 Scene primaryScene = new Scene(root, displayDims.getWidth(), displayDims.getHeight());
 ```
@@ -77,12 +77,12 @@ Scene primaryScene = new Scene(root, displayDims.getWidth(), displayDims.getHeig
 
 <h4>The Desktop on NOOBS is not the real Desktop path</h4>
 <p>If you want to save a File to the Desktop, in Java you can do it like this.</p>
-```
+```java
 new File(System.getProperty("user.home") + "/Desktop")
 ```
 <p><b>Problem</b>: On the Pi, the user.home/Desktop is not the Desktop you get displayed when starting up the Pi. <br />
 <b>Solution</b>: You can create a soft link of the file on the user.home/Desktop to the file you created on your visible Desktop. Once your programm changes the user.home/Desktop file, since you linked them, the one on your visible Deskotp will also be changed. This is done like this:</p>
-```
+```bash
 ln -s {target-filename} {symbolic-filename}
 ```
 
