@@ -29,11 +29,10 @@ Total costs: 178€
 ![alt tag] (https://raw.githubusercontent.com/timgrossmann/StorageSystem/master/img/WebView.png)
 - Very Simple but responsive WebPage of the Items
 
-
 ![alt tag](http://ecx.images-amazon.com/images/I/71T55P9USGL._SL1500_.jpg)
 ![alt tag] (http://ecx.images-amazon.com/images/I/51RxfzoqFXL._SY300_.jpg)
 ![alt tag] (http://ecx.images-amazon.com/images/I/61qFVwEcWrL._SL1200_.jpg)
-
+![alt tag](./case/casePrint.jpg)
 
 <h2>Documentation of the problems with solutions</h2>
 <h4>Running JavaFX with Maven</h4>
