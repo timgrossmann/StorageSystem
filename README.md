@@ -1,5 +1,5 @@
 # StorageSystem
-##Personal Storage Management System
+##Personal Stock Control System
 
 Don't you know the struggle with going to the grocery store and only then realizing you forgot to check what you still got at home and what you should buy.
 I had this problem quite often and ended up buying the stuff i already had, which led to me having 10 bottles of ketchup in my basement. The worst of it is, that i nearly always forgot to buy the stuff i needed. This ended up with me having to go for a second ride.
