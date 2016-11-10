@@ -1,8 +1,15 @@
 # StorageSystem
-Personal Storage Management System
+##Personal Storage Management System
 
-This is a "small" personal project where i'll use Java, JavaFX, the Gson-Libary, Apache-Web-Server, JSON-server and Outpan.com as Barcode libary.
-I want to build an application, with which i can manage the items in my basement (preferably groceries).
+Don't you know the struggle with going to the grocery store and only then realizing you forgot to check what you still got at home and what you should buy.
+I had this problem quite often and ended up buying the stuff i already had, which led to me having 10 bottles of ketchup in my basement. The worst of it is, that i nearly always forgot to buy the stuff i needed. This ended up with me having to go for a second ride.
+<br />For a guy living in a <b>rural area</b> this is more than annoying.
+
+This is a "small" personal project where i'll use Java, JavaFX, the Gson-Libary, Apache-Web-Server, JSON-server and Outpan.com as Barcode libary to fix this problem for me. 
+<br /><b>You can keep track of the items you have, the ones that are running out and the ones that are already empty.
+You can print out an overview of the stocks or a list of items that are already out of stock.
+If you're on the go, you can VPN into your home network and check which item and how many of them are still in stock.</b>
+
 I'll try to keep the setup costs as low as possible, so it'll be a system everyone can build.
 I have to admit, that it got more expensive than i thought. (You could decrease the price by just buying a Pi (35€) and a smaller screen (30-45€) to about 100€).
 
@@ -29,11 +36,10 @@ Total costs: 178€
 ![alt tag] (https://raw.githubusercontent.com/timgrossmann/StorageSystem/master/img/WebView.png)
 - Very Simple but responsive WebPage of the Items
 
-
 ![alt tag](http://ecx.images-amazon.com/images/I/71T55P9USGL._SL1500_.jpg)
 ![alt tag] (http://ecx.images-amazon.com/images/I/51RxfzoqFXL._SY300_.jpg)
 ![alt tag] (http://ecx.images-amazon.com/images/I/61qFVwEcWrL._SL1200_.jpg)
-
+![alt tag](./case/casePrint.jpg)
 
 <h2>Documentation of the problems with solutions</h2>
 <h4>Running JavaFX with Maven</h4>
