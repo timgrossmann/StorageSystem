@@ -40,6 +40,12 @@ Total costs: 178€
 ![alt tag] (http://ecx.images-amazon.com/images/I/51RxfzoqFXL._SY300_.jpg)
 ![alt tag] (http://ecx.images-amazon.com/images/I/61qFVwEcWrL._SL1200_.jpg)
 ![alt tag](./case/casePrint.jpg)
+####1. Finished print, printed with an Objet30 3D printer.
+####2. The case still has the wax like support structure in the holes and a thin layer all around.
+####3. It's possible to remove the support material with the fingers. It's pretty crumbly.
+####4. The company has this stationary pressure washer.
+####5. There are two different hoses with different pressure.
+####6. With enough time you can get rid of all the support structure.
 
 <h2>Documentation of the problems with solutions</h2>
 <h4>Running JavaFX with Maven</h4>
