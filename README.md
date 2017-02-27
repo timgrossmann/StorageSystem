@@ -1,10 +1,29 @@
 # StorageSystem
+[![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/timgrossmann/StorageSystem/blob/master/LICENSE)
+[![built with JavaFX](
+https://img.shields.io/badge/Built%20with-JavaFX-red.svg)](http://www.javafxtutorials.com/whatisjavafx/)
+[![built for RaspberryPi](
+https://img.shields.io/badge/Built%20for-RaspberryPi-green.svg)](https://www.raspberrypi.orgx/)
+
 ##Personal Stock Control System
 
-Don't you know the struggle with going to the grocery store and only then realizing you forgot to check what you still got at home and what you should buy.
+>Don't you know the struggle with going to the grocery store and only then realizing you forgot to check what you still got at home and what you should buy.
 I had this problem quite often and ended up buying the stuff i already had, which led to me having 10 bottles of ketchup in my basement. The worst of it is, that i nearly always forgot to buy the stuff i needed. This ended up with me having to go for a second ride.
 <br />For a guy living in a <b>rural area</b> this is more than annoying.
 
+![img of finished system with link to youtube video]()
+
+## Features
+- [x] Keep track of the products in stock
+- [x] Add and Remove products by scanning their barcode
+- [x] Print an overview of the products in stock with your default printer
+- [x] Print a shopping list with all the products 0 left in stock
+- [x] Built for RaspberryPi Model3
+- [x] Pretty low cost system for your household
+- [x] 3D printfile of the case 
+
+
+## Description
 This is a "small" personal project where i'll use Java, JavaFX, the Gson-Libary, Apache-Web-Server, JSON-server and Outpan.com as Barcode libary to fix this problem for me. 
 <br /><b>You can keep track of the items you have, the ones that are running out and the ones that are already empty.
 You can print out an overview of the stocks or a list of items that are already out of stock.
