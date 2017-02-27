@@ -20,7 +20,8 @@ I had this problem quite often and ended up buying the stuff i already had, whic
 - [x] Print a shopping list with all the products 0 left in stock
 - [x] Built for RaspberryPi Model3
 - [x] Pretty low cost system for your household
-- [x] 3D printfile of the case 
+- [x] 3D printfile of the case
+- [x] Easy web interface to search all your products by name, amount or categorie
 
 
 ## Description
