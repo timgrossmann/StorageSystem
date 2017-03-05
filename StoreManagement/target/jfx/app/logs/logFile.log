@@ -1,9 +1,135 @@
-2016-06-25 13:15:00,810 DEBUG [main] gui.Main (Main.java:202) - GUI launching
-2016-06-25 13:15:01,134 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:125) - List updated
-2016-06-25 13:15:01,135 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:131) - ListView cellSize changed, items assigned
-2016-06-25 13:15:01,142 DEBUG [JavaFX Application Thread] gui.Main (Main.java:44) - GUI.fxml loaded
-2016-06-25 13:15:01,922 INFO  [JavaFX Application Thread] gui.Controller$7 (Controller.java:594) - List updated
-2016-06-25 13:15:01,962 DEBUG [JavaFX Application Thread] gui.Controller$5 (Controller.java:458) - Loading File
-2016-06-25 13:15:03,399 DEBUG [JavaFX Application Thread] gui.Controller$5 (Controller.java:468) - File Loaded
-2016-06-25 13:15:05,187 DEBUG [JavaFX Application Thread] gui.Main (Main.java:65) - Window closed
-2016-06-25 13:15:05,211 DEBUG [main] gui.Main (Main.java:204) - Program ended
+2017-02-27 17:36:38,708 DEBUG [main] gui.Main (Main.java:202) - GUI launching
+2017-02-27 17:36:39,420 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:125) - List updated
+2017-02-27 17:36:39,421 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:131) - ListView cellSize changed, items assigned
+2017-02-27 17:36:39,425 DEBUG [JavaFX Application Thread] gui.Main (Main.java:44) - GUI.fxml loaded
+2017-02-27 17:36:41,165 INFO  [JavaFX Application Thread] gui.Controller$7 (Controller.java:594) - List updated
+2017-02-27 17:36:41,822 DEBUG [JavaFX Application Thread] gui.Controller$5 (Controller.java:458) - Loading File
+2017-02-27 17:36:44,718 DEBUG [JavaFX Application Thread] gui.Controller$5 (Controller.java:468) - File Loaded
+2017-02-27 17:36:55,589 DEBUG [Thread-6] gui.Main$1 (Main.java:80) - ScanThread called
+2017-02-27 17:36:55,694 DEBUG [Thread-6] gui.Controller (Controller.java:506) - LastCommand set to: ADD 0000000000001
+2017-02-27 17:36:55,696 INFO  [JavaFX Application Thread] gui.Controller$6 (Controller.java:511) - Add: 0000000000001
+2017-02-27 17:36:55,696 INFO  [Thread-6] gui.Main$1 (Main.java:135) - Barcode set back to ''
+2017-02-27 17:36:55,696 DEBUG [Thread-7] gui.Main$1$1 (Main.java:115) - Save Thread called
+2017-02-27 17:36:55,697 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:483) - Getting Item with Barcode: 0000000000001
+2017-02-27 17:36:56,629 DEBUG [JavaFX Application Thread] gui.Controller$6 (Controller.java:530) - Entered Barcode is not Valid
+2017-02-27 17:37:02,771 DEBUG [Thread-8] gui.Main$1 (Main.java:80) - ScanThread called
+2017-02-27 17:37:02,873 DEBUG [Thread-8] gui.Controller (Controller.java:506) - LastCommand set to: ADD 0000000000001
+2017-02-27 17:37:02,873 INFO  [Thread-8] gui.Main$1 (Main.java:135) - Barcode set back to ''
+2017-02-27 17:37:02,874 INFO  [JavaFX Application Thread] gui.Controller$6 (Controller.java:511) - Add: 0000000000001
+2017-02-27 17:37:02,874 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:483) - Getting Item with Barcode: 0000000000001
+2017-02-27 17:37:03,300 DEBUG [JavaFX Application Thread] gui.Controller$6 (Controller.java:530) - Entered Barcode is not Valid
+2017-02-27 17:37:07,416 DEBUG [Thread-9] gui.Main$1 (Main.java:80) - ScanThread called
+2017-02-27 17:37:07,521 DEBUG [Thread-9] gui.Controller (Controller.java:506) - LastCommand set to: ADD 0000000000123
+2017-02-27 17:37:07,522 INFO  [Thread-9] gui.Main$1 (Main.java:135) - Barcode set back to ''
+2017-02-27 17:37:07,522 INFO  [JavaFX Application Thread] gui.Controller$6 (Controller.java:511) - Add: 0000000000123
+2017-02-27 17:37:07,522 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:483) - Getting Item with Barcode: 0000000000123
+2017-02-27 17:37:07,948 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:173) - Overview set to I-Vapor Vaporizer
+2017-02-27 17:37:07,949 INFO  [JavaFX Application Thread] gui.Controller$7 (Controller.java:594) - List updated
+2017-02-27 17:37:14,026 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:254) - Repeat called with: ADD 0000000000123
+2017-02-27 17:37:14,026 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:506) - LastCommand set to: ADD 0000000000123
+2017-02-27 17:37:14,033 INFO  [JavaFX Application Thread] gui.Controller$6 (Controller.java:511) - Add: 0000000000123
+2017-02-27 17:37:14,034 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:173) - Overview set to I-Vapor Vaporizer
+2017-02-27 17:37:15,184 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:254) - Repeat called with: ADD 0000000000123
+2017-02-27 17:37:15,184 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:506) - LastCommand set to: ADD 0000000000123
+2017-02-27 17:37:15,186 INFO  [JavaFX Application Thread] gui.Controller$6 (Controller.java:511) - Add: 0000000000123
+2017-02-27 17:37:15,187 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:173) - Overview set to I-Vapor Vaporizer
+2017-02-27 17:37:15,407 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:254) - Repeat called with: ADD 0000000000123
+2017-02-27 17:37:15,408 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:506) - LastCommand set to: ADD 0000000000123
+2017-02-27 17:37:15,409 INFO  [JavaFX Application Thread] gui.Controller$6 (Controller.java:511) - Add: 0000000000123
+2017-02-27 17:37:15,410 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:173) - Overview set to I-Vapor Vaporizer
+2017-02-27 17:37:15,578 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:254) - Repeat called with: ADD 0000000000123
+2017-02-27 17:37:15,578 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:506) - LastCommand set to: ADD 0000000000123
+2017-02-27 17:37:15,580 INFO  [JavaFX Application Thread] gui.Controller$6 (Controller.java:511) - Add: 0000000000123
+2017-02-27 17:37:15,580 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:173) - Overview set to I-Vapor Vaporizer
+2017-02-27 17:37:16,076 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:254) - Repeat called with: ADD 0000000000123
+2017-02-27 17:37:16,077 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:506) - LastCommand set to: ADD 0000000000123
+2017-02-27 17:37:16,078 INFO  [JavaFX Application Thread] gui.Controller$6 (Controller.java:511) - Add: 0000000000123
+2017-02-27 17:37:16,078 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:173) - Overview set to I-Vapor Vaporizer
+2017-02-27 17:37:16,160 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:254) - Repeat called with: ADD 0000000000123
+2017-02-27 17:37:16,160 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:506) - LastCommand set to: ADD 0000000000123
+2017-02-27 17:37:16,161 INFO  [JavaFX Application Thread] gui.Controller$6 (Controller.java:511) - Add: 0000000000123
+2017-02-27 17:37:16,162 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:173) - Overview set to I-Vapor Vaporizer
+2017-02-27 17:37:16,243 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:254) - Repeat called with: ADD 0000000000123
+2017-02-27 17:37:16,243 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:506) - LastCommand set to: ADD 0000000000123
+2017-02-27 17:37:16,245 INFO  [JavaFX Application Thread] gui.Controller$6 (Controller.java:511) - Add: 0000000000123
+2017-02-27 17:37:16,245 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:173) - Overview set to I-Vapor Vaporizer
+2017-02-27 17:37:16,326 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:254) - Repeat called with: ADD 0000000000123
+2017-02-27 17:37:16,327 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:506) - LastCommand set to: ADD 0000000000123
+2017-02-27 17:37:16,328 INFO  [JavaFX Application Thread] gui.Controller$6 (Controller.java:511) - Add: 0000000000123
+2017-02-27 17:37:16,328 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:173) - Overview set to I-Vapor Vaporizer
+2017-02-27 17:37:16,410 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:254) - Repeat called with: ADD 0000000000123
+2017-02-27 17:37:16,410 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:506) - LastCommand set to: ADD 0000000000123
+2017-02-27 17:37:16,411 INFO  [JavaFX Application Thread] gui.Controller$6 (Controller.java:511) - Add: 0000000000123
+2017-02-27 17:37:16,412 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:173) - Overview set to I-Vapor Vaporizer
+2017-02-27 17:37:16,493 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:254) - Repeat called with: ADD 0000000000123
+2017-02-27 17:37:16,493 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:506) - LastCommand set to: ADD 0000000000123
+2017-02-27 17:37:16,495 INFO  [JavaFX Application Thread] gui.Controller$6 (Controller.java:511) - Add: 0000000000123
+2017-02-27 17:37:16,495 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:173) - Overview set to I-Vapor Vaporizer
+2017-02-27 17:37:16,581 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:254) - Repeat called with: ADD 0000000000123
+2017-02-27 17:37:16,582 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:506) - LastCommand set to: ADD 0000000000123
+2017-02-27 17:37:16,583 INFO  [JavaFX Application Thread] gui.Controller$6 (Controller.java:511) - Add: 0000000000123
+2017-02-27 17:37:16,583 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:173) - Overview set to I-Vapor Vaporizer
+2017-02-27 17:37:16,665 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:254) - Repeat called with: ADD 0000000000123
+2017-02-27 17:37:16,665 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:506) - LastCommand set to: ADD 0000000000123
+2017-02-27 17:37:16,667 INFO  [JavaFX Application Thread] gui.Controller$6 (Controller.java:511) - Add: 0000000000123
+2017-02-27 17:37:16,667 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:173) - Overview set to I-Vapor Vaporizer
+2017-02-27 17:37:16,753 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:254) - Repeat called with: ADD 0000000000123
+2017-02-27 17:37:16,753 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:506) - LastCommand set to: ADD 0000000000123
+2017-02-27 17:37:16,755 INFO  [JavaFX Application Thread] gui.Controller$6 (Controller.java:511) - Add: 0000000000123
+2017-02-27 17:37:16,755 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:173) - Overview set to I-Vapor Vaporizer
+2017-02-27 17:37:16,841 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:254) - Repeat called with: ADD 0000000000123
+2017-02-27 17:37:16,842 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:506) - LastCommand set to: ADD 0000000000123
+2017-02-27 17:37:16,843 INFO  [JavaFX Application Thread] gui.Controller$6 (Controller.java:511) - Add: 0000000000123
+2017-02-27 17:37:16,843 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:173) - Overview set to I-Vapor Vaporizer
+2017-02-27 17:37:16,927 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:254) - Repeat called with: ADD 0000000000123
+2017-02-27 17:37:16,927 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:506) - LastCommand set to: ADD 0000000000123
+2017-02-27 17:37:16,928 INFO  [JavaFX Application Thread] gui.Controller$6 (Controller.java:511) - Add: 0000000000123
+2017-02-27 17:37:16,929 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:173) - Overview set to I-Vapor Vaporizer
+2017-02-27 17:37:17,015 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:254) - Repeat called with: ADD 0000000000123
+2017-02-27 17:37:17,015 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:506) - LastCommand set to: ADD 0000000000123
+2017-02-27 17:37:17,016 INFO  [JavaFX Application Thread] gui.Controller$6 (Controller.java:511) - Add: 0000000000123
+2017-02-27 17:37:17,017 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:173) - Overview set to I-Vapor Vaporizer
+2017-02-27 17:37:17,103 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:254) - Repeat called with: ADD 0000000000123
+2017-02-27 17:37:17,103 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:506) - LastCommand set to: ADD 0000000000123
+2017-02-27 17:37:17,105 INFO  [JavaFX Application Thread] gui.Controller$6 (Controller.java:511) - Add: 0000000000123
+2017-02-27 17:37:17,105 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:173) - Overview set to I-Vapor Vaporizer
+2017-02-27 17:37:17,191 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:254) - Repeat called with: ADD 0000000000123
+2017-02-27 17:37:17,191 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:506) - LastCommand set to: ADD 0000000000123
+2017-02-27 17:37:17,193 INFO  [JavaFX Application Thread] gui.Controller$6 (Controller.java:511) - Add: 0000000000123
+2017-02-27 17:37:17,193 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:173) - Overview set to I-Vapor Vaporizer
+2017-02-27 17:37:17,278 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:254) - Repeat called with: ADD 0000000000123
+2017-02-27 17:37:17,279 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:506) - LastCommand set to: ADD 0000000000123
+2017-02-27 17:37:17,280 INFO  [JavaFX Application Thread] gui.Controller$6 (Controller.java:511) - Add: 0000000000123
+2017-02-27 17:37:17,281 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:173) - Overview set to I-Vapor Vaporizer
+2017-02-27 17:37:17,363 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:254) - Repeat called with: ADD 0000000000123
+2017-02-27 17:37:17,363 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:506) - LastCommand set to: ADD 0000000000123
+2017-02-27 17:37:17,364 INFO  [JavaFX Application Thread] gui.Controller$6 (Controller.java:511) - Add: 0000000000123
+2017-02-27 17:37:17,365 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:173) - Overview set to I-Vapor Vaporizer
+2017-02-27 17:37:17,447 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:254) - Repeat called with: ADD 0000000000123
+2017-02-27 17:37:17,447 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:506) - LastCommand set to: ADD 0000000000123
+2017-02-27 17:37:17,448 INFO  [JavaFX Application Thread] gui.Controller$6 (Controller.java:511) - Add: 0000000000123
+2017-02-27 17:37:17,449 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:173) - Overview set to I-Vapor Vaporizer
+2017-02-27 17:37:17,531 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:254) - Repeat called with: ADD 0000000000123
+2017-02-27 17:37:17,531 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:506) - LastCommand set to: ADD 0000000000123
+2017-02-27 17:37:17,532 INFO  [JavaFX Application Thread] gui.Controller$6 (Controller.java:511) - Add: 0000000000123
+2017-02-27 17:37:17,533 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:173) - Overview set to I-Vapor Vaporizer
+2017-02-27 17:37:17,618 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:254) - Repeat called with: ADD 0000000000123
+2017-02-27 17:37:17,618 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:506) - LastCommand set to: ADD 0000000000123
+2017-02-27 17:37:17,619 INFO  [JavaFX Application Thread] gui.Controller$6 (Controller.java:511) - Add: 0000000000123
+2017-02-27 17:37:17,620 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:173) - Overview set to I-Vapor Vaporizer
+2017-02-27 17:37:17,706 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:254) - Repeat called with: ADD 0000000000123
+2017-02-27 17:37:17,706 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:506) - LastCommand set to: ADD 0000000000123
+2017-02-27 17:37:17,707 INFO  [JavaFX Application Thread] gui.Controller$6 (Controller.java:511) - Add: 0000000000123
+2017-02-27 17:37:17,708 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:173) - Overview set to I-Vapor Vaporizer
+2017-02-27 17:37:17,793 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:254) - Repeat called with: ADD 0000000000123
+2017-02-27 17:37:17,794 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:506) - LastCommand set to: ADD 0000000000123
+2017-02-27 17:37:17,795 INFO  [JavaFX Application Thread] gui.Controller$6 (Controller.java:511) - Add: 0000000000123
+2017-02-27 17:37:17,795 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:173) - Overview set to I-Vapor Vaporizer
+2017-02-27 17:37:26,642 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:417) - Grouping valled with Amount
+2017-02-27 17:37:26,643 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:431) - Grouped by Amount
+2017-02-27 17:37:26,643 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:173) - Overview set to I-Vapor Vaporizer
+2017-02-27 17:37:30,906 INFO  [JavaFX Application Thread] gui.Controller (Controller.java:247) - Item: I-Vapor Vaporizer removed
+2017-02-27 17:37:30,911 INFO  [JavaFX Application Thread] gui.Controller$7 (Controller.java:594) - List updated
+2017-02-27 17:37:34,842 DEBUG [JavaFX Application Thread] gui.Controller (Controller.java:329) - OVERVIEW Successfully Saved PrintFile
+2017-02-27 17:37:37,646 DEBUG [JavaFX Application Thread] gui.Controller$3 (Controller.java:200) - Window closed
+2017-02-27 17:37:38,444 DEBUG [main] gui.Main (Main.java:204) - Program ended
