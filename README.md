@@ -11,7 +11,8 @@ https://img.shields.io/badge/Built%20for-RaspberryPi-green.svg)](https://www.ras
 I had this problem quite often and ended up buying the stuff i already had, which led to me having 10 bottles of ketchup in my basement. The worst of it is, that i nearly always forgot to buy the stuff i needed. This ended up with me having to go for a second ride.
 <br />For a guy living in a <b>rural area</b> this is more than annoying.
 
-![img of finished system with link to youtube video]()
+![img of finished system with link to youtube video](./img/tempImgOfSystem.jpg)
+###### Note: This is just a temporary image until I get the time to make a image and video of the final, installed one
 
 ## Features
 - [x] Keep track of the products in stock
