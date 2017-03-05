@@ -1,10 +1,30 @@
 # StorageSystem
-##Personal Storage Management System
+[![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/timgrossmann/StorageSystem/blob/master/LICENSE)
+[![built with JavaFX](
+https://img.shields.io/badge/Built%20with-JavaFX-red.svg)](http://www.javafxtutorials.com/whatisjavafx/)
+[![built for RaspberryPi](
+https://img.shields.io/badge/Built%20for-RaspberryPi-green.svg)](https://www.raspberrypi.orgx/)
 
-Don't you know the struggle with going to the grocery store and only then realizing you forgot to check what you still got at home and what you should buy.
+##Personal Stock Control System
+
+>Don't you know the struggle with going to the grocery store and only then realizing you forgot to check what you still got at home and what you should buy.
 I had this problem quite often and ended up buying the stuff i already had, which led to me having 10 bottles of ketchup in my basement. The worst of it is, that i nearly always forgot to buy the stuff i needed. This ended up with me having to go for a second ride.
 <br />For a guy living in a <b>rural area</b> this is more than annoying.
 
+![img of finished system with link to youtube video]()
+
+## Features
+- [x] Keep track of the products in stock
+- [x] Add and Remove products by scanning their barcode
+- [x] Print an overview of the products in stock with your default printer
+- [x] Print a shopping list with all the products 0 left in stock
+- [x] Built for RaspberryPi Model3
+- [x] Pretty low cost system for your household
+- [x] 3D printfile of the case
+- [x] Easy web interface to search all your products by name, amount or categorie
+
+
+## Description
 This is a "small" personal project where i'll use Java, JavaFX, the Gson-Libary, Apache-Web-Server, JSON-server and Outpan.com as Barcode libary to fix this problem for me. 
 <br /><b>You can keep track of the items you have, the ones that are running out and the ones that are already empty.
 You can print out an overview of the stocks or a list of items that are already out of stock.
@@ -40,6 +60,12 @@ Total costs: 178€
 ![alt tag] (http://ecx.images-amazon.com/images/I/51RxfzoqFXL._SY300_.jpg)
 ![alt tag] (http://ecx.images-amazon.com/images/I/61qFVwEcWrL._SL1200_.jpg)
 ![alt tag](./case/casePrint.jpg)
+####1. Finished print, printed with an Objet30 3D printer.
+####2. The case still has the wax like support structure in the holes and a thin layer all around.
+####3. It's possible to remove the support material with the fingers. It's pretty crumbly.
+####4. The company has this stationary pressure washer.
+####5. There are two different hoses with different pressure.
+####6. With enough time you can get rid of all the support structure.
 
 <h2>Documentation of the problems with solutions</h2>
 <h4>Running JavaFX with Maven</h4>
