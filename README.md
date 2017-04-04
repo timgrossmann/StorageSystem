@@ -1,11 +1,10 @@
 # StorageSystem
-[![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/timgrossmann/StorageSystem/blob/master/LICENSE)
-[![built with JavaFX](
-https://img.shields.io/badge/Built%20with-JavaFX-red.svg)](http://www.javafxtutorials.com/whatisjavafx/)
-[![built for RaspberryPi](
-https://img.shields.io/badge/Built%20for-RaspberryPi-green.svg)](https://www.raspberrypi.orgx/)
 
-##Personal Stock Control System
+[![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/timgrossmann/StorageSystem/blob/master/LICENSE)
+[![built with JavaFX](https://img.shields.io/badge/Built%20with-JavaFX-red.svg)](http://www.javafxtutorials.com/whatisjavafx/)
+[![built for RaspberryPi](https://img.shields.io/badge/Built%20for-RaspberryPi-green.svg)](https://www.raspberrypi.orgx/)
+
+## Personal Stock Control System
 
 >Don't you know the struggle with going to the grocery store and only then realizing you forgot to check what you still got at home and what you should buy.
 I had this problem quite often and ended up buying the stuff i already had, which led to me having 10 bottles of ketchup in my basement. The worst of it is, that i nearly always forgot to buy the stuff i needed. This ended up with me having to go for a second ride.
@@ -50,16 +49,16 @@ Physical parts are:
 ------------------------------
 Total costs: 178€
 
-![alt tag] (https://github.com/timgrossmann/StorageSystem/blob/master/img/storageSystem_V1_1.png)
+![alt tag](https://github.com/timgrossmann/StorageSystem/blob/master/img/storageSystem_V1_1.png)
 - UI of the JavaFX App
 
 
-![alt tag] (https://raw.githubusercontent.com/timgrossmann/StorageSystem/master/img/WebView.png)
+![alt tag](https://raw.githubusercontent.com/timgrossmann/StorageSystem/master/img/WebView.png)
 - Very Simple but responsive WebPage of the Items
 
 ![alt tag](http://ecx.images-amazon.com/images/I/71T55P9USGL._SL1500_.jpg)
-![alt tag] (http://ecx.images-amazon.com/images/I/51RxfzoqFXL._SY300_.jpg)
-![alt tag] (http://ecx.images-amazon.com/images/I/61qFVwEcWrL._SL1200_.jpg)
+![alt tag](http://ecx.images-amazon.com/images/I/51RxfzoqFXL._SY300_.jpg)
+![alt tag](http://ecx.images-amazon.com/images/I/61qFVwEcWrL._SL1200_.jpg)
 ![alt tag](./case/casePrint.jpg)
 ####1. Finished print, printed with an Objet30 3D printer.
 ####2. The case still has the wax like support structure in the holes and a thin layer all around.
