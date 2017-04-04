@@ -2,6 +2,7 @@
 
 [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/timgrossmann/StorageSystem/blob/master/LICENSE)
 [![built for RaspberryPi](https://img.shields.io/badge/Built%20for-RaspberryPi-green.svg)](https://www.raspberrypi.orgx/)
+[![built with JavaFX](https://img.shields.io/badge/built%20with-JavaFX-red.svg)](http://www.javafxtutorials.com/whatisjavafx)
 
 ## Personal Stock Control System
 
