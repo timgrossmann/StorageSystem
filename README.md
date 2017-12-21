@@ -60,12 +60,13 @@ Total costs: 178€
 ![alt tag](http://ecx.images-amazon.com/images/I/51RxfzoqFXL._SY300_.jpg)
 ![alt tag](http://ecx.images-amazon.com/images/I/61qFVwEcWrL._SL1200_.jpg)
 ![alt tag](./case/casePrint.jpg)
-####1. Finished print, printed with an Objet30 3D printer.
-####2. The case still has the wax like support structure in the holes and a thin layer all around.
-####3. It's possible to remove the support material with the fingers. It's pretty crumbly.
-####4. The company has this stationary pressure washer.
-####5. There are two different hoses with different pressure.
-####6. With enough time you can get rid of all the support structure.
+
+#### 1. Finished print, printed with an Objet30 3D printer.
+#### 2. The case still has the wax like support structure in the holes and a thin layer all around.
+#### 3. It's possible to remove the support material with the fingers. It's pretty crumbly.
+#### 4. The company has this stationary pressure washer.
+#### 5. There are two different hoses with different pressure.
+#### 6. With enough time you can get rid of all the support structure.
 
 <h2>Documentation of the problems with solutions</h2>
 <h4>Running JavaFX with Maven</h4>
@@ -100,7 +101,8 @@ Total costs: 178€
 <p>If the GUI should be the size of the full display, but without using the fullscreen option <br />
 <b>Problem</b>: Fullscreen makes the access to the Desktop harder, you might want to be able to access the Desktop while your GUI is runnign. <br />
 <b>Solution</b>: In your programcode, when setting up the primaryStage, set the size of your primaryScene to the dimensions of you display. You can do this with:</p>
-```java
+
+```java   
 Rectangle2D displayDims = Screen.getPrimary().getBounds();
 Scene primaryScene = new Scene(root, displayDims.getWidth(), displayDims.getHeight());
 ```
@@ -109,13 +111,16 @@ Scene primaryScene = new Scene(root, displayDims.getWidth(), displayDims.getHeig
 
 <h4>The Desktop on NOOBS is not the real Desktop path</h4>
 <p>If you want to save a File to the Desktop, in Java you can do it like this.</p>
-```java
+
+```java   
 new File(System.getProperty("user.home") + "/Desktop")
 ```
+
 <p><b>Problem</b>: On the Pi, the user.home/Desktop is not the Desktop you get displayed when starting up the Pi. <br />
 <b>Solution</b>: You can create a soft link of the file on the user.home/Desktop to the file you created on your visible Desktop. Once your programm changes the user.home/Desktop file, since you linked them, the one on your visible Deskotp will also be changed. This is done like this:</p>
+
 ```bash
-ln -s {target-filename} {symbolic-filename}
+ln -s {target-filename} {symbolic-filename}   
 ```
 
 <br />
